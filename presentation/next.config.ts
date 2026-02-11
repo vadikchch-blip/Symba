@@ -1,10 +1,10 @@
 import type { NextConfig } from 'next'
 
-const isProd = process.env.NODE_ENV === 'production'
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+const isStaticExport = process.env.STATIC_EXPORT === 'true'
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  ...(isStaticExport ? { output: 'export' } : {}),
   basePath: basePath || undefined,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   images: {
