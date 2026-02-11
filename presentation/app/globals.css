@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ===== FONTS ===== */
+@font-face {
+  font-family: 'EuclidCircular';
+  src: url('/fonts/EuclidCircularA-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== CSS RESET ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  /* Brand Colors */
+  --color-accent-brick: #F44D2B;
+  --color-graphite-text: #292725;
+  --color-chalk: #DDDCC8;
+  --color-cement: #EADEE6;
+  --color-sand: #858074;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-accent-ochre: #FCAC01;
+  --color-accent-moss: #CEDF83;
+  --color-accent-lilac: #A879FF;
+  --color-accent-pink: #EC6DAF;
+
+  /* Layout */
+  --grid-gutter: clamp(16px, 2vw, 28px);
+  --grid-margin: clamp(20px, 3vw, 48px);
+  --logo-safe: clamp(18px, 2.5vw, 44px);
+  --slide-max-w: min(1440px, 92vw);
+  --slide-min-h: min(810px, 90vh);
+  --baseline: 8px;
+
+  /* Typography */
+  --font-primary: 'EuclidCircular', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --h1-size: clamp(44px, 5vw, 72px);
+  --h1-lh: 1.05;
+
+  --h2-size: clamp(28px, 3vw, 44px);
+  --h2-lh: 1.15;
+
+  --body-size: clamp(18px, 1.6vw, 22px);
+  --body-lh: 1.35;
+
+  --mono-size: clamp(12px, 1.1vw, 14px);
+  --mono-lh: 1.5;
+  --mono-tracking: 0.02em;
+
+  /* Transitions */
+  --slide-transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-graphite-text);
+  background: var(--color-chalk);
+}

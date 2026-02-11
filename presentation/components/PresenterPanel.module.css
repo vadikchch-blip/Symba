@@ -1,0 +1,137 @@
+.panel {
+  height: 100vh;
+  background: var(--color-graphite-text);
+  color: var(--color-white);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-accent-brick);
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+.timer {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.slideInfo {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slideNum {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-sand);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.slideTitle {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.nextSlide {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nextLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-sand);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.nextTitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.navBtn {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-white);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.shortcuts {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shortcuts h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sand);
+  margin-bottom: 10px;
+}
+
+.shortcut {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shortcut kbd {
+  display: inline-block;
+  min-width: 20px;
+  padding: 2px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+}

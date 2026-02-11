@@ -1,0 +1,157 @@
+.presentation {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-chalk);
+}
+
+.presenterLayout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+}
+
+.slideArea {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.presenterLayout .slideArea {
+  height: 100vh;
+}
+
+/* Slide transitions */
+.slideContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.entering {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.exiting {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Bottom controls */
+.controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(41, 39, 37, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.presentation:hover .controls,
+.controls:focus-within {
+  opacity: 1;
+}
+
+.controlBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-white);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.controlBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.controlBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.presenterBtn,
+.fullscreenBtn {
+  font-size: 16px;
+}
+
+.slideCounter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  min-width: 50px;
+  text-align: center;
+  user-select: none;
+}
+
+/* Slide progress (top) */
+.slideProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 50;
+  display: flex;
+  gap: 2px;
+}
+
+.progressSegment {
+  flex: 1;
+  height: 100%;
+  background: rgba(41, 39, 37, 0.12);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.progressSegment:hover {
+  background: rgba(41, 39, 37, 0.3);
+}
+
+.progressSegmentActive {
+  background: var(--color-accent-brick);
+}
+
+.progressSegmentPast {
+  background: rgba(41, 39, 37, 0.35);
+}
