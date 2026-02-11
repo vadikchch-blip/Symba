@@ -1,326 +1,353 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { CoverSlide } from './slides/CoverSlide'
-import { TextSlide } from './slides/TextSlide'
-import { TextTechSlide } from './slides/TextTechSlide'
-import { ClosingSlide } from './slides/ClosingSlide'
-import { PresenterPanel } from './PresenterPanel'
-import { SlideProgress } from './SlideProgress'
 import { assetPath } from '@/lib/basePath'
 import styles from './Presentation.module.css'
 
-export interface SlideData {
-  id: string
-  type: 'cover' | 'text' | 'text+tech' | 'closing'
-  title: string
-  subtitle?: string
-  bullets?: string[]
-  quote?: string[]
-  body?: string
-  closingLines?: string[]
-  tech?: { k: string; v: string }[]
-  visual: {
-    mode: string
-    src?: string
-    mask?: string
-    tiles?: string
-    subtle?: boolean
-    bg?: string
-  }
-  accent: string
-}
-
-const slides: SlideData[] = [
-  {
-    id: 's01',
-    type: 'cover',
-    title: 'Симбиотика',
-    subtitle: 'Благоустройство как управляемая часть\nдевелоперского проекта',
-    visual: { mode: 'image', src: '/images/194464417_adef9bc2-5ea4-4aaf-867a-2b614941e81f_result.png', mask: 'none' },
-    accent: 'accentBrick',
-  },
-  {
-    id: 's02',
-    type: 'text',
-    title: 'Контекст',
-    bullets: [
-      'Город — это не только архитектура. Это то, как человек в нём живёт каждый день.',
-      'Благоустройство — это эргономика среды: расстояния, масштаб, пропорции, логика движения.',
-      'В основе всегда три вещи: эстетика, эргономика и долговечность.',
-    ],
-    visual: { mode: 'pattern', tiles: 'modularTiles', subtle: true },
-    accent: 'none',
-  },
-  {
-    id: 's03',
-    type: 'text',
-    title: 'Реальность девелопера',
-    bullets: [
-      'Проект меняется: вводные, бюджеты, решения, сроки.',
-      'Блок МАФов часто ведут отдельно — ответственность распадается между подрядчиками.',
-      'Цель — чтобы этот блок не требовал постоянного ручного управления и не отвлекал от ключевых решений.',
-    ],
-    visual: { mode: 'imageWindow', src: '/images/eb64054d_nano_1K.jpg', mask: 'symbol' },
-    accent: 'accentMoss',
-  },
-  {
-    id: 's04',
-    type: 'text',
-    title: 'Система, а не изделия',
-    quote: [
-      'Мы не рассматриваем малые архитектурные формы как отдельные изделия.',
-      'Для нас это всегда часть более широкой системы, встроенной в конкретный проект, его архитектуру и сценарии использования.',
-    ],
-    body: 'Важно, чтобы элемент логично продолжал архитектуру проекта и усиливал её, а не спорил с ней. При этом он должен быть продуман по взаимодействию с человеком: высота, посадка, расстояния. Эргономика здесь не дополнение к форме, а её продолжение.',
-    visual: { mode: 'image', src: '/images/194464417_b7b2bdbb-e603-415f-a4b3-f9bd9c885c33_result.png', mask: 'none' },
-    accent: 'accentBrick',
-  },
-  {
-    id: 's05',
-    type: 'text',
-    title: 'Работа с изменениями',
-    bullets: [
-      'Изменения — норма.',
-      'Проблема начинается, когда решение не рассчитано на уточнения.',
-      'Мы закладываем конструктивную гибкость, чтобы корректировки не срывали процесс.',
-    ],
-    visual: { mode: 'pattern', tiles: 'modularTiles', subtle: true },
-    accent: 'accentLilac',
-  },
-  {
-    id: 's06',
-    type: 'text',
-    title: 'Полный цикл',
-    bullets: [
-      'Проектирование, производство, логистика, монтаж — одна цепочка.',
-      'Когда за неё отвечает один центр, процесс перестаёт распадаться.',
-      'Меньше накладок. Меньше срочных вмешательств.',
-    ],
-    visual: { mode: 'imageWindow', src: '/images/1c7838f9_nano_1K.jpg', mask: 'circleHalf' },
-    accent: 'accentOchre',
-  },
-  {
-    id: 's07',
-    type: 'text+tech',
-    title: 'Эксплуатация и климат',
-    body: 'Южный климат предъявляет особые требования: высокая влажность и циклы замерзания ускоряют износ. Поэтому используем бетон не ниже М600 — с учётом влагостойкости и морозостойкости.',
-    tech: [
-      { k: 'Бетон', v: 'M600+' },
-      { k: 'Фокус', v: 'влагостойкость / морозостойкость' },
-      { k: 'Цель', v: 'срок службы / снижение рекламаций' },
-    ],
-    visual: { mode: 'product', src: '/images/d203d80a_nano_1K.jpg', bg: 'chalk' },
-    accent: 'accentBrick',
-  },
-  {
-    id: 's08',
-    type: 'text',
-    title: 'Качество как процесс',
-    bullets: [
-      'Качество не появляется в конце — оно закладывается в технологии и допусках.',
-      'Контроль на каждом этапе даёт предсказуемый результат.',
-      'К этому блоку не приходится возвращаться после сдачи объекта.',
-    ],
-    visual: { mode: 'image', src: '/images/194464417_cbb391d0-f4c3-4675-952c-bb86348b9fd7_result.png', mask: 'none' },
-    accent: 'none',
-  },
-  {
-    id: 's09',
-    type: 'closing',
-    title: 'Финал',
-    body: 'В итоге благоустройство перестаёт быть зоной риска и становится управляемой частью проекта. Оно не требует постоянного вмешательства и спокойно работает в рамках общей архитектурной логики.',
-    closingLines: [
-      'Именно такой формат работы мы считаем правильным.',
-      'И именно в таком формате нам комфортно работать с девелоперами.',
-    ],
-    visual: { mode: 'pattern', tiles: 'modularTiles', subtle: false },
-    accent: 'accentBrick',
-  },
-]
+const TOTAL_SLIDES = 16
 
 export function Presentation() {
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [current, setCurrent] = useState(0)
   const [presenterMode, setPresenterMode] = useState(false)
-  const [direction, setDirection] = useState<'next' | 'prev'>('next')
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [elapsed, setElapsed] = useState(0)
 
-  const totalSlides = slides.length
-
-  const goToSlide = useCallback(
-    (index: number, dir?: 'next' | 'prev') => {
-      if (index < 0 || index >= totalSlides || isTransitioning) return
-      setDirection(dir || (index > currentSlide ? 'next' : 'prev'))
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentSlide(index)
-        setTimeout(() => setIsTransitioning(false), 50)
-      }, 300)
-    },
-    [currentSlide, totalSlides, isTransitioning]
-  )
-
-  const next = useCallback(() => {
-    if (currentSlide < totalSlides - 1) goToSlide(currentSlide + 1, 'next')
-  }, [currentSlide, totalSlides, goToSlide])
-
-  const prev = useCallback(() => {
-    if (currentSlide > 0) goToSlide(currentSlide - 1, 'prev')
-  }, [currentSlide, goToSlide])
+  const go = useCallback((i: number) => {
+    if (i >= 0 && i < TOTAL_SLIDES) setCurrent(i)
+  }, [])
+  const next = useCallback(() => go(current + 1), [current, go])
+  const prev = useCallback(() => go(current - 1), [current, go])
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const h = (e: KeyboardEvent) => {
       switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-        case ' ':
-        case 'PageDown':
-          e.preventDefault()
-          next()
-          break
-        case 'ArrowLeft':
-        case 'ArrowUp':
-        case 'PageUp':
-          e.preventDefault()
-          prev()
-          break
-        case 'Home':
-          e.preventDefault()
-          goToSlide(0, 'prev')
-          break
-        case 'End':
-          e.preventDefault()
-          goToSlide(totalSlides - 1, 'next')
-          break
-        case 'p':
-        case 'P':
-          if (!e.ctrlKey && !e.metaKey) {
-            e.preventDefault()
-            setPresenterMode((p) => !p)
-          }
-          break
-        case 'Escape':
-          e.preventDefault()
-          setPresenterMode(false)
-          break
-        case 'f':
-        case 'F':
-          if (!e.ctrlKey && !e.metaKey) {
-            e.preventDefault()
-            if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen()
-            } else {
-              document.exitFullscreen()
-            }
-          }
-          break
+        case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown': e.preventDefault(); next(); break
+        case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prev(); break
+        case 'Home': e.preventDefault(); go(0); break
+        case 'End': e.preventDefault(); go(TOTAL_SLIDES - 1); break
+        case 'p': case 'P': if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); setPresenterMode(p => !p) } break
+        case 'Escape': setPresenterMode(false); break
+        case 'f': case 'F': if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen() } break
       }
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [next, prev, goToSlide, totalSlides])
+    window.addEventListener('keydown', h)
+    return () => window.removeEventListener('keydown', h)
+  }, [next, prev, go])
+
+  useEffect(() => {
+    const start = Date.now()
+    const t = setInterval(() => setElapsed(Math.floor((Date.now() - start) / 1000)), 1000)
+    return () => clearInterval(t)
+  }, [])
 
   const handleClick = (e: React.MouseEvent) => {
     if (presenterMode) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    if (x > rect.width * 0.65) {
-      next()
-    } else if (x < rect.width * 0.35) {
-      prev()
-    }
+    const r = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - r.left
+    x > r.width * 0.6 ? next() : x < r.width * 0.4 ? prev() : null
   }
 
-  const resolveSlide = (slide: SlideData): SlideData => ({
-    ...slide,
-    visual: {
-      ...slide.visual,
-      src: slide.visual.src ? assetPath(slide.visual.src) : undefined,
-    },
-  })
+  const fmt = (s: number) => `${Math.floor(s/60).toString().padStart(2,'0')}:${(s%60).toString().padStart(2,'0')}`
+  const num = (n: number) => (n + 1).toString().padStart(2, '0')
+  const progress = ((current + 1) / TOTAL_SLIDES) * 100
+  const img = (p: string) => assetPath(p)
 
-  const renderSlide = (slide: SlideData) => {
-    const resolved = resolveSlide(slide)
-    switch (resolved.type) {
-      case 'cover':
-        return <CoverSlide slide={resolved} />
-      case 'text':
-        return <TextSlide slide={resolved} />
-      case 'text+tech':
-        return <TextTechSlide slide={resolved} />
-      case 'closing':
-        return <ClosingSlide slide={resolved} />
-      default:
-        return <TextSlide slide={resolved} />
-    }
-  }
+  // Inline SVG logo wordmark
+  const Logo = ({ color = 'currentColor', className = '' }: { color?: string; className?: string }) => (
+    <svg className={className} viewBox="0 0 2000 699.3" xmlns="http://www.w3.org/2000/svg">
+      <path fill={color} d="M1599,437.6c-15.7,0-28.9-5.8-39.7-17.5-10.6-11.7-15.9-25.9-15.9-42.5s5.3-30.8,15.9-42.5c10.8-11.7,24-17.5,39.7-17.5s15.1,1.8,21.7,5.3c6.6,3.4,11.7,7.5,15.2,12.5v-15.5h25.4v115.4h-25.4v-15.5c-3.5,4.9-8.6,9.2-15.2,12.7-6.6,3.4-13.8,5.1-21.7,5.1ZM1578.9,403.9c6.5,7.1,14.7,10.6,24.7,10.6s18.2-3.5,24.7-10.6c6.5-7.1,9.7-15.8,9.7-26.3s-3.2-19.2-9.7-26.3c-6.5-7.1-14.7-10.6-24.7-10.6s-18.2,3.5-24.7,10.6c-6.5,7.1-9.7,15.9-9.7,26.3s3.2,19.2,9.7,26.3Z"/>
+      <path fill={color} d="M1513,435.3l-51.2-49.2v49.2h-25.4v-115.4h25.4v49.4l45.4-49.4h30.9l-52.4,56.8,60.7,58.6h-33.5Z"/>
+      <path fill={color} d="M1320.3,435.3h-22.6v-115.4h25.4v76.8l58.8-76.8h22.6v115.4h-25.4v-76.9l-58.8,76.9Z"/>
+      <path fill={color} d="M1217.2,435.3v-92.8h-34.6v-22.6h96.2v22.6h-36.2v92.8h-25.4Z"/>
+      <path fill={color} d="M1158.2,420.3c-11.5,11.5-25.8,17.3-42.9,17.3s-31.5-5.8-43.1-17.3c-11.5-11.7-17.3-25.9-17.3-42.7s5.8-30.9,17.3-42.5c11.7-11.7,26.1-17.5,43.1-17.5s31.4,5.8,42.9,17.5c11.7,11.5,17.5,25.7,17.5,42.5s-5.8,31-17.5,42.7ZM1115.3,414c10,0,18.2-3.5,24.7-10.4,6.6-7.1,9.9-15.8,9.9-26.1s-3.3-18.9-9.9-25.8c-6.5-7.1-14.7-10.6-24.7-10.6s-18.5,3.5-25.1,10.6c-6.5,6.9-9.7,15.5-9.7,25.8s3.2,19,9.7,26.1c6.6,6.9,15,10.4,25.1,10.4Z"/>
+      <path fill={color} d="M947,435.3h-22.6v-115.4h25.4v76.8l58.8-76.8h22.6v115.4h-25.4v-76.9l-58.8,76.9Z"/>
+      <path fill={color} d="M840.4,437.6c-18.8,0-33.4-6.1-44.1-18.5-10.6-12.3-15.9-28.8-15.9-49.4v-9.2c0-28.6,5.4-49.9,16.1-63.9,10.9-14,27.9-23.2,51-27.7l41.7-7.6v24.2l-36.2,6.5c-15.1,2.8-26.2,7.7-33.4,14.8-7.1,7.1-11.5,17.4-13.1,30.9,9.5-11.1,22.2-16.6,38.1-16.6s30.5,5.5,40.8,16.4c10.3,10.8,15.5,24,15.5,39.7s-5.8,31.2-17.5,42.9c-11.5,11.7-25.8,17.5-42.9,17.5ZM815.3,404.1c6.5,6.6,14.8,9.9,24.9,9.9s18.5-3.3,24.9-9.9c6.6-6.8,9.9-15.6,9.9-26.5s-3.3-17.8-9.9-24.2c-6.5-6.5-14.7-9.7-24.7-9.7s-18.5,3.3-24.9,9.9c-6.5,6.6-9.7,14.6-9.7,24s3.2,19.8,9.5,26.5Z"/>
+      <path fill={color} d="M627.2,319.9h22.1l40.4,52.6,40.8-52.6h22.1v115.4h-25.4v-75.5l-37.4,48.5-37.4-48.5v75.5h-25.4v-115.4Z"/>
+      <path fill={color} d="M511.1,435.3h-22.6v-115.4h25.4v76.8l58.8-76.8h22.6v115.4h-25.4v-76.9l-58.8,76.9Z"/>
+      <path fill={color} d="M387.7,438.1c-24.4,0-44.8-8.1-61.1-24.2-16.1-16.3-24.2-36.5-24.2-60.5s8.1-44.1,24.2-60.2c16.3-16.3,36.7-24.5,61.1-24.5s36.3,5.5,50.7,16.6c14.6,10.9,24,24.6,28.1,41.1h-29.1c-3.5-9.4-9.8-17-18.9-22.8-9.1-5.8-19.4-8.8-30.9-8.8-16.9,0-30.8,5.6-41.7,16.8-10.9,11.2-16.4,25.2-16.4,41.8s5.5,30.5,16.4,41.8c10.9,11.2,24.8,16.8,41.7,16.8s21.8-2.9,30.9-8.8c9.1-5.8,15.4-13.5,18.9-22.9h29.1c-4.2,16.5-13.5,30.2-28.1,41.3-14.5,10.9-31.4,16.4-50.7,16.4Z"/>
+    </svg>
+  )
+
+  const Blueprint = () => <div className={styles.blueprint} />
+  const Mono = ({ children, accent = false, className = '' }: { children: React.ReactNode; accent?: boolean; className?: string }) => (
+    <span className={`${styles.mono} ${accent ? styles.monoAccent : ''} ${className}`}>{children}</span>
+  )
+
+  const slides = [
+    // [01] COVER — сохраняем нашу версию
+    <div key="s01" className={styles.cover}>
+      <div className={styles.coverBg}><img src={img('/images/194464417_adef9bc2-5ea4-4aaf-867a-2b614941e81f_result.png')} alt="" /></div>
+      <div className={styles.coverOverlay} />
+      <div className={styles.coverLogo}><Logo color="#ffffff" className={styles.logoSvg} /></div>
+      <div className={styles.coverTagline}>symbiotica.pro</div>
+      <div className={styles.coverContent}>
+        <div className={styles.coverAccent} />
+        <h1 className={styles.coverTitle}>Симбиотика</h1>
+        <p className={styles.coverSubtitle}>Благоустройство как управляемая часть<br />девелоперского проекта</p>
+      </div>
+      <div className={styles.coverBottom}>Качество пространства. Качество жизни.</div>
+    </div>,
+
+    // [02] КОНТЕКСТ
+    <div key="s02" className={`${styles.s} ${styles.sRow}`}>
+      <div className={styles.half}>
+        <Mono accent>02 Контекст</Mono>
+        <h1 className={styles.h1big}>Качество среды<br />определяет жизнь.</h1>
+        <p className={styles.textMuted}>Мы верим, что архитектура — это не просто сумма объектов, а инструмент формирования поведения и ценностей человека.</p>
+      </div>
+      <div className={`${styles.half} ${styles.imgBlock}`}>
+        <img src={img('/images/194464417_b7b2bdbb-e603-415f-a4b3-f9bd9c885c33_result.png')} alt="" />
+        <div className={styles.imgLabel}><Mono>System_Visual_01</Mono></div>
+      </div>
+    </div>,
+
+    // [03] ПРОБЛЕМА
+    <div key="s03" className={`${styles.s} ${styles.bgSand}`}>
+      <div className={styles.grid12}>
+        <div className={styles.col6L}>
+          <Mono accent>03 Проблема</Mono>
+          <h1 className={styles.h1xl}>Хаотичная среда<br />размывает смыслы.</h1>
+          <p className={`${styles.monoBody}`}>Отсутствие системного подхода в благоустройстве превращает города в набор случайных элементов, снижая комфорт и капитализацию.</p>
+        </div>
+        <div className={`${styles.col6R} ${styles.imgBlock}`}>
+          <img src={img('/images/eb64054d_nano_1K.jpg')} alt="" />
+        </div>
+      </div>
+    </div>,
+
+    // [04] ПОЗИЦИЯ
+    <div key="s04" className={`${styles.s} ${styles.sCenter}`}>
+      <Blueprint />
+      <div className={styles.centerBlock}>
+        <Mono>04 Наша позиция</Mono>
+        <h1 className={styles.h1xxl}>Система выше<br />декорации.</h1>
+        <div className={styles.pillars}>
+          <div className={styles.pillar}><div className={`${styles.pillarBar} ${styles.pillarAccent}`} /><Mono>Логика</Mono></div>
+          <div className={styles.pillar}><div className={styles.pillarBar} /><Mono>Масштаб</Mono></div>
+          <div className={styles.pillar}><div className={`${styles.pillarBar} ${styles.pillarFade}`} /><Mono>Среда</Mono></div>
+        </div>
+      </div>
+    </div>,
+
+    // [05] МЫШЛЕНИЕ — 3 колонки
+    <div key="s05" className={`${styles.s} ${styles.bgCement} ${styles.sPad16}`}>
+      <div className={styles.cols3}>
+        {[
+          { n: '01', t: 'Модульность', d: 'Элементы собираются в бесконечные комбинации.' },
+          { n: '02', t: 'Повторяемость', d: 'Ритм создает ощущение порядка и безопасности.' },
+          { n: '03', t: 'Масштаб', d: 'Решения одинаково работают в любом объеме.' },
+        ].map(c => (
+          <div key={c.n} className={styles.col3card}>
+            <Mono accent>{c.n} / {c.t}</Mono>
+            <h3 className={styles.h3bold}>{c.d}</h3>
+          </div>
+        ))}
+      </div>
+    </div>,
+
+    // [06] МАТЕРИАЛ — split
+    <div key="s06" className={`${styles.s} ${styles.sSplit}`}>
+      <div className={`${styles.splitImg} ${styles.imgBlock}`}>
+        <img src={img('/images/1c7838f9_nano_1K.jpg')} alt="" />
+      </div>
+      <div className={styles.splitText}>
+        <Mono accent>06 Материальность</Mono>
+        <h1 className={styles.h1}>Честный бетон.</h1>
+        <p className={styles.textMutedLg}>Мы не прячем материал. Его грубая, природная фактура — это залог долговечности и эстетической правды.</p>
+        <div className={styles.lineAccent} />
+      </div>
+    </div>,
+
+    // [07] ГЕОМЕТРИЯ
+    <div key="s07" className={`${styles.s} ${styles.sCenter}`}>
+      <Blueprint />
+      <div className={styles.geoGrid}>
+        <div className={styles.geoCell}><div className={styles.geoSquare} /></div>
+        <div className={styles.geoCell}><div className={styles.geoCircle} /></div>
+      </div>
+      <div className={styles.geoCaption}>
+        <h1 className={styles.h1lg}>Геометрическая логика.</h1>
+        <Mono className={styles.opacityLow}>Квадрат и круг — основа системы</Mono>
+      </div>
+    </div>,
+
+    // [08] БИБЛИОТЕКА
+    <div key="s08" className={`${styles.s} ${styles.sCol}`}>
+      <div className={styles.libHeader}>
+        <div>
+          <Mono accent>08 Инструментарий</Mono>
+          <h1 className={styles.h1xl}>Библиотека<br />решений.</h1>
+        </div>
+        <Mono className={styles.textMuted}>SYMB_MOD_V.2.0</Mono>
+      </div>
+      <div className={styles.libGrid}>
+        {Array.from({ length: 12 }, (_, i) => (
+          <div key={i} className={`${styles.libCell} ${i === 2 ? styles.libCellAccent : ''}`}>
+            <div className={`${styles.libDot} ${i === 2 ? styles.libDotW : ''}`} />
+          </div>
+        ))}
+      </div>
+    </div>,
+
+    // [09] ИНЖИНИРИНГ
+    <div key="s09" className={`${styles.s} ${styles.bgCement} ${styles.sCenter}`}>
+      <div className={styles.engCard}>
+        <Mono accent>09 Инжиниринг</Mono>
+        <h1 className={styles.h1}>Конструктор для девелопмента.</h1>
+        <div className={styles.engRows}>
+          {[
+            ['Спецификация', 'ID_SYM_ALPHA'],
+            ['Материал', 'Concrete M800 / Reinforced'],
+            ['Адаптивность', '100% / Grid-Based'],
+          ].map(([k, v]) => (
+            <div key={k} className={styles.engRow}><Mono>{k}</Mono><Mono>{v}</Mono></div>
+          ))}
+        </div>
+      </div>
+    </div>,
+
+    // [10] ГОРОД
+    <div key="s10" className={`${styles.s} ${styles.sVertSplit}`}>
+      <div className={`${styles.vertTop} ${styles.imgBlock}`}>
+        <img src={img('/images/194464417_cbb391d0-f4c3-4675-952c-bb86348b9fd7_result.png')} alt="" />
+      </div>
+      <div className={styles.vertBottom}>
+        <div>
+          <Mono accent>10 Urban Development</Mono>
+          <h1 className={styles.h1lg}>Интеграция в контекст.</h1>
+        </div>
+        <Mono className={styles.textMuted}>{num(9)} / {num(TOTAL_SLIDES - 1)}</Mono>
+      </div>
+    </div>,
+
+    // [11] МАСШТАБ ЧЕЛОВЕКА
+    <div key="s11" className={`${styles.s} ${styles.sRow} ${styles.sPad16}`}>
+      <div className={styles.grid12}>
+        <div className={`${styles.col8} ${styles.imgBlock} ${styles.imgWide}`}>
+          <img src={img('/images/d203d80a_nano_1K.jpg')} alt="" />
+        </div>
+        <div className={styles.col4}>
+          <Mono accent>11 Антропоцентричность</Mono>
+          <h1 className={styles.h1lg}>Человек — масштаб.</h1>
+          <p className={styles.textMuted}>Мы проектируем объекты, которые не доминируют над человеком, а служат его естественному движению в пространстве.</p>
+        </div>
+      </div>
+    </div>,
+
+    // [12] ТИРАЖИРУЕМОСТЬ
+    <div key="s12" className={`${styles.s} ${styles.sCenter}`}>
+      <div className={styles.patternGrid}>
+        {Array.from({ length: 48 }, (_, i) => <div key={i} className={styles.patternCell} />)}
+      </div>
+      <div className={styles.centerBlock}>
+        <Mono accent>12 Тиражируемость</Mono>
+        <h1 className={styles.h1xxl}>Масштаб<br />без потерь.</h1>
+        <p className={styles.textMuted}>Модульная система позволяет тиражировать решения без потери качества и архитектурной целостности.</p>
+      </div>
+    </div>,
+
+    // [13] ПРЕИМУЩЕСТВА — 3 колонки
+    <div key="s13" className={`${styles.s} ${styles.bgCement}`}>
+      <div className={styles.cols3}>
+        {[
+          { n: '01', t: 'Надежность', d: 'Бетон архитектурного класса гарантирует десятилетия службы без потери вида.' },
+          { n: '02', t: 'Экономика', d: 'Минимизация затрат на эксплуатацию за счет отсутствия сложной фурнитуры.' },
+          { n: '03', t: 'Эстетика', d: 'Чистые формы повышают статус и визуальную ценность девелоперского продукта.' },
+        ].map(c => (
+          <div key={c.n} className={styles.col3card}>
+            <h1 className={styles.h1ghost}>{c.n}</h1>
+            <Mono accent>{c.t}</Mono>
+            <p className={styles.textMuted}>{c.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>,
+
+    // [14] ПАРТНЁРСТВО
+    <div key="s14" className={`${styles.s} ${styles.sRow}`}>
+      <div className={styles.grid12}>
+        <div className={styles.col7}>
+          <Mono accent>14 Модель работы</Mono>
+          <h1 className={styles.h1big}>От концепции<br />до авторского надзора.</h1>
+        </div>
+        <div className={`${styles.col5} ${styles.steps}`}>
+          {['Проектирование', 'Производство', 'Монтаж'].map((s, i) => (
+            <div key={s} className={styles.step}>
+              <div className={`${styles.stepLine} ${i === 0 ? styles.stepLineAccent : ''}`} />
+              <Mono>{s}</Mono>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>,
+
+    // [15] РЕЗУЛЬТАТ
+    <div key="s15" className={`${styles.s} ${styles.sFullImg}`}>
+      <img src={img('/images/194464417_adef9bc2-5ea4-4aaf-867a-2b614941e81f_result.png')} alt="" className={styles.fullImg} />
+      <div className={styles.fullImgOverlay}>
+        <h1 className={styles.h1xxl}>Среда, которая работает на репутацию проекта.</h1>
+      </div>
+    </div>,
+
+    // [16] КОНТАКТЫ
+    <div key="s16" className={`${styles.s} ${styles.sCenter}`}>
+      <Blueprint />
+      <div className={styles.contactBlock}>
+        <Logo color="var(--text-main)" className={styles.contactLogo} />
+        <div className={styles.contactInfo}>
+          <p className={styles.contactMain}>symbiotica.pro</p>
+          <div className={styles.contactLine} />
+          <Mono className={styles.opacityLow}>2026 / Архитектурный бетон</Mono>
+        </div>
+      </div>
+    </div>,
+  ]
 
   return (
-    <div className={`${styles.presentation} ${presenterMode ? styles.presenterLayout : ''}`}>
+    <div className={styles.presentation}>
       <div className={styles.slideArea} onClick={handleClick}>
-        <div
-          className={`${styles.slideContainer} ${isTransitioning ? styles.exiting : styles.entering} ${
-            direction === 'next' ? styles.fromRight : styles.fromLeft
-          }`}
-        >
-          {renderSlide(slides[currentSlide])}
-        </div>
-        <SlideProgress current={currentSlide} total={totalSlides} onGoTo={(i) => goToSlide(i)} />
+        {slides.map((slide, i) => (
+          <div key={i} className={`${styles.slide} ${i === current ? styles.slideActive : ''}`}>
+            {slide}
+          </div>
+        ))}
       </div>
 
+      {/* Nav UI */}
+      <div className={styles.navUi}>
+        <button className={styles.navBtn} onClick={e => { e.stopPropagation(); prev() }} disabled={current === 0}>←</button>
+        <span className={styles.counter}>{num(current)} / {num(TOTAL_SLIDES - 1)}</span>
+        <button className={styles.navBtn} onClick={e => { e.stopPropagation(); next() }} disabled={current === TOTAL_SLIDES - 1}>→</button>
+        <button className={styles.navBtn} onClick={e => { e.stopPropagation(); setPresenterMode(p => !p) }} title="P">⬚</button>
+      </div>
+
+      {/* Progress */}
+      <div className={styles.progressRail}>
+        <div className={styles.progressFill} style={{ width: `${progress}%` }} />
+      </div>
+
+      {/* Presenter */}
       {presenterMode && (
-        <PresenterPanel
-          currentSlide={currentSlide}
-          totalSlides={totalSlides}
-          slideTitle={slides[currentSlide].title}
-          nextSlideTitle={currentSlide < totalSlides - 1 ? slides[currentSlide + 1].title : null}
-          onNext={next}
-          onPrev={prev}
-        />
+        <div className={styles.presenter}>
+          <div className={styles.presenterHeader}>
+            <span className={styles.presenterBadge}>Presenter</span>
+            <span className={styles.presenterTimer}>{fmt(elapsed)}</span>
+          </div>
+          <div className={styles.presenterInfo}>
+            Слайд {current + 1} из {TOTAL_SLIDES}
+          </div>
+          <div className={styles.presenterNav}>
+            <button onClick={prev} disabled={current === 0} className={styles.presenterBtn}>← Назад</button>
+            <button onClick={next} disabled={current === TOTAL_SLIDES - 1} className={styles.presenterBtn}>Далее →</button>
+          </div>
+          <div className={styles.presenterKeys}>
+            <div>→ / Space — далее</div>
+            <div>← — назад</div>
+            <div>F — полный экран</div>
+            <div>P — презентатор</div>
+            <div>Esc — закрыть</div>
+          </div>
+        </div>
       )}
-
-      <div className={styles.controls}>
-        <button
-          className={styles.controlBtn}
-          onClick={(e) => { e.stopPropagation(); prev() }}
-          disabled={currentSlide === 0}
-          aria-label="Предыдущий слайд"
-        >
-          ‹
-        </button>
-        <span className={styles.slideCounter}>
-          {currentSlide + 1} / {totalSlides}
-        </span>
-        <button
-          className={styles.controlBtn}
-          onClick={(e) => { e.stopPropagation(); next() }}
-          disabled={currentSlide === totalSlides - 1}
-          aria-label="Следующий слайд"
-        >
-          ›
-        </button>
-        <button
-          className={`${styles.controlBtn} ${styles.presenterBtn}`}
-          onClick={(e) => { e.stopPropagation(); setPresenterMode((p) => !p) }}
-          title="Режим презентатора (P)"
-        >
-          ⬚
-        </button>
-        <button
-          className={`${styles.controlBtn} ${styles.fullscreenBtn}`}
-          onClick={(e) => {
-            e.stopPropagation()
-            if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen()
-            } else {
-              document.exitFullscreen()
-            }
-          }}
-          title="Полный экран (F)"
-        >
-          ⛶
-        </button>
-      </div>
     </div>
   )
 }
