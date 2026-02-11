@@ -7,6 +7,7 @@ import { TextTechSlide } from './slides/TextTechSlide'
 import { ClosingSlide } from './slides/ClosingSlide'
 import { PresenterPanel } from './PresenterPanel'
 import { SlideProgress } from './SlideProgress'
+import { assetPath } from '@/lib/basePath'
 import styles from './Presentation.module.css'
 
 export interface SlideData {
@@ -230,18 +231,27 @@ export function Presentation() {
     }
   }
 
+  const resolveSlide = (slide: SlideData): SlideData => ({
+    ...slide,
+    visual: {
+      ...slide.visual,
+      src: slide.visual.src ? assetPath(slide.visual.src) : undefined,
+    },
+  })
+
   const renderSlide = (slide: SlideData) => {
-    switch (slide.type) {
+    const resolved = resolveSlide(slide)
+    switch (resolved.type) {
       case 'cover':
-        return <CoverSlide slide={slide} />
+        return <CoverSlide slide={resolved} />
       case 'text':
-        return <TextSlide slide={slide} />
+        return <TextSlide slide={resolved} />
       case 'text+tech':
-        return <TextTechSlide slide={slide} />
+        return <TextTechSlide slide={resolved} />
       case 'closing':
-        return <ClosingSlide slide={slide} />
+        return <ClosingSlide slide={resolved} />
       default:
-        return <TextSlide slide={slide} />
+        return <TextSlide slide={resolved} />
     }
   }
 

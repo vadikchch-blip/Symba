@@ -23,6 +23,7 @@ export function ClosingSlide({ slide }: ClosingSlideProps) {
 
           {slide.closingLines && (
             <div className={styles.closingLines}>
+              <div className={styles.accentLine} />
               {slide.closingLines.map((line, i) => (
                 <p key={i} className={styles.closingLine}>
                   {line}
@@ -44,6 +45,7 @@ export function ClosingSlide({ slide }: ClosingSlideProps) {
           </div>
           <div className={styles.contactInfo}>
             <div className={styles.contactLine}>symbiotica.pro</div>
+            <div className={styles.tagline}>Качество пространства. Качество жизни.</div>
           </div>
         </div>
       </div>
