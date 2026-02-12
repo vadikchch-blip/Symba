@@ -6,6 +6,7 @@ import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import { Slide03Context } from '@/src/slides/Slide03Context'
 import { Slide04Principles } from '@/src/slides/Slide04Principles'
+import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -89,21 +90,8 @@ export function Presentation() {
     // [04] ПРИНЦИПЫ
     <Slide04Principles key="s04" />,
 
-    // [05] МЫШЛЕНИЕ — 3 колонки
-    <div key="s05" className={`${styles.s} ${styles.bgCement} ${styles.sPad16}`}>
-      <div className={styles.cols3}>
-        {[
-          { n: '01', t: 'Модульность', d: 'Элементы собираются в бесконечные комбинации.' },
-          { n: '02', t: 'Повторяемость', d: 'Ритм создает ощущение порядка и безопасности.' },
-          { n: '03', t: 'Масштаб', d: 'Решения одинаково работают в любом объеме.' },
-        ].map(c => (
-          <div key={c.n} className={styles.col3card}>
-            <Mono accent>{c.n} / {c.t}</Mono>
-            <h3 className={styles.h3bold}>{c.d}</h3>
-          </div>
-        ))}
-      </div>
-    </div>,
+    // [05] ПРОБЛЕМА
+    <Slide05DeveloperReality key="s05" />,
 
     // [06] МАТЕРИАЛ — split
     <div key="s06" className={`${styles.s} ${styles.sSplit}`}>
