@@ -8,6 +8,7 @@ import { Slide03Context } from '@/src/slides/Slide03Context'
 import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
+import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -97,18 +98,8 @@ export function Presentation() {
     // [06] СИСТЕМА
     <Slide06SystemNotProducts key="s06" />,
 
-    // [07] ГЕОМЕТРИЯ
-    <div key="s07" className={`${styles.s} ${styles.sCenter}`}>
-      <Blueprint />
-      <div className={styles.geoGrid}>
-        <div className={styles.geoCell}><div className={styles.geoSquare} /></div>
-        <div className={styles.geoCell}><div className={styles.geoCircle} /></div>
-      </div>
-      <div className={styles.geoCaption}>
-        <h1 className={styles.h1lg}>Геометрическая логика.</h1>
-        <Mono className={styles.opacityLow}>Квадрат и круг — основа системы</Mono>
-      </div>
-    </div>,
+    // [07] ПОДХОД
+    <Slide07ProjectStart key="s07" />,
 
     // [08] БИБЛИОТЕКА
     <div key="s08" className={`${styles.s} ${styles.sCol}`}>
