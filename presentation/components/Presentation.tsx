@@ -11,7 +11,7 @@ import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
-import { Slide10SingleOwnership } from '@/src/slides/Slide10SingleOwnership'
+import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -110,8 +110,8 @@ export function Presentation() {
     // [09] ГИБКОСТЬ
     <Slide09ChangeManagement key="s09" />,
 
-    // [10] ОТВЕТСТВЕННОСТЬ
-    <Slide10SingleOwnership key="s10" />,
+    // [10] ИНТЕГРАЦИЯ — full-width image
+    <Slide10Integration key="s10" />,
 
     // [11] МАСШТАБ ЧЕЛОВЕКА
     <div key="s11" className={`${styles.s} ${styles.sRow} ${styles.sPad16}`}>
