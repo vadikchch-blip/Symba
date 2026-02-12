@@ -15,9 +15,10 @@ import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
 import { Slide13SystemBuild } from '@/src/slides/Slide13SystemBuild'
+import { Slide14WorkModel } from '@/src/slides/Slide14WorkModel'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 13
+const TOTAL_SLIDES = 15
 
 export function Presentation() {
   const [current, setCurrent] = useState(0)
@@ -125,13 +126,8 @@ export function Presentation() {
     // [13] СИСТЕМНОЕ БЛАГОУСТРОЙСТВО
     <Slide13SystemBuild key="s13" />,
 
-    // [15] РЕЗУЛЬТАТ
-    <div key="s15" className={`${styles.s} ${styles.sFullImg}`}>
-      <img src={img('/images/194464417_adef9bc2-5ea4-4aaf-867a-2b614941e81f_result.png')} alt="" className={styles.fullImg} />
-      <div className={styles.fullImgOverlay}>
-        <h1 className={styles.h1xxl}>Среда, которая работает на репутацию проекта.</h1>
-      </div>
-    </div>,
+    // [14] ФОРМАТ РАБОТЫ
+    <Slide14WorkModel key="s14" />,
 
     // [16] КОНТАКТЫ
     <div key="s16" className={`${styles.s} ${styles.sCenter}`}>
