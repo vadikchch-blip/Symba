@@ -14,6 +14,17 @@ export const slide03 = {
   visual: { type: 'none' as const },
 }
 
+export const slide04 = {
+  eyebrow: '04 / Принципы',
+  title: 'Наши принципы',
+  items: [
+    { n: '01', label: 'Функциональность' },
+    { n: '02', label: 'Эстетика' },
+    { n: '03', label: 'Эргономика' },
+    { n: '04', label: 'Долговечность' },
+  ],
+}
+
 export const slide02 = {
   left: {
     key: 'ud' as const,

@@ -5,6 +5,7 @@ import { assetPath } from '@/lib/basePath'
 import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import { Slide03Context } from '@/src/slides/Slide03Context'
+import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -85,19 +86,8 @@ export function Presentation() {
     // [03] КОНТЕКСТ
     <Slide03Context key="s03" />,
 
-    // [04] ПОЗИЦИЯ
-    <div key="s04" className={`${styles.s} ${styles.sCenter}`}>
-      <Blueprint />
-      <div className={styles.centerBlock}>
-        <Mono>04 Наша позиция</Mono>
-        <h1 className={styles.h1xxl}>Система выше<br />декорации.</h1>
-        <div className={styles.pillars}>
-          <div className={styles.pillar}><div className={`${styles.pillarBar} ${styles.pillarAccent}`} /><Mono>Логика</Mono></div>
-          <div className={styles.pillar}><div className={styles.pillarBar} /><Mono>Масштаб</Mono></div>
-          <div className={styles.pillar}><div className={`${styles.pillarBar} ${styles.pillarFade}`} /><Mono>Среда</Mono></div>
-        </div>
-      </div>
-    </div>,
+    // [04] ПРИНЦИПЫ
+    <Slide04Principles key="s04" />,
 
     // [05] МЫШЛЕНИЕ — 3 колонки
     <div key="s05" className={`${styles.s} ${styles.bgCement} ${styles.sPad16}`}>
