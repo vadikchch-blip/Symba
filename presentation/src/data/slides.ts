@@ -191,13 +191,13 @@ export const slide02 = {
     title: 'Urban Development',
     subtitle: 'Городская среда',
     bg: 'var(--ud)',
-    image: '/images/ud.jpg',
+    image: '/images/sl2-ud.jpg',
   },
   right: {
     key: 'dd' as const,
     title: 'Design Development',
     subtitle: 'Интерьерные изделия',
     bg: 'var(--dd)',
-    image: '/images/dd.jpg',
+    image: '/images/sl2-dd.jpg',
   },
 }

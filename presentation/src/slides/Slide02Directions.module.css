@@ -2,7 +2,6 @@
   display: flex;
   width: 100%;
   height: 100%;
-  position: relative;
 }
 
 .column {
@@ -10,26 +9,21 @@
   height: 100%;
   position: relative;
   display: flex;
-}
-
-.safe {
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
   padding-inline: var(--safe-x);
   padding-block: var(--safe-y);
-  display: flex;
-  flex-direction: column;
 }
+
+/* ===== Text ===== */
 
 .textBlock {
   flex-shrink: 0;
-  margin-bottom: clamp(24px, 3vh, 48px);
 }
 
 .title {
   font-family: var(--font-primary);
-  font-weight: 800;
-  font-size: var(--h2);
+  font-weight: 600;
+  font-size: clamp(36px, 3.5vw, 56px);
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--text);
@@ -38,34 +32,26 @@
 
 .subtitle {
   font-family: var(--font-mono);
-  font-size: var(--p);
+  font-size: clamp(14px, 1.1vw, 20px);
   font-weight: 400;
   letter-spacing: 0.02em;
   color: var(--muted);
-  margin: clamp(4px, 0.5vh, 8px) 0 0 0;
+  margin: clamp(6px, 0.8vh, 12px) 0 0 0;
 }
+
+/* ===== Symbol window ===== */
 
 .symbolBlock {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   min-height: 0;
+  padding-bottom: 2vh;
 }
 
 .symbolSvg {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
+  width: 65%;
   height: auto;
-}
-
-.divider {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: var(--divider);
-  z-index: 1;
+  display: block;
 }
