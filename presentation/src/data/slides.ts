@@ -39,6 +39,14 @@ export const slide04 = {
   ],
 }
 
+export const slide08 = {
+  eyebrow: '08 / Эргономика',
+  lines: [
+    'Эргономика — не дополнение к форме,',
+    'а её логическое продолжение.',
+  ],
+}
+
 export const slide07 = {
   eyebrow: '07 / Подход',
   title: 'Проект начинается не с модели.',

@@ -9,6 +9,7 @@ import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
+import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -101,23 +102,8 @@ export function Presentation() {
     // [07] ПОДХОД
     <Slide07ProjectStart key="s07" />,
 
-    // [08] БИБЛИОТЕКА
-    <div key="s08" className={`${styles.s} ${styles.sCol}`}>
-      <div className={styles.libHeader}>
-        <div>
-          <Mono accent>08 Инструментарий</Mono>
-          <h1 className={styles.h1xl}>Библиотека<br />решений.</h1>
-        </div>
-        <Mono className={styles.textMuted}>SYMB_MOD_V.2.0</Mono>
-      </div>
-      <div className={styles.libGrid}>
-        {Array.from({ length: 12 }, (_, i) => (
-          <div key={i} className={`${styles.libCell} ${i === 2 ? styles.libCellAccent : ''}`}>
-            <div className={`${styles.libDot} ${i === 2 ? styles.libDotW : ''}`} />
-          </div>
-        ))}
-      </div>
-    </div>,
+    // [08] ЭРГОНОМИКА — плакатный тезис
+    <Slide08Ergonomics key="s08" />,
 
     // [09] ИНЖИНИРИНГ
     <div key="s09" className={`${styles.s} ${styles.bgCement} ${styles.sCenter}`}>
