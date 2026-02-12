@@ -14,9 +14,10 @@ import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
+import { Slide13SystemBuild } from '@/src/slides/Slide13SystemBuild'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 14
+const TOTAL_SLIDES = 13
 
 export function Presentation() {
   const [current, setCurrent] = useState(0)
@@ -121,23 +122,8 @@ export function Presentation() {
     // [12] ЭКСПЛУАТАЦИЯ И КЛИМАТ
     <Slide12Climate key="s12" />,
 
-    // [14] ПАРТНЁРСТВО
-    <div key="s14" className={`${styles.s} ${styles.sRow}`}>
-      <div className={styles.grid12}>
-        <div className={styles.col7}>
-          <Mono accent>14 Модель работы</Mono>
-          <h1 className={styles.h1big}>От концепции<br />до авторского надзора.</h1>
-        </div>
-        <div className={`${styles.col5} ${styles.steps}`}>
-          {['Проектирование', 'Производство', 'Монтаж'].map((s, i) => (
-            <div key={s} className={styles.step}>
-              <div className={`${styles.stepLine} ${i === 0 ? styles.stepLineAccent : ''}`} />
-              <Mono>{s}</Mono>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>,
+    // [13] СИСТЕМНОЕ БЛАГОУСТРОЙСТВО
+    <Slide13SystemBuild key="s13" />,
 
     // [15] РЕЗУЛЬТАТ
     <div key="s15" className={`${styles.s} ${styles.sFullImg}`}>
