@@ -7,6 +7,7 @@ import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import { Slide03Context } from '@/src/slides/Slide03Context'
 import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
+import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -93,18 +94,8 @@ export function Presentation() {
     // [05] ПРОБЛЕМА
     <Slide05DeveloperReality key="s05" />,
 
-    // [06] МАТЕРИАЛ — split
-    <div key="s06" className={`${styles.s} ${styles.sSplit}`}>
-      <div className={`${styles.splitImg} ${styles.imgBlock}`}>
-        <img src={img('/images/1c7838f9_nano_1K.jpg')} alt="" />
-      </div>
-      <div className={styles.splitText}>
-        <Mono accent>06 Материальность</Mono>
-        <h1 className={styles.h1}>Честный бетон.</h1>
-        <p className={styles.textMutedLg}>Мы не прячем материал. Его грубая, природная фактура — это залог долговечности и эстетической правды.</p>
-        <div className={styles.lineAccent} />
-      </div>
-    </div>,
+    // [06] СИСТЕМА
+    <Slide06SystemNotProducts key="s06" />,
 
     // [07] ГЕОМЕТРИЯ
     <div key="s07" className={`${styles.s} ${styles.sCenter}`}>

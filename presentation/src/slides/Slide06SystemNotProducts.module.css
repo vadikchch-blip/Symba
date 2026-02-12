@@ -1,0 +1,116 @@
+.slide {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  padding-inline: var(--safe-x);
+  padding-block: var(--safe-y);
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 4vw, 64px);
+}
+
+/* ===== Left column ===== */
+
+.left {
+  width: 52%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--meta);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(16px, 2vh, 28px);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--h1);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--font-primary);
+  font-size: var(--h2);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text);
+  margin: clamp(16px, 2vh, 28px) 0 0 0;
+  max-width: 48ch;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(10px, 1vw, 16px);
+  margin-top: clamp(28px, 4vh, 52px);
+}
+
+.noteAccent {
+  width: 3px;
+  min-height: 100%;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.noteText {
+  font-family: var(--font-primary);
+  font-size: var(--p);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* ===== Right column ===== */
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, 3vh, 40px);
+}
+
+.row {
+  position: relative;
+  padding-left: clamp(48px, 5vw, 80px);
+  min-height: clamp(48px, 5vw, 80px);
+  display: flex;
+  align-items: center;
+}
+
+.watermark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-primary);
+  font-size: clamp(48px, 5vw, 88px);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+  user-select: none;
+}
+
+.label {
+  font-family: var(--font-primary);
+  font-size: clamp(22px, 2vw, 36px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
