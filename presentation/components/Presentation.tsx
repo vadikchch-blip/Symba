@@ -16,6 +16,7 @@ import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
 import { Slide13SystemBuild } from '@/src/slides/Slide13SystemBuild'
 import { Slide14WorkModel } from '@/src/slides/Slide14WorkModel'
+import { SlideFinal } from '@/src/slides/SlideFinal'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 15
@@ -129,18 +130,8 @@ export function Presentation() {
     // [14] ФОРМАТ РАБОТЫ
     <Slide14WorkModel key="s14" />,
 
-    // [16] КОНТАКТЫ
-    <div key="s16" className={`${styles.s} ${styles.sCenter}`}>
-      <Blueprint />
-      <div className={styles.contactBlock}>
-        <Logo color="var(--text-main)" className={styles.contactLogo} />
-        <div className={styles.contactInfo}>
-          <p className={styles.contactMain}>symbiotica.pro</p>
-          <div className={styles.contactLine} />
-          <Mono className={styles.opacityLow}>2026 / Архитектурный бетон</Mono>
-        </div>
-      </div>
-    </div>,
+    // [15] ФИНАЛ
+    <SlideFinal key="s15" />,
   ]
 
   return (
