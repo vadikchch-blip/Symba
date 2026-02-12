@@ -1,17 +1,50 @@
 .slide {
   width: 100%;
   height: 100%;
-  background: var(--bg);
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
-  display: flex;
-  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
 }
 
+/* ===== Background image ===== */
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+/* ===== Warm gradient overlay (left → transparent right) ===== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(28, 25, 22, 0.55) 0%,
+    rgba(28, 25, 22, 0.35) 30%,
+    rgba(28, 25, 22, 0.0) 65%
+  );
+}
+
+/* ===== Content ===== */
+
 .content {
-  width: clamp(320px, 55%, 720px);
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding-inline: var(--safe-x);
+  padding-block: var(--safe-y);
+  padding-top: calc(var(--safe-y) + 40px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: clamp(320px, 55%, 720px);
 }
 
 .accentLine {
@@ -27,7 +60,7 @@
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  color: var(--text);
+  color: #F4F1EC;
   margin: 0;
 }
 
@@ -36,7 +69,7 @@
   font-size: var(--h2);
   font-weight: 400;
   line-height: 1.2;
-  color: var(--muted);
+  color: #D8D2C8;
   margin: clamp(16px, 2vh, 32px) 0 0 0;
 }
 
@@ -45,6 +78,6 @@
   font-size: var(--meta);
   font-weight: 400;
   letter-spacing: 0.08em;
-  color: var(--muted);
+  color: rgba(244, 241, 236, 0.7);
   margin-top: clamp(20px, 3vh, 40px);
 }
