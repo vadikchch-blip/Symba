@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/basePath'
+import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -87,18 +88,8 @@ export function Presentation() {
       <div className={styles.coverBottom}>Качество пространства. Качество жизни.</div>
     </div>,
 
-    // [02] КОНТЕКСТ
-    <div key="s02" className={`${styles.s} ${styles.sRow}`}>
-      <div className={styles.half}>
-        <Mono accent>02 Контекст</Mono>
-        <h1 className={styles.h1big}>Качество среды<br />определяет жизнь.</h1>
-        <p className={styles.textMuted}>Мы верим, что архитектура — это не просто сумма объектов, а инструмент формирования поведения и ценностей человека.</p>
-      </div>
-      <div className={`${styles.half} ${styles.imgBlock}`}>
-        <img src={img('/images/194464417_b7b2bdbb-e603-415f-a4b3-f9bd9c885c33_result.png')} alt="" />
-        <div className={styles.imgLabel}><Mono>System_Visual_01</Mono></div>
-      </div>
-    </div>,
+    // [02] НАПРАВЛЕНИЯ — UD / DD
+    <Slide02Directions key="s02" />,
 
     // [03] ПРОБЛЕМА
     <div key="s03" className={`${styles.s} ${styles.bgSand}`}>

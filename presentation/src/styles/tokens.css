@@ -1,0 +1,16 @@
+:root {
+  --bg: #F3F1EC;
+  --text: #1C1C1C;
+  --muted: rgba(28, 28, 28, .55);
+  --accent: #A33A2B;
+
+  --ud: #CEDF83;
+  --dd: #A879FF;
+
+  --safe-x: 5vw;
+  --safe-y: 5vh;
+
+  --divider: rgba(0, 0, 0, .08);
+  --h2: clamp(28px, 2.4vw, 44px);
+  --p: clamp(16px, 1.2vw, 20px);
+}
