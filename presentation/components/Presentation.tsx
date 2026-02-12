@@ -11,6 +11,7 @@ import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
+import { Slide10SingleOwnership } from '@/src/slides/Slide10SingleOwnership'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -109,19 +110,8 @@ export function Presentation() {
     // [09] ГИБКОСТЬ
     <Slide09ChangeManagement key="s09" />,
 
-    // [10] ГОРОД
-    <div key="s10" className={`${styles.s} ${styles.sVertSplit}`}>
-      <div className={`${styles.vertTop} ${styles.imgBlock}`}>
-        <img src={img('/images/194464417_cbb391d0-f4c3-4675-952c-bb86348b9fd7_result.png')} alt="" />
-      </div>
-      <div className={styles.vertBottom}>
-        <div>
-          <Mono accent>10 Urban Development</Mono>
-          <h1 className={styles.h1lg}>Интеграция в контекст.</h1>
-        </div>
-        <Mono className={styles.textMuted}>{num(9)} / {num(TOTAL_SLIDES - 1)}</Mono>
-      </div>
-    </div>,
+    // [10] ОТВЕТСТВЕННОСТЬ
+    <Slide10SingleOwnership key="s10" />,
 
     // [11] МАСШТАБ ЧЕЛОВЕКА
     <div key="s11" className={`${styles.s} ${styles.sRow} ${styles.sPad16}`}>
