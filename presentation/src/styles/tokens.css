@@ -15,4 +15,7 @@
   --h2: clamp(28px, 2.4vw, 44px);
   --p: clamp(16px, 1.2vw, 20px);
   --meta: clamp(11px, 0.9vw, 14px);
+
+  --pattern-opacity: 0.04;
+  --pattern-size: clamp(280px, 24vw, 420px);
 }

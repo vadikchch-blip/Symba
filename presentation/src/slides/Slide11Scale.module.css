@@ -10,22 +10,6 @@
   overflow: hidden;
 }
 
-.watermark {
-  position: absolute;
-  top: 50%;
-  left: -2vw;
-  transform: translateY(-50%);
-  font-family: var(--font-primary);
-  font-size: clamp(160px, 24vw, 420px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: rgba(0, 0, 0, 0.03);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-}
-
 .content {
   position: relative;
   z-index: 1;

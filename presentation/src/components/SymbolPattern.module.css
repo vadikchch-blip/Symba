@@ -1,0 +1,33 @@
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--pattern-opacity, 0.04);
+  overflow: hidden;
+}
+
+/*
+ * Two pseudo-layers create the offset-row effect:
+ * ::before — standard grid
+ * ::after  — shifted by 50% tile on both axes
+ */
+
+.layer::before,
+.layer::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: var(--pat-img);
+  background-size: var(--pattern-size, 360px) auto;
+  background-repeat: repeat;
+}
+
+.layer::after {
+  transform: translate(
+    calc(var(--pattern-size, 360px) * 0.5),
+    calc(var(--pattern-size, 360px) * 0.5)
+  );
+}

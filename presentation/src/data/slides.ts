@@ -102,7 +102,7 @@ export const slide11 = {
     'Сохраняется архитектурный язык',
     'Сохраняется качество',
   ],
-  watermark: 'МАСШТАБ',
+  pattern: 'ud' as const,
 }
 
 export const slide10img = {
