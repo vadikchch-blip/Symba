@@ -14,7 +14,7 @@ import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
-import { Slide13SystemBuild } from '@/src/slides/Slide13SystemBuild'
+import { Slide13SystemAccent } from '@/src/slides/Slide13SystemAccent'
 import { Slide14WorkModel } from '@/src/slides/Slide14WorkModel'
 import { SlideFinal } from '@/src/slides/SlideFinal'
 import styles from './Presentation.module.css'
@@ -124,8 +124,8 @@ export function Presentation() {
     // [12] ЭКСПЛУАТАЦИЯ И КЛИМАТ
     <Slide12Climate key="s12" />,
 
-    // [13] СИСТЕМНОЕ БЛАГОУСТРОЙСТВО
-    <Slide13SystemBuild key="s13" />,
+    // [13] СИСТЕМНОЕ БЛАГОУСТРОЙСТВО — акцентный UD
+    <Slide13SystemAccent key="s13" />,
 
     // [14] ФОРМАТ РАБОТЫ
     <Slide14WorkModel key="s14" />,
