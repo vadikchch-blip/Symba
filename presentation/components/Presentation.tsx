@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/basePath'
+import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import styles from './Presentation.module.css'
 
@@ -74,19 +75,8 @@ export function Presentation() {
   )
 
   const slides = [
-    // [01] COVER — сохраняем нашу версию
-    <div key="s01" className={styles.cover}>
-      <div className={styles.coverBg}><img src={img('/images/194464417_adef9bc2-5ea4-4aaf-867a-2b614941e81f_result.png')} alt="" /></div>
-      <div className={styles.coverOverlay} />
-      <div className={styles.coverLogo}><Logo color="#ffffff" className={styles.logoSvg} /></div>
-      <div className={styles.coverTagline}>symbiotica.pro</div>
-      <div className={styles.coverContent}>
-        <div className={styles.coverAccent} />
-        <h1 className={styles.coverTitle}>Симбиотика</h1>
-        <p className={styles.coverSubtitle}>Благоустройство как управляемая часть<br />девелоперского проекта</p>
-      </div>
-      <div className={styles.coverBottom}>Качество пространства. Качество жизни.</div>
-    </div>,
+    // [01] HERO — типографика, воздух, акцент
+    <Slide01Hero key="s01" />,
 
     // [02] НАПРАВЛЕНИЯ — UD / DD
     <Slide02Directions key="s02" />,

@@ -11,6 +11,8 @@
   --safe-y: 5vh;
 
   --divider: rgba(0, 0, 0, .08);
+  --h1: clamp(56px, 6vw, 120px);
   --h2: clamp(28px, 2.4vw, 44px);
   --p: clamp(16px, 1.2vw, 20px);
+  --meta: clamp(11px, 0.9vw, 14px);
 }
