@@ -149,10 +149,10 @@ export const slide09 = {
 
 export const slide08 = {
   eyebrow: '08 / Эргономика',
-  lines: [
-    'Эргономика — не дополнение к форме,',
-    'а её логическое продолжение.',
-  ],
+  titleLine: 'Эргономика —',
+  bodyLine: 'не дополнение к форме, а её логическое продолжение.',
+  // Replace with actual product photo when available:
+  image: '/images/eb64054d_nano_1K.jpg',
 }
 
 export const slide07 = {

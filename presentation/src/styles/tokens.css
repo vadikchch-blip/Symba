@@ -19,6 +19,13 @@
   --pattern-opacity: 0.04;
   --pattern-size: clamp(280px, 24vw, 420px);
 
+  /* Brand palette */
+  --brick: #A33A2B;
+  --sand: #D8D2C8;
+  --moss: #CEDF83;
+  --purple: #A879FF;
+  --radius-card: 16px;
+
   /* Graphite dark slide */
   --graphite-1: #2F2A26;
   --graphite-2: #25211E;
