@@ -13,9 +13,10 @@ import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import { Slide11Scale } from '@/src/slides/Slide11Scale'
+import { Slide12Climate } from '@/src/slides/Slide12Climate'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 15
+const TOTAL_SLIDES = 14
 
 export function Presentation() {
   const [current, setCurrent] = useState(0)
@@ -117,22 +118,8 @@ export function Presentation() {
     // [11] МАСШТАБ — типографический слайд силы
     <Slide11Scale key="s11" />,
 
-    // [13] ПРЕИМУЩЕСТВА — 3 колонки
-    <div key="s13" className={`${styles.s} ${styles.bgCement}`}>
-      <div className={styles.cols3}>
-        {[
-          { n: '01', t: 'Надежность', d: 'Бетон архитектурного класса гарантирует десятилетия службы без потери вида.' },
-          { n: '02', t: 'Экономика', d: 'Минимизация затрат на эксплуатацию за счет отсутствия сложной фурнитуры.' },
-          { n: '03', t: 'Эстетика', d: 'Чистые формы повышают статус и визуальную ценность девелоперского продукта.' },
-        ].map(c => (
-          <div key={c.n} className={styles.col3card}>
-            <h1 className={styles.h1ghost}>{c.n}</h1>
-            <Mono accent>{c.t}</Mono>
-            <p className={styles.textMuted}>{c.d}</p>
-          </div>
-        ))}
-      </div>
-    </div>,
+    // [12] ЭКСПЛУАТАЦИЯ И КЛИМАТ
+    <Slide12Climate key="s12" />,
 
     // [14] ПАРТНЁРСТВО
     <div key="s14" className={`${styles.s} ${styles.sRow}`}>
