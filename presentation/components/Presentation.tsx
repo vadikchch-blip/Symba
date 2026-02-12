@@ -12,9 +12,10 @@ import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import { Slide10Integration } from '@/src/slides/Slide10Integration'
+import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 16
+const TOTAL_SLIDES = 15
 
 export function Presentation() {
   const [current, setCurrent] = useState(0)
@@ -113,31 +114,8 @@ export function Presentation() {
     // [10] ИНТЕГРАЦИЯ — full-width image
     <Slide10Integration key="s10" />,
 
-    // [11] МАСШТАБ ЧЕЛОВЕКА
-    <div key="s11" className={`${styles.s} ${styles.sRow} ${styles.sPad16}`}>
-      <div className={styles.grid12}>
-        <div className={`${styles.col8} ${styles.imgBlock} ${styles.imgWide}`}>
-          <img src={img('/images/d203d80a_nano_1K.jpg')} alt="" />
-        </div>
-        <div className={styles.col4}>
-          <Mono accent>11 Антропоцентричность</Mono>
-          <h1 className={styles.h1lg}>Человек — масштаб.</h1>
-          <p className={styles.textMuted}>Мы проектируем объекты, которые не доминируют над человеком, а служат его естественному движению в пространстве.</p>
-        </div>
-      </div>
-    </div>,
-
-    // [12] ТИРАЖИРУЕМОСТЬ
-    <div key="s12" className={`${styles.s} ${styles.sCenter}`}>
-      <div className={styles.patternGrid}>
-        {Array.from({ length: 48 }, (_, i) => <div key={i} className={styles.patternCell} />)}
-      </div>
-      <div className={styles.centerBlock}>
-        <Mono accent>12 Тиражируемость</Mono>
-        <h1 className={styles.h1xxl}>Масштаб<br />без потерь.</h1>
-        <p className={styles.textMuted}>Модульная система позволяет тиражировать решения без потери качества и архитектурной целостности.</p>
-      </div>
-    </div>,
+    // [11] МАСШТАБ — типографический слайд силы
+    <Slide11Scale key="s11" />,
 
     // [13] ПРЕИМУЩЕСТВА — 3 колонки
     <div key="s13" className={`${styles.s} ${styles.bgCement}`}>
