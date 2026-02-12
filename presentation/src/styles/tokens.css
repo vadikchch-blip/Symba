@@ -18,4 +18,13 @@
 
   --pattern-opacity: 0.04;
   --pattern-size: clamp(280px, 24vw, 420px);
+
+  /* Graphite dark slide */
+  --graphite-1: #2F2A26;
+  --graphite-2: #25211E;
+  --text-light: #F2EFEA;
+  --text-light-muted: rgba(242, 239, 234, 0.75);
+  --text-light-soft: rgba(242, 239, 234, 0.65);
+  --accent-warm: #E05837;
+  --ud-overlay: rgba(255, 255, 255, 0.035);
 }
