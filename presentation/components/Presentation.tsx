@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/basePath'
 import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
+import { Slide03Context } from '@/src/slides/Slide03Context'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -81,19 +82,8 @@ export function Presentation() {
     // [02] НАПРАВЛЕНИЯ — UD / DD
     <Slide02Directions key="s02" />,
 
-    // [03] ПРОБЛЕМА
-    <div key="s03" className={`${styles.s} ${styles.bgSand}`}>
-      <div className={styles.grid12}>
-        <div className={styles.col6L}>
-          <Mono accent>03 Проблема</Mono>
-          <h1 className={styles.h1xl}>Хаотичная среда<br />размывает смыслы.</h1>
-          <p className={`${styles.monoBody}`}>Отсутствие системного подхода в благоустройстве превращает города в набор случайных элементов, снижая комфорт и капитализацию.</p>
-        </div>
-        <div className={`${styles.col6R} ${styles.imgBlock}`}>
-          <img src={img('/images/eb64054d_nano_1K.jpg')} alt="" />
-        </div>
-      </div>
-    </div>,
+    // [03] КОНТЕКСТ
+    <Slide03Context key="s03" />,
 
     // [04] ПОЗИЦИЯ
     <div key="s04" className={`${styles.s} ${styles.sCenter}`}>

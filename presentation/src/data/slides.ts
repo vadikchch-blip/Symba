@@ -4,6 +4,16 @@ export const slide01 = {
   meta: 'Крым · с 2020 года',
 }
 
+export const slide03 = {
+  eyebrow: '03 / Контекст',
+  title: 'Город — это не только архитектура.',
+  body: [
+    'Это результат ежедневного взаимодействия человека и пространства.',
+    'Когда благоустройство продумано, среда ощущается естественно.',
+  ],
+  visual: { type: 'none' as const },
+}
+
 export const slide02 = {
   left: {
     key: 'ud' as const,
