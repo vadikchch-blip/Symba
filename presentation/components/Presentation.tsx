@@ -10,6 +10,7 @@ import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
+import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
@@ -105,22 +106,8 @@ export function Presentation() {
     // [08] ЭРГОНОМИКА — плакатный тезис
     <Slide08Ergonomics key="s08" />,
 
-    // [09] ИНЖИНИРИНГ
-    <div key="s09" className={`${styles.s} ${styles.bgCement} ${styles.sCenter}`}>
-      <div className={styles.engCard}>
-        <Mono accent>09 Инжиниринг</Mono>
-        <h1 className={styles.h1}>Конструктор для девелопмента.</h1>
-        <div className={styles.engRows}>
-          {[
-            ['Спецификация', 'ID_SYM_ALPHA'],
-            ['Материал', 'Concrete M800 / Reinforced'],
-            ['Адаптивность', '100% / Grid-Based'],
-          ].map(([k, v]) => (
-            <div key={k} className={styles.engRow}><Mono>{k}</Mono><Mono>{v}</Mono></div>
-          ))}
-        </div>
-      </div>
-    </div>,
+    // [09] ГИБКОСТЬ
+    <Slide09ChangeManagement key="s09" />,
 
     // [10] ГОРОД
     <div key="s10" className={`${styles.s} ${styles.sVertSplit}`}>

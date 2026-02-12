@@ -1,0 +1,132 @@
+.slide {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  padding-inline: var(--safe-x);
+  padding-block: var(--safe-y);
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 4vw, 64px);
+}
+
+/* ===== Left ===== */
+
+.left {
+  width: 55%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--meta);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(16px, 2vh, 28px);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--h1);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--font-primary);
+  font-size: var(--h2);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text);
+  margin: clamp(14px, 1.8vh, 24px) 0 0 0;
+}
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vh, 14px);
+  margin-top: clamp(16px, 2vh, 28px);
+  max-width: 48ch;
+}
+
+.problem p {
+  font-family: var(--font-primary);
+  font-size: var(--p);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ===== Right ===== */
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(24px, 3vh, 40px);
+}
+
+.solution {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(12px, 1.2vw, 20px);
+}
+
+.solutionAccent {
+  width: 3px;
+  min-height: 100%;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.solutionTitle {
+  font-family: var(--font-primary);
+  font-size: clamp(20px, 1.8vw, 30px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0;
+  max-width: 32ch;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vh, 14px);
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  font-family: var(--font-primary);
+  font-size: var(--p);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.dash {
+  flex-shrink: 0;
+  color: var(--divider);
+  user-select: none;
+}
+
+.final {
+  font-family: var(--font-primary);
+  font-size: var(--p);
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  margin: 0;
+}
