@@ -10,14 +10,15 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
+  padding: var(--safe-y) var(--safe-x);
 }
 
 /* ===== Text ===== */
 
 .textBlock {
   flex-shrink: 0;
+  z-index: 1;
+  position: relative;
 }
 
 .title {
@@ -42,28 +43,29 @@
 /* ===== Symbol window ===== */
 
 .symbolBlock {
-  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-height: 0;
-  padding-bottom: clamp(3vh, 8%, 8vh);
+  pointer-events: none;
 }
 
 .symbolSvg {
-  width: 80%;
-  min-width: min(500px, 100%);
-  max-height: 55vh;
+  width: 92%;
+  height: auto;
+  max-height: 100%;
   display: block;
 }
 
-/* Per-direction positioning */
+/* Per-direction nudge */
 .maskUd {
-  justify-content: center;
-  padding-inline: 3%;
+  padding: 0 2% 3% 2%;
 }
 
 .maskDd {
-  justify-content: center;
-  padding-inline: 3%;
+  padding: 0 2% 3% 2%;
 }
