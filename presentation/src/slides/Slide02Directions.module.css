@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 10vh var(--safe-x) 0;
+  padding: calc(10vh + 48px) var(--safe-x) 0;
 }
 
 /* ===== Text ===== */
@@ -24,8 +24,8 @@
 .title {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 76px;
-  line-height: 1.05;
+  font-size: 82px;
+  line-height: 1.04;
   letter-spacing: -0.5px;
   color: #1F1F1F;
   margin: 0;
@@ -39,7 +39,7 @@
   letter-spacing: 0.02em;
   color: #1F1F1F;
   opacity: 0.7;
-  margin: 12px 0 0 0;
+  margin: 14px 0 0 0;
 }
 
 /* ===== Symbol window ===== */
