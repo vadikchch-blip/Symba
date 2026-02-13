@@ -14,8 +14,8 @@ interface ColumnData {
 
 /** Per-direction photo tuning */
 const IMG_CONFIG: Record<'ud' | 'dd', { scale: number; focus: [number, number] }> = {
-  ud: { scale: 1.4, focus: [35, 55] },
-  dd: { scale: 1.3, focus: [55, 65] },
+  ud: { scale: 1.55, focus: [40, 50] },
+  dd: { scale: 1.5, focus: [60, 50] },
 }
 
 function DirectionColumn({ data }: { data: ColumnData }) {

@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: var(--safe-y) var(--safe-x);
+  padding: 10vh var(--safe-x) 0;
 }
 
 /* ===== Text ===== */
@@ -23,21 +23,23 @@
 
 .title {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(36px, 3.5vw, 56px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--text);
+  font-weight: 500;
+  font-size: 76px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: #1F1F1F;
   margin: 0;
 }
 
 .subtitle {
   font-family: var(--font-mono);
-  font-size: clamp(14px, 1.1vw, 20px);
+  font-size: 18px;
+  line-height: 1.4;
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: var(--muted);
-  margin: clamp(6px, 0.8vh, 12px) 0 0 0;
+  color: #1F1F1F;
+  opacity: 0.7;
+  margin: 12px 0 0 0;
 }
 
 /* ===== Symbol window ===== */
@@ -47,25 +49,20 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 72%;
+  height: 60%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  padding-bottom: 6vh;
   pointer-events: none;
 }
 
 .symbolSvg {
-  width: 92%;
+  width: 82%;
   height: auto;
   max-height: 100%;
   display: block;
 }
 
-/* Per-direction nudge */
-.maskUd {
-  padding: 0 2% 3% 2%;
-}
-
-.maskDd {
-  padding: 0 2% 3% 2%;
-}
+.maskUd {}
+.maskDd {}
