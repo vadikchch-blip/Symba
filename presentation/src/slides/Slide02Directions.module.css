@@ -47,13 +47,23 @@
   align-items: flex-end;
   justify-content: center;
   min-height: 0;
-  padding-bottom: clamp(4vh, 8%, 10vh);
-  padding-inline: 5%;
+  padding-bottom: clamp(3vh, 8%, 8vh);
 }
 
 .symbolSvg {
-  width: 88%;
+  width: 80%;
   min-width: min(500px, 100%);
-  max-height: 60vh;
+  max-height: 55vh;
   display: block;
+}
+
+/* Per-direction positioning */
+.maskUd {
+  justify-content: center;
+  padding-inline: 3%;
+}
+
+.maskDd {
+  justify-content: center;
+  padding-inline: 3%;
 }

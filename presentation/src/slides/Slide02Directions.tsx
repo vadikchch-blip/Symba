@@ -12,17 +12,28 @@ interface ColumnData {
   image: string
 }
 
+/** Per-direction photo tuning */
+const IMG_CONFIG: Record<'ud' | 'dd', { scale: number; focus: [number, number] }> = {
+  ud: { scale: 1.4, focus: [35, 55] },
+  dd: { scale: 1.3, focus: [55, 65] },
+}
+
 function DirectionColumn({ data }: { data: ColumnData }) {
+  const cfg = IMG_CONFIG[data.key]
+  const maskClass = data.key === 'ud' ? styles.maskUd : styles.maskDd
+
   return (
     <div className={styles.column} style={{ backgroundColor: data.bg }}>
       <div className={styles.textBlock}>
         <h2 className={styles.title}>{data.title}</h2>
         <p className={styles.subtitle}>{data.subtitle}</p>
       </div>
-      <div className={styles.symbolBlock}>
+      <div className={`${styles.symbolBlock} ${maskClass}`}>
         <MaskedSymbolImage
           symbolId={data.key}
           imageUrl={data.image}
+          imgScale={cfg.scale}
+          imgFocus={cfg.focus}
           className={styles.symbolSvg}
         />
       </div>

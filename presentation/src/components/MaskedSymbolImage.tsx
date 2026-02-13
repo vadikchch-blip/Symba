@@ -16,19 +16,37 @@ const SYMBOL_VIEWBOX: Record<'ud' | 'dd', string> = {
 interface MaskedSymbolImageProps {
   symbolId: 'ud' | 'dd'
   imageUrl: string
+  /** Photo zoom factor inside the mask (1.0 = fit, 1.4 = 40% larger) */
+  imgScale?: number
+  /** Photo focus point as [x%, y%] — 50/50 = center */
+  imgFocus?: [number, number]
   className?: string
 }
 
-export function MaskedSymbolImage({ symbolId, imageUrl, className }: MaskedSymbolImageProps) {
+export function MaskedSymbolImage({
+  symbolId,
+  imageUrl,
+  imgScale = 1.0,
+  imgFocus = [50, 50],
+  className,
+}: MaskedSymbolImageProps) {
   const uid = useId()
   const clipId = `clip-${symbolId}-${uid}`
   const path = SYMBOL_PATHS[symbolId]
-  const vb = SYMBOL_VIEWBOX[symbolId].split(' ')
+  const vbStr = SYMBOL_VIEWBOX[symbolId]
+  const [vx, vy, vw, vh] = vbStr.split(' ').map(Number)
   const resolvedUrl = assetPath(imageUrl)
+
+  // Scale the image larger than the viewBox to zoom in
+  const iw = vw * imgScale
+  const ih = vh * imgScale
+  // Offset so the focus point stays centered in the viewBox
+  const ix = vx + (vw - iw) * (imgFocus[0] / 100)
+  const iy = vy + (vh - ih) * (imgFocus[1] / 100)
 
   return (
     <svg
-      viewBox={SYMBOL_VIEWBOX[symbolId]}
+      viewBox={vbStr}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       className={className}
@@ -40,10 +58,10 @@ export function MaskedSymbolImage({ symbolId, imageUrl, className }: MaskedSymbo
       </defs>
       <image
         href={resolvedUrl}
-        x={vb[0]}
-        y={vb[1]}
-        width={vb[2]}
-        height={vb[3]}
+        x={ix}
+        y={iy}
+        width={iw}
+        height={ih}
         preserveAspectRatio="xMidYMid slice"
         clipPath={`url(#${clipId})`}
       />
