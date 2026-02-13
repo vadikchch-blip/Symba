@@ -24,7 +24,7 @@
 .title {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 82px;
+  font-size: 86px;
   line-height: 1.04;
   letter-spacing: -0.5px;
   color: #1F1F1F;
@@ -49,16 +49,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60%;
+  height: 68%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 6vh;
+  padding: 0 24px 32px;
   pointer-events: none;
 }
 
 .symbolSvg {
-  width: 82%;
+  width: 90%;
   height: auto;
   max-height: 100%;
   display: block;

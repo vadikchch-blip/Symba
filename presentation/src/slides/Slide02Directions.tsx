@@ -13,9 +13,18 @@ interface ColumnData {
 }
 
 /** Per-direction photo tuning */
+/**
+ * Per-direction photo tuning.
+ * scale: zoom factor (1.0 = exact fit, 1.15 = 15% zoom)
+ * focus: [x%, y%] — where the camera "looks" inside the mask
+ *
+ * UD: arcs should rhyme with the right semicircle of the UD symbol.
+ *     Shift photo right (62%) so arcs land on the right curve.
+ * DD: terrazzo table centered, slight right bias.
+ */
 const IMG_CONFIG: Record<'ud' | 'dd', { scale: number; focus: [number, number] }> = {
-  ud: { scale: 1.3, focus: [50, 38] },
-  dd: { scale: 1.5, focus: [60, 50] },
+  ud: { scale: 1.15, focus: [62, 42] },
+  dd: { scale: 1.45, focus: [58, 48] },
 }
 
 function DirectionColumn({ data }: { data: ColumnData }) {
