@@ -61,32 +61,32 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-right: 5%;
   position: relative;
 }
 
 .photo {
-  width: 100%;
+  width: calc(100% - 18px);
   flex: 1;
   min-height: 0;
   object-fit: cover;
   object-position: 55% center;
   display: block;
-  transform: scale(1.03);
+  transform: translateX(14px) scale(1.03);
 }
 
 .colorBase {
-  width: 100%;
+  width: calc(100% - 18px);
   height: 140px;
   flex-shrink: 0;
   background: var(--ochre);
+  transform: translateX(14px);
 }
 
 /* Soft edge transition */
 .photoCol::before {
   content: '';
   position: absolute;
-  left: -40px;
+  left: 12px;
   top: 0;
   bottom: 0;
   width: 40px;
