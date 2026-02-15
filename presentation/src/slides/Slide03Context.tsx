@@ -21,6 +21,7 @@ export function Slide03Context() {
       {hasImage && (
         <div className={styles.photoCol}>
           <img src={assetPath(slide03.visual.src!)} alt="" className={styles.photo} />
+          <div className={styles.colorBase} />
         </div>
       )}
     </div>
