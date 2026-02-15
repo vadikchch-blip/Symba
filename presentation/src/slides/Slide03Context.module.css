@@ -2,74 +2,15 @@
   width: 100%;
   height: 100%;
   background: var(--bg);
+  display: flex;
   position: relative;
   overflow: hidden;
-}
-
-/* ===== Photo block (right) ===== */
-
-.photoBlock {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 34%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* Base layer: full grayscale */
-.photoBw {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 55% center;
-  display: block;
-  filter: grayscale(1) contrast(1.04) brightness(0.97);
-}
-
-/* Color layer: masked to floor zone only */
-.photoColor {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 55% center;
-  display: block;
-  filter: saturate(1.15) contrast(1.06);
-
-  /*
-   * Mask: reveal color only in the bottom portion (floor zone).
-   * Gradient goes from transparent (top) to opaque (bottom).
-   * The floor typically occupies the lower ~35% of the frame.
-   */
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 55%,
-    rgba(0, 0, 0, 0.3) 65%,
-    rgba(0, 0, 0, 1) 75%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 55%,
-    rgba(0, 0, 0, 0.3) 65%,
-    rgba(0, 0, 0, 1) 75%,
-    rgba(0, 0, 0, 1) 100%
-  );
 }
 
 /* ===== Text ===== */
 
 .main {
-  position: relative;
-  z-index: 1;
-  width: 66%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,4 +53,30 @@
   line-height: 1.55;
   color: #6E6E6E;
   margin: 0;
+}
+
+/* ===== Divider ===== */
+
+.divider {
+  width: 4px;
+  height: 100%;
+  background: #5F5F5F;
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+/* ===== Photo ===== */
+
+.photoBlock {
+  width: 32%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% center;
+  display: block;
 }

@@ -9,23 +9,6 @@ export function Slide03Context() {
 
   return (
     <div className={styles.slide}>
-      {/* Photo: grayscale base + color floor layer */}
-      {hasImage && (
-        <div className={styles.photoBlock}>
-          <img
-            src={assetPath(slide03.visual.src!)}
-            alt=""
-            className={styles.photoBw}
-          />
-          <img
-            src={assetPath(slide03.visual.src!)}
-            alt=""
-            className={styles.photoColor}
-          />
-        </div>
-      )}
-
-      {/* Text */}
       <div className={styles.main}>
         <span className={styles.eyebrow}>{slide03.eyebrow}</span>
         <h1 className={styles.title}>{slide03.title}</h1>
@@ -35,6 +18,14 @@ export function Slide03Context() {
           ))}
         </div>
       </div>
+      {hasImage && (
+        <>
+          <div className={styles.divider} />
+          <div className={styles.photoBlock}>
+            <img src={assetPath(slide03.visual.src!)} alt="" className={styles.photo} />
+          </div>
+        </>
+      )}
     </div>
   )
 }
