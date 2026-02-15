@@ -2,58 +2,56 @@
   width: 100%;
   height: 100%;
   background: var(--bg);
-  display: flex;
   position: relative;
   overflow: hidden;
 }
 
-.main {
-  width: 58%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
-  position: relative;
-  z-index: 2;
-}
+/* ===== Photo layer (behind everything) ===== */
 
-/* ===== Photo (right, atmospheric layer) ===== */
-
-.aside {
+.photoLayer {
   position: absolute;
   right: 0;
   top: 0;
-  bottom: 0;
   width: 44%;
+  height: 100%;
+  z-index: 0;
 }
 
 .photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center;
+  object-position: 60% center;
   display: block;
   filter: saturate(0.92) contrast(0.97) brightness(0.98);
 }
 
-/* Soft left fade into background — atmosphere, not a frame */
-.photoOverlay {
+/* ===== Architectural overlap plane ===== */
+
+.plane {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    var(--bg) 0%,
-    var(--bg) 8%,
-    rgba(243, 241, 236, 0.9) 18%,
-    rgba(243, 241, 236, 0.5) 32%,
-    rgba(243, 241, 236, 0) 50%
-  );
-  pointer-events: none;
+  right: 37%;
+  top: 0;
+  width: 7%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 1;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.04);
 }
 
-/* ===== Typography ===== */
+/* ===== Text ===== */
+
+.main {
+  position: relative;
+  z-index: 2;
+  width: 56%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: var(--safe-x);
+  padding-block: var(--safe-y);
+}
 
 .eyebrow {
   font-family: var(--font-mono);

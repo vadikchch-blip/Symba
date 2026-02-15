@@ -9,6 +9,21 @@ export function Slide03Context() {
 
   return (
     <div className={styles.slide}>
+      {/* Photo layer (behind) */}
+      {hasImage && (
+        <div className={styles.photoLayer}>
+          <img
+            src={assetPath(slide03.visual.src!)}
+            alt=""
+            className={styles.photo}
+          />
+        </div>
+      )}
+
+      {/* Architectural overlap plane */}
+      {hasImage && <div className={styles.plane} />}
+
+      {/* Text */}
       <div className={styles.main}>
         <span className={styles.eyebrow}>{slide03.eyebrow}</span>
         <h1 className={styles.title}>{slide03.title}</h1>
@@ -18,16 +33,6 @@ export function Slide03Context() {
           ))}
         </div>
       </div>
-      {hasImage && (
-        <aside className={styles.aside}>
-          <img
-            src={assetPath(slide03.visual.src!)}
-            alt=""
-            className={styles.photo}
-          />
-          <div className={styles.photoOverlay} />
-        </aside>
-      )}
     </div>
   )
 }
