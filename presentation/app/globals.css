@@ -30,9 +30,12 @@
 html, body {
   height: 100%;
   overflow: hidden;
-  background-color: var(--bg-chalk);
+  overflow-x: hidden;
+  background-color: #1B1B1B;
   color: var(--text-main);
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
 }

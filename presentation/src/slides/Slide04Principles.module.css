@@ -8,7 +8,6 @@
   flex-direction: column;
   justify-content: center;
   gap: clamp(32px, 4vh, 56px);
-  max-width: 1400px;
 }
 
 .header {
