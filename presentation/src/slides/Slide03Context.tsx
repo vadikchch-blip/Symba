@@ -9,19 +9,21 @@ export function Slide03Context() {
 
   return (
     <div className={styles.slide}>
-      {/* Photo layer (behind) */}
+      {/* Photo: grayscale base + color floor layer */}
       {hasImage && (
-        <div className={styles.photoLayer}>
+        <div className={styles.photoBlock}>
           <img
             src={assetPath(slide03.visual.src!)}
             alt=""
-            className={styles.photo}
+            className={styles.photoBw}
+          />
+          <img
+            src={assetPath(slide03.visual.src!)}
+            alt=""
+            className={styles.photoColor}
           />
         </div>
       )}
-
-      {/* Architectural overlap plane */}
-      {hasImage && <div className={styles.plane} />}
 
       {/* Text */}
       <div className={styles.main}>

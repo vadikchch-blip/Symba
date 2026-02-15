@@ -6,45 +6,69 @@
   overflow: hidden;
 }
 
-/* ===== Photo layer (behind everything) ===== */
+/* ===== Photo block (right) ===== */
 
-.photoLayer {
+.photoBlock {
   position: absolute;
   right: 0;
   top: 0;
-  width: 44%;
+  width: 34%;
   height: 100%;
   z-index: 0;
 }
 
-.photo {
+/* Base layer: full grayscale */
+.photoBw {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% center;
+  object-position: 55% center;
   display: block;
-  filter: saturate(0.92) contrast(0.97) brightness(0.98);
+  filter: grayscale(1) contrast(1.04) brightness(0.97);
 }
 
-/* ===== Architectural overlap plane ===== */
-
-.plane {
+/* Color layer: masked to floor zone only */
+.photoColor {
   position: absolute;
-  right: 37%;
-  top: 0;
-  width: 7%;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  background: var(--bg);
-  z-index: 1;
-  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.04);
+  object-fit: cover;
+  object-position: 55% center;
+  display: block;
+  filter: saturate(1.15) contrast(1.06);
+
+  /*
+   * Mask: reveal color only in the bottom portion (floor zone).
+   * Gradient goes from transparent (top) to opaque (bottom).
+   * The floor typically occupies the lower ~35% of the frame.
+   */
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.3) 65%,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.3) 65%,
+    rgba(0, 0, 0, 1) 75%,
+    rgba(0, 0, 0, 1) 100%
+  );
 }
 
 /* ===== Text ===== */
 
 .main {
   position: relative;
-  z-index: 2;
-  width: 56%;
+  z-index: 1;
+  width: 66%;
   height: 100%;
   display: flex;
   flex-direction: column;
