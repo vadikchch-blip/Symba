@@ -2,21 +2,58 @@
   width: 100%;
   height: 100%;
   background: var(--bg);
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
   display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .main {
-  width: 55%;
+  width: 58%;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-inline: var(--safe-x);
+  padding-block: var(--safe-y);
+  position: relative;
+  z-index: 2;
 }
 
+/* ===== Atmospheric photo (right) ===== */
+
 .aside {
-  width: 45%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  overflow: hidden;
 }
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 50%;
+  display: block;
+
+  /* Color correction: desaturate, warm, soften */
+  filter:
+    blur(10px)
+    saturate(0.9)
+    contrast(0.95)
+    brightness(0.97)
+    sepia(0.06);
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+/* ===== Typography ===== */
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -34,7 +71,7 @@
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.04em;
-  color: var(--text);
+  color: #1C1C1C;
   margin: 0;
 }
 
@@ -51,6 +88,6 @@
   font-size: var(--p);
   font-weight: 400;
   line-height: 1.55;
-  color: var(--muted);
+  color: #6E6E6E;
   margin: 0;
 }

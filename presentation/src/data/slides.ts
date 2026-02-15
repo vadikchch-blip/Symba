@@ -12,7 +12,7 @@ export const slide03 = {
     'Это результат ежедневного взаимодействия человека и пространства.',
     'Когда благоустройство продумано, среда ощущается естественно.',
   ],
-  visual: { type: 'none' as const },
+  visual: { type: 'image' as const, src: '/images/sl2-swings.jpg' },
 }
 
 export const slide05 = {

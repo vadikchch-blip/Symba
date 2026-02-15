@@ -1,9 +1,12 @@
 'use client'
 
 import { slide03 } from '@/src/data/slides'
+import { assetPath } from '@/lib/basePath'
 import styles from './Slide03Context.module.css'
 
 export function Slide03Context() {
+  const hasImage = slide03.visual.type === 'image' && slide03.visual.src
+
   return (
     <div className={styles.slide}>
       <div className={styles.main}>
@@ -15,7 +18,16 @@ export function Slide03Context() {
           ))}
         </div>
       </div>
-      <aside className={styles.aside} />
+      {hasImage && (
+        <aside className={styles.aside}>
+          <img
+            src={assetPath(slide03.visual.src!)}
+            alt=""
+            className={styles.photo}
+          />
+          <div className={styles.photoOverlay} />
+        </aside>
+      )}
     </div>
   )
 }
