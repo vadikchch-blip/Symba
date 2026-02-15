@@ -33,10 +33,10 @@ export const slide04 = {
   eyebrow: '04 / Принципы',
   title: 'Наши принципы',
   items: [
-    { n: '01', label: 'Функциональность' },
-    { n: '02', label: 'Эстетика' },
-    { n: '03', label: 'Эргономика' },
-    { n: '04', label: 'Долговечность' },
+    { n: '01', label: 'Функциональность', color: 'var(--moss)' },
+    { n: '02', label: 'Эстетика', color: 'var(--lilac)' },
+    { n: '03', label: 'Эргономика', color: 'var(--ochre)' },
+    { n: '04', label: 'Долговечность', color: 'var(--cement)' },
   ],
 }
 

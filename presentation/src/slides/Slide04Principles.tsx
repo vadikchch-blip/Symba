@@ -13,9 +13,16 @@ export function Slide04Principles() {
       </div>
       <div className={styles.grid}>
         {slide04.items.map((item) => (
-          <div key={item.n} className={styles.cell}>
+          <div
+            key={item.n}
+            className={styles.cell}
+            style={{ '--c': item.color } as React.CSSProperties}
+          >
             <span className={styles.watermark}>{item.n}</span>
-            <span className={styles.label}>{item.label}</span>
+            <div className={styles.labelWrap}>
+              <div className={styles.marker} />
+              <span className={styles.label}>{item.label}</span>
+            </div>
           </div>
         ))}
       </div>
