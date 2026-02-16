@@ -6,13 +6,13 @@
   background: var(--bg);
 }
 
-/* ===== Photo — right 70%, flush to edge ===== */
+/* ===== Photo — 76%, flush right ===== */
 
 .photo {
   position: absolute;
   top: 0;
   right: 0;
-  width: 70%;
+  width: 76%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -34,15 +34,18 @@
   z-index: 3;
 }
 
-/* ===== Brick block — hard rectangle, overlaps photo ===== */
+/* ===== Brick block — straddles bg/photo boundary ===== */
 
 .brickBlock {
   position: absolute;
-  left: 18%;
-  bottom: 48%;
-  width: clamp(300px, 36%, 520px);
+  left: 10%;
+  bottom: 44%;
+  width: 30%;
+  min-height: 18vh;
   background: var(--brick);
-  padding: clamp(32px, 3.5vw, 52px) clamp(32px, 3vw, 48px);
+  padding: clamp(32px, 3.5vw, 56px) clamp(28px, 3vw, 44px);
+  display: flex;
+  align-items: flex-end;
   z-index: 2;
 }
 
@@ -56,13 +59,13 @@
   margin: 0;
 }
 
-/* ===== Cement block — offset below + right ===== */
+/* ===== Cement block — wider, deeper into photo ===== */
 
 .cementBlock {
   position: absolute;
-  left: 24%;
-  bottom: 18%;
-  width: clamp(260px, 32%, 460px);
+  left: 16%;
+  bottom: 16%;
+  width: 30%;
   background: var(--cement);
   padding: clamp(24px, 2.8vw, 40px) clamp(28px, 3vw, 44px);
   z-index: 2;
