@@ -7,6 +7,20 @@
   display: flex;
   align-items: center;
   gap: clamp(32px, 4vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Moss geometry block — right, pulled in 60px */
+.mossBlock {
+  position: absolute;
+  top: 0;
+  right: 60px;
+  bottom: 0;
+  width: 40%;
+  background: var(--moss);
+  opacity: 0.05;
+  pointer-events: none;
 }
 
 /* ===== Left ===== */
@@ -17,7 +31,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 6%;
+  position: relative;
+  z-index: 1;
 }
 
 .eyebrow {
@@ -28,6 +43,20 @@
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: clamp(16px, 2vh, 28px);
+}
+
+/* Title with moss marker */
+.titleWrap {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 20px);
+}
+
+.titleMarker {
+  width: 7px;
+  flex-shrink: 0;
+  background: var(--moss);
+  border-radius: 999px;
+  align-self: stretch;
 }
 
 .title {
@@ -71,15 +100,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .row {
   padding-block: clamp(16px, 2.2vh, 28px);
-  border-bottom: 1px solid var(--divider);
+  border-bottom: 1px solid var(--moss);
+  opacity: 0.85;
 }
 
 .row:first-child {
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid var(--moss);
 }
 
 .label {

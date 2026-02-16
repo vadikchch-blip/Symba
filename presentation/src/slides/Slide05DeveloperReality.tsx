@@ -22,17 +22,20 @@ function ListBlock({ lead, items }: { lead: string; items: string[] }) {
 export function Slide05DeveloperReality() {
   return (
     <div className={styles.slide}>
+      <span className={styles.watermark}>05</span>
       <div className={styles.left}>
         <span className={styles.eyebrow}>{slide05.eyebrow}</span>
-        <h1 className={styles.title}>{slide05.title}</h1>
+        <div className={styles.titleWrap}>
+          <div className={styles.titleMarker} />
+          <h1 className={styles.title}>{slide05.title}</h1>
+        </div>
       </div>
-      <div className={styles.divider} />
       <div className={styles.right}>
         <ListBlock lead={slide05.blockA.lead} items={slide05.blockA.items} />
         <ListBlock lead={slide05.blockB.lead} items={slide05.blockB.items} />
         <div className={styles.takeaway}>
-          <div className={styles.takeawayAccent} />
           <p className={styles.takeawayText}>{slide05.takeaway}</p>
+          <div className={styles.takeawayLine} />
         </div>
       </div>
     </div>

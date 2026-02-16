@@ -6,9 +6,15 @@ import styles from './Slide07ProjectStart.module.css'
 export function Slide07ProjectStart() {
   return (
     <div className={styles.slide}>
+      {/* Moss geometry block — right side */}
+      <div className={styles.mossBlock} />
+
       <div className={styles.left}>
         <span className={styles.eyebrow}>{slide07.eyebrow}</span>
-        <h1 className={styles.title}>{slide07.title}</h1>
+        <div className={styles.titleWrap}>
+          <div className={styles.titleMarker} />
+          <h1 className={styles.title}>{slide07.title}</h1>
+        </div>
         <p className={styles.lead}>{slide07.lead}</p>
         <div className={styles.emphasis}>
           {slide07.emphasis.map((line, i) => (

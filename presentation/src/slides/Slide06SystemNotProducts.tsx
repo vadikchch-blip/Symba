@@ -6,6 +6,9 @@ import styles from './Slide06SystemNotProducts.module.css'
 export function Slide06SystemNotProducts() {
   return (
     <div className={styles.slide}>
+      {/* Cement block — right side, subtle */}
+      <div className={styles.cementBlock} />
+
       <div className={styles.left}>
         <span className={styles.eyebrow}>{slide06.eyebrow}</span>
         <h1 className={styles.title}>{slide06.title}</h1>
@@ -15,7 +18,6 @@ export function Slide06SystemNotProducts() {
           <p className={styles.noteText}>{slide06.note}</p>
         </div>
       </div>
-      <div className={styles.divider} />
       <div className={styles.right}>
         {slide06.items.map((item) => (
           <div key={item.n} className={styles.row}>
