@@ -59,7 +59,9 @@
 
 .right {
   overflow: hidden;
-  padding-right: 20px;
+  padding: 0;
+  margin: 0;
+  background: #2a2520;
 }
 
 /* mediaBox: single frame for photo + accent, always aligned */
