@@ -1,7 +1,7 @@
 .slide {
   width: 100%;
   height: 100%;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 95%, #000);
   padding-inline: var(--safe-x);
   padding-block: var(--safe-y);
   display: flex;

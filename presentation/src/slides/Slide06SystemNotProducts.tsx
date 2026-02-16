@@ -15,6 +15,7 @@ export function Slide06SystemNotProducts() {
           <p className={styles.noteText}>{slide06.note}</p>
         </div>
       </div>
+      <div className={styles.divider} />
       <div className={styles.right}>
         {slide06.items.map((item) => (
           <div key={item.n} className={styles.row}>
