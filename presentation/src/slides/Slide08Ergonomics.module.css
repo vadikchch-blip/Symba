@@ -6,13 +6,13 @@
   background: var(--bg);
 }
 
-/* ===== Photo — background canvas ===== */
+/* ===== Photo — right 70%, flush to edge ===== */
 
 .photo {
   position: absolute;
   top: 0;
   right: 0;
-  width: 65%;
+  width: 70%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -31,26 +31,24 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  z-index: 2;
+  z-index: 3;
 }
 
-/* ===== Brick block — cuts into photo ===== */
+/* ===== Brick block — hard rectangle, overlaps photo ===== */
 
 .brickBlock {
   position: absolute;
-  left: 8vw;
-  top: 50%;
-  transform: translateY(-70%);
-  width: clamp(280px, 38%, 520px);
+  left: 18%;
+  bottom: 48%;
+  width: clamp(300px, 36%, 520px);
   background: var(--brick);
-  border-radius: 22px;
-  padding: clamp(28px, 3.5vw, 48px) clamp(24px, 3vw, 40px);
+  padding: clamp(32px, 3.5vw, 52px) clamp(32px, 3vw, 48px);
   z-index: 2;
 }
 
 .brickText {
   font-family: var(--font-primary);
-  font-size: clamp(40px, 4.2vw, 72px);
+  font-size: clamp(40px, 4.5vw, 76px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -58,25 +56,23 @@
   margin: 0;
 }
 
-/* ===== Sand block — counterform, offset ===== */
+/* ===== Cement block — offset below + right ===== */
 
-.sandBlock {
+.cementBlock {
   position: absolute;
-  left: 12vw;
-  top: 50%;
-  transform: translateY(20%);
-  width: clamp(260px, 34%, 480px);
-  background: var(--sand);
-  border-radius: 22px;
-  padding: clamp(22px, 2.8vw, 36px) clamp(24px, 3vw, 40px);
+  left: 24%;
+  bottom: 18%;
+  width: clamp(260px, 32%, 460px);
+  background: var(--cement);
+  padding: clamp(24px, 2.8vw, 40px) clamp(28px, 3vw, 44px);
   z-index: 2;
 }
 
-.sandText {
+.cementText {
   font-family: var(--font-primary);
-  font-size: clamp(20px, 1.8vw, 30px);
+  font-size: clamp(18px, 1.7vw, 28px);
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--text);
   margin: 0;
