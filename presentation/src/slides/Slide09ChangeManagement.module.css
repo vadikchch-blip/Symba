@@ -48,12 +48,11 @@
   margin: clamp(14px, 1.8vh, 24px) 0 0 0;
 }
 
-/* Problem paragraphs */
 .problem {
   display: flex;
   flex-direction: column;
   gap: clamp(6px, 0.8vh, 12px);
-  margin-top: clamp(16px, 2vh, 28px);
+  margin-top: clamp(24px, 3vh, 40px);
   max-width: 48ch;
 }
 
@@ -66,9 +65,8 @@
   margin: 0;
 }
 
-/* Solution mini-section */
 .solution {
-  margin-top: clamp(20px, 2.5vh, 36px);
+  margin-top: clamp(28px, 3.5vh, 44px);
 }
 
 .solutionTitle {
@@ -83,8 +81,8 @@
 .items {
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.6vh, 10px);
-  margin-top: clamp(8px, 1vh, 14px);
+  gap: clamp(6px, 0.8vh, 12px);
+  margin-top: clamp(12px, 1.5vh, 20px);
 }
 
 .item {
@@ -100,8 +98,7 @@
 
 .dash {
   flex-shrink: 0;
-  color: var(--ochre);
-  opacity: 0.5;
+  color: var(--moss);
   user-select: none;
 }
 
@@ -111,20 +108,34 @@
   font-weight: 700;
   line-height: 1.45;
   color: var(--text);
-  margin: clamp(12px, 1.5vh, 20px) 0 0 0;
+  margin: clamp(16px, 2vh, 28px) 0 0 0;
 }
 
-/* ===== Right — drawing only ===== */
+/* ===== Right — drawing + form ===== */
 
 .right {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  height: 70%;
+}
+
+/* Inverted R form — architectural brace */
+.form {
+  position: absolute;
+  left: -24px;
+  top: 0;
+  height: 100%;
+  width: auto;
+  z-index: 0;
 }
 
 .drawing {
-  width: 90%;
+  position: relative;
+  z-index: 1;
+  width: 88%;
   height: auto;
   display: block;
 }
