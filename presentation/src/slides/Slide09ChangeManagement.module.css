@@ -119,14 +119,19 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 70%;
 }
 
-/* Inverted R form — architectural brace */
+.drawingWrap {
+  position: relative;
+  width: 88%;
+}
+
+/* Inverted R form — flush with drawing top/bottom */
 .form {
   position: absolute;
-  left: -24px;
+  left: -22px;
   top: 0;
+  bottom: 0;
   height: 100%;
   width: auto;
   z-index: 0;
@@ -135,7 +140,7 @@
 .drawing {
   position: relative;
   z-index: 1;
-  width: 88%;
+  width: 100%;
   height: auto;
   display: block;
 }
