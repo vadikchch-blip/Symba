@@ -110,10 +110,8 @@ export const slide10img = {
   eyebrow: '10  Urban Development',
   title: 'Интеграция в контекст.',
   body: 'Элемент продолжает архитектуру\nи работает как часть среды.',
-  // Drop the file into public/images/ and update this path:
-  image: '/images/8C8C58C6-55C9-4179-9C38-ACF20160EE5E.jpeg',
-  // Fallback while photo is missing:
-  imageFallback: '/images/194464417_cbb391d0-f4c3-4675-952c-bb86348b9fd7_result.png',
+  image: '/images/sl10.png',
+  imageFallback: '/images/sl10.png',
 }
 
 export const slide10 = {
