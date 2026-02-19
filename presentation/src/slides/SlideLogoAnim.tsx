@@ -3,29 +3,25 @@
 import styles from './SlideLogoAnim.module.css'
 
 /**
- * Base symbol path (Симбиотика) — pointing left.
- * DD is the same shape (pointing left).
- * UD is the same shape rotated 90° clockwise.
- *
- * Animation: rotate the symbol through orientations:
- * 0° (Симбиотика/DD) → 90° (UD) → 180° (flipped) → 270° → 360° (back)
- *
- * Using Симбиотика as the canonical path, centered on its geometric center.
+ * Two-half symbol animation: SS → DD → UD → DD → SS
+ * Each half is the DD path, translated to origin.
+ * Right half is scaleX(-1) to face left.
+ * Left half animates: scaleX flip (DD) then rotate -90° (UD).
  */
-const SYMBOL_PATH = 'M829.8,1285v-215.5c0-1.1,1.5-1.3,1.8-.2,31.2,123.9,144.1,215.7,278.7,215.7h287.3v-570h-287.3c-134.6,0-247.5,91.8-278.7,215.7-.3,1-1.8.8-1.8-.2v-215.5c-158.7,0-287.3,127.6-287.3,285,0,157.4,128.6,285,287.3,285Z'
+const DD_PATH = 'M1056.3,1256.9v-197.9c0-1-1.4-1.2-1.6-.2-28.7,113.8-132.4,198.1-256,198.1h-263.8v-523.5s263.8,0,263.8,0c123.6,0,227.3,84.3,255.9,198.1.3,1,1.6.8,1.6-.2v-197.9c145.7,0,263.8,117.2,263.8,261.7s-118.1,261.7-263.8,261.7Z'
+const VB = '525 725 800 545'
 
 export function SlideLogoAnim() {
   return (
     <div className={styles.slide}>
-      <svg
-        className={styles.logo}
-        viewBox="0 0 2000 2000"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g className={styles.rotator}>
-          <path d={SYMBOL_PATH} fill="#FFFFFF" />
-        </g>
-      </svg>
+      <div className={styles.mark}>
+        <svg viewBox={VB} xmlns="http://www.w3.org/2000/svg" className={`${styles.half} ${styles.halfLeft}`}>
+          <path d={DD_PATH} fill="#FFFFFF" />
+        </svg>
+        <svg viewBox={VB} xmlns="http://www.w3.org/2000/svg" className={`${styles.half} ${styles.halfRight}`}>
+          <path d={DD_PATH} fill="#FFFFFF" />
+        </svg>
+      </div>
     </div>
   )
 }

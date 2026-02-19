@@ -7,60 +7,70 @@
   justify-content: center;
 }
 
-.logo {
-  width: clamp(200px, 28vw, 480px);
-  height: clamp(200px, 28vw, 480px);
+.mark {
+  display: flex;
+  gap: 0;
+  width: clamp(240px, 30vw, 520px);
+}
+
+.half {
+  width: 50%;
+  height: auto;
   display: block;
 }
 
+/* Right half: mirrored horizontally to face left (forming SS pair) */
+.halfRight {
+  transform: scaleX(-1);
+}
+
 /*
- * Rotation sequence:
- * 0°    = Симбиотика (pointing left)
- * 90°   = UD (pointing up)
- * 180°  = DD mirrored (pointing right)
- * 270°  = UD mirrored (pointing down)
- * 360°  = back to Симбиотика
+ * Animation sequence (state-driven, not continuous spin):
  *
- * Each state holds for 400ms, transitions take 900ms.
- * Total cycle: 4 × (900 + 400) = 5200ms
+ * SS (0°, both inward)
+ * → DD (left mirrors via scaleX)
+ * → UD (left rotates -90°, pivots at right edge)
+ * → DD (left un-rotates)
+ * → SS (left un-mirrors)
+ *
+ * Total: 4 transitions × 500ms + 4 pauses × 175ms = 2700ms
  */
 
-.rotator {
-  transform-origin: 1000px 1000px;
-  animation: symbolRotate 5200ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+.halfLeft {
+  transform-origin: right center;
+  animation: leftHalf 2700ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-@keyframes symbolRotate {
-  /* Симбиотика — hold */
-  0%      { transform: rotate(0deg); }
-  7.7%    { transform: rotate(0deg); }
+@keyframes leftHalf {
+  /* SS — hold */
+  0%      { transform: scaleX(1) rotate(0deg); }
+  6.5%    { transform: scaleX(1) rotate(0deg); }
 
-  /* Transition → UD */
-  25%     { transform: rotate(90deg); }
+  /* → DD (mirror) */
+  25%     { transform: scaleX(-1) rotate(0deg); }
+
+  /* DD — hold */
+  31.5%   { transform: scaleX(-1) rotate(0deg); }
+
+  /* → UD (rotate left form down 90°) */
+  50%     { transform: scaleX(-1) rotate(-90deg); }
 
   /* UD — hold */
-  32.7%   { transform: rotate(90deg); }
+  56.5%   { transform: scaleX(-1) rotate(-90deg); }
 
-  /* Transition → DD mirrored */
-  50%     { transform: rotate(180deg); }
+  /* → DD (un-rotate) */
+  75%     { transform: scaleX(-1) rotate(0deg); }
 
-  /* DD mirrored — hold */
-  57.7%   { transform: rotate(180deg); }
+  /* DD — hold */
+  81.5%   { transform: scaleX(-1) rotate(0deg); }
 
-  /* Transition → UD mirrored */
-  75%     { transform: rotate(270deg); }
-
-  /* UD mirrored — hold */
-  82.7%   { transform: rotate(270deg); }
-
-  /* Transition → back to Симбиотика */
-  100%    { transform: rotate(360deg); }
+  /* → SS (un-mirror) */
+  100%    { transform: scaleX(1) rotate(0deg); }
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .rotator {
+  .halfLeft {
     animation: none;
-    transform: rotate(0deg);
+    transform: scaleX(1) rotate(0deg);
   }
 }
