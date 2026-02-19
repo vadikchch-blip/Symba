@@ -5,29 +5,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .logo {
   width: 520px;
   height: auto;
   display: block;
-}
-
-.pathVisible {
-  opacity: 1;
-  transition: opacity 120ms ease-in-out;
-}
-
-.pathFade {
-  opacity: 0;
-  transition: opacity 120ms ease-in-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pathVisible,
-  .pathFade {
-    transition: none;
-    opacity: 1;
-  }
 }
