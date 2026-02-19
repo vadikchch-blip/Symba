@@ -5,72 +5,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.mark {
-  display: flex;
-  gap: 0;
-  width: clamp(240px, 30vw, 520px);
-}
-
-.half {
-  width: 50%;
+.logo {
+  width: 520px;
   height: auto;
   display: block;
 }
 
-/* Right half: mirrored horizontally to face left (forming SS pair) */
-.halfRight {
-  transform: scaleX(-1);
+.pathVisible {
+  opacity: 1;
+  transition: opacity 120ms ease-in-out;
 }
 
-/*
- * Animation sequence (state-driven, not continuous spin):
- *
- * SS (0°, both inward)
- * → DD (left mirrors via scaleX)
- * → UD (left rotates -90°, pivots at right edge)
- * → DD (left un-rotates)
- * → SS (left un-mirrors)
- *
- * Total: 4 transitions × 500ms + 4 pauses × 175ms = 2700ms
- */
-
-.halfLeft {
-  transform-origin: right center;
-  animation: leftHalf 2700ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes leftHalf {
-  /* SS — hold */
-  0%      { transform: scaleX(1) rotate(0deg); }
-  6.5%    { transform: scaleX(1) rotate(0deg); }
-
-  /* → DD (mirror) */
-  25%     { transform: scaleX(-1) rotate(0deg); }
-
-  /* DD — hold */
-  31.5%   { transform: scaleX(-1) rotate(0deg); }
-
-  /* → UD (rotate left form down 90°) */
-  50%     { transform: scaleX(-1) rotate(-90deg); }
-
-  /* UD — hold */
-  56.5%   { transform: scaleX(-1) rotate(-90deg); }
-
-  /* → DD (un-rotate) */
-  75%     { transform: scaleX(-1) rotate(0deg); }
-
-  /* DD — hold */
-  81.5%   { transform: scaleX(-1) rotate(0deg); }
-
-  /* → SS (un-mirror) */
-  100%    { transform: scaleX(1) rotate(0deg); }
+.pathFade {
+  opacity: 0;
+  transition: opacity 120ms ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .halfLeft {
-    animation: none;
-    transform: scaleX(1) rotate(0deg);
+  .pathVisible,
+  .pathFade {
+    transition: none;
+    opacity: 1;
   }
 }
