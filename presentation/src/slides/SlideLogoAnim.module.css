@@ -1,0 +1,66 @@
+.slide {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: clamp(200px, 28vw, 480px);
+  height: clamp(200px, 28vw, 480px);
+  display: block;
+}
+
+/*
+ * Rotation sequence:
+ * 0°    = Симбиотика (pointing left)
+ * 90°   = UD (pointing up)
+ * 180°  = DD mirrored (pointing right)
+ * 270°  = UD mirrored (pointing down)
+ * 360°  = back to Симбиотика
+ *
+ * Each state holds for 400ms, transitions take 900ms.
+ * Total cycle: 4 × (900 + 400) = 5200ms
+ */
+
+.rotator {
+  transform-origin: 1000px 1000px;
+  animation: symbolRotate 5200ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes symbolRotate {
+  /* Симбиотика — hold */
+  0%      { transform: rotate(0deg); }
+  7.7%    { transform: rotate(0deg); }
+
+  /* Transition → UD */
+  25%     { transform: rotate(90deg); }
+
+  /* UD — hold */
+  32.7%   { transform: rotate(90deg); }
+
+  /* Transition → DD mirrored */
+  50%     { transform: rotate(180deg); }
+
+  /* DD mirrored — hold */
+  57.7%   { transform: rotate(180deg); }
+
+  /* Transition → UD mirrored */
+  75%     { transform: rotate(270deg); }
+
+  /* UD mirrored — hold */
+  82.7%   { transform: rotate(270deg); }
+
+  /* Transition → back to Симбиотика */
+  100%    { transform: rotate(360deg); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rotator {
+    animation: none;
+    transform: rotate(0deg);
+  }
+}

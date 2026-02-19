@@ -16,10 +16,11 @@ import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
 import { Slide13SystemAccent } from '@/src/slides/Slide13SystemAccent'
 import { Slide14WorkModel } from '@/src/slides/Slide14WorkModel'
+import { SlideLogoAnim } from '@/src/slides/SlideLogoAnim'
 import { SlideFinal } from '@/src/slides/SlideFinal'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 15
+const TOTAL_SLIDES = 16
 
 export function Presentation() {
   const [current, setCurrent] = useState(0)
@@ -130,8 +131,11 @@ export function Presentation() {
     // [14] ФОРМАТ РАБОТЫ
     <Slide14WorkModel key="s14" />,
 
-    // [15] ФИНАЛ
-    <SlideFinal key="s15" />,
+    // [15] ЛОГОТИП — анимация
+    <SlideLogoAnim key="s15" />,
+
+    // [16] ФИНАЛ
+    <SlideFinal key="s16" />,
   ]
 
   return (
