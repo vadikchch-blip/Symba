@@ -64,10 +64,12 @@ export function SlideLogoAnim() {
         overflow="visible"
       >
         <g ref={pairRef}>
-          <path d={LEFT_D} fill="#FFFFFF" />
+          {/* RIGHT_D first (below) — its cap hides behind LEFT_D */}
           <g ref={rightRef}>
             <path d={RIGHT_D} fill="#FFFFFF" />
           </g>
+          {/* LEFT_D on top — covers RIGHT_D's cap in SS/DD states */}
+          <path d={LEFT_D} fill="#FFFFFF" />
         </g>
       </svg>
     </div>
