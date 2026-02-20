@@ -89,6 +89,9 @@ export function Presentation() {
   )
 
   const slides = [
+    // [00] ЛОГОТИП — анимация
+    <SlideLogoAnim key="s00" />,
+
     // [01] HERO — типографика, воздух, акцент
     <Slide01Hero key="s01" />,
 
@@ -131,10 +134,7 @@ export function Presentation() {
     // [14] ФОРМАТ РАБОТЫ
     <Slide14WorkModel key="s14" />,
 
-    // [15] ЛОГОТИП — анимация
-    <SlideLogoAnim key="s15" />,
-
-    // [16] ФИНАЛ
+    // [15] ФИНАЛ
     <SlideFinal key="s16" />,
   ]
 
