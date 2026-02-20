@@ -36,15 +36,15 @@ export function SlideLogoAnim() {
     // DD hold
     tl.to({}, { duration: 0.8 })
 
-    // DD → UD: RIGHT_D rotates 90° CW around shared edge
-    // (after 180° pair flip, RIGHT_D is visually on the LEFT = "left D")
-    tl.to(rightG, { rotation: 90, duration: 1.2, svgOrigin: '829.8 1000' })
+    // DD → UD: RIGHT_D rotates 90° CW around its own center
+    // RIGHT_D spans x=829.8 to x=1397.6, y=715 to y=1285 → center (1114, 1000)
+    tl.to(rightG, { rotation: 90, duration: 1.2, svgOrigin: '1114 1000' })
 
     // UD hold
     tl.to({}, { duration: 0.8 })
 
     // UD → SS: right D back + pair back
-    tl.to(rightG, { rotation: 0, duration: 1.0, svgOrigin: '829.8 1000' })
+    tl.to(rightG, { rotation: 0, duration: 1.0, svgOrigin: '1114 1000' })
     tl.to(pair, { rotation: 0, duration: 1.2, svgOrigin: '970 1000' }, '-=0.3')
 
     tl.to({}, { duration: 0.3 })
