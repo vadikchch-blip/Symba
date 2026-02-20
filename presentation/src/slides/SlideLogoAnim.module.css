@@ -11,4 +11,5 @@
   width: 520px;
   height: 520px;
   display: block;
+  overflow: visible;
 }
