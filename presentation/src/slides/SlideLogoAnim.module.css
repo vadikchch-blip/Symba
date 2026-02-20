@@ -7,25 +7,8 @@
   justify-content: center;
 }
 
-.container {
-  display: flex;
-  gap: 0;
+.logo {
   width: 520px;
-}
-
-.half {
-  width: 50%;
-  height: auto;
+  height: 520px;
   display: block;
-}
-
-/* Left D: mirrored so it faces right (toward the right D) */
-.leftD {
-  transform-origin: right center;
-  transform: scaleX(-1);
-}
-
-/* Right D: faces left (toward the left D) */
-.rightD {
-  transform: scaleX(1);
 }

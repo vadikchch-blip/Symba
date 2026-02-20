@@ -4,76 +4,54 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import styles from './SlideLogoAnim.module.css'
 
-/**
- * Two D-shapes side by side.
- * SS: facing each other (left mirrored, right normal)
- * DD: whole pair rotates 180° → both face same way
- * UD: left D rotates 90° clockwise (right stays)
- * Return: UD→DD→SS in one fluid reverse
- */
-const D_PATH = 'M1056.3,1256.9v-197.9c0-1-1.4-1.2-1.6-.2-28.7,113.8-132.4,198.1-256,198.1h-263.8v-523.5s263.8,0,263.8,0c123.6,0,227.3,84.3,255.9,198.1.3,1,1.6.8,1.6-.2v-197.9c145.7,0,263.8,117.2,263.8,261.7s-118.1,261.7-263.8,261.7Z'
-const VB = '525 725 800 545'
+/** Single Symbiotica symbol. Rotates as one unit. */
+const SS_PATH = 'M829.8,1285v-215.5c0-1.1,1.5-1.3,1.8-.2,31.2,123.9,144.1,215.7,278.7,215.7h287.3v-570h-287.3c-134.6,0-247.5,91.8-278.7,215.7-.3,1-1.8.8-1.8-.2v-215.5c-158.7,0-287.3,127.6-287.3,285,0,157.4,128.6,285,287.3,285Z'
 
 export function SlideLogoAnim() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const leftRef = useRef<SVGSVGElement>(null)
+  const gRef = useRef<SVGGElement>(null)
 
   useEffect(() => {
-    const container = containerRef.current
-    const leftD = leftRef.current
-    if (!container || !leftD) return
+    const g = gRef.current
+    if (!g) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power2.inOut' } })
 
-    // SS hold
+    // SS: hold at 0°
     tl.to({}, { duration: 0.8 })
 
-    // SS → DD: whole pair rotates 180°
-    tl.to(container, { rotation: 180, duration: 1.2 })
+    // SS → DD: rotate 180°
+    tl.to(g, { rotation: 180, duration: 1.2, svgOrigin: '1000 1000' })
 
-    // DD hold
+    // DD: hold
     tl.to({}, { duration: 0.8 })
 
-    // DD → UD: left D rotates 90° clockwise
-    tl.to(leftD, { rotation: 90, duration: 1.2 })
+    // DD → UD: rotate another 90° (total 270°)
+    tl.to(g, { rotation: 270, duration: 1.2, svgOrigin: '1000 1000' })
 
-    // UD hold
+    // UD: hold
     tl.to({}, { duration: 0.8 })
 
-    // UD → DD → SS: reverse in one fluid motion
-    // Left D back to 0°
-    tl.to(leftD, { rotation: 0, duration: 1.0 })
-    // Container back to 0° (starts slightly before left finishes)
-    tl.to(container, { rotation: 0, duration: 1.2 }, '-=0.4')
+    // UD → DD → SS: one fluid return to 360° (= 0°)
+    tl.to(g, { rotation: 360, duration: 1.6, svgOrigin: '1000 1000' })
 
-    // Final hold before loop
-    tl.to({}, { duration: 0.4 })
+    // Reset to 0 for seamless loop
+    tl.set(g, { rotation: 0 })
 
     return () => { tl.kill() }
   }, [])
 
   return (
     <div className={styles.slide}>
-      <div className={styles.container} ref={containerRef}>
-        {/* Left D: mirrored (faces right in SS) */}
-        <svg
-          ref={leftRef}
-          viewBox={VB}
-          xmlns="http://www.w3.org/2000/svg"
-          className={`${styles.half} ${styles.leftD}`}
-        >
-          <path d={D_PATH} fill="#FFFFFF" />
-        </svg>
-        {/* Right D: normal (faces left in SS) */}
-        <svg
-          viewBox={VB}
-          xmlns="http://www.w3.org/2000/svg"
-          className={`${styles.half} ${styles.rightD}`}
-        >
-          <path d={D_PATH} fill="#FFFFFF" />
-        </svg>
-      </div>
+      <svg
+        className={styles.logo}
+        viewBox="0 0 2000 2000"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g ref={gRef}>
+          <path d={SS_PATH} fill="#FFFFFF" />
+        </g>
+      </svg>
     </div>
   )
 }
