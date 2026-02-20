@@ -56,8 +56,9 @@ export function SlideLogoAnim() {
     <div className={styles.slide}>
       <svg
         className={styles.logo}
-        viewBox="0 0 2000 2000"
+        viewBox="-200 -200 2400 2400"
         xmlns="http://www.w3.org/2000/svg"
+        overflow="visible"
       >
         <g ref={pairRef}>
           <path d={LEFT_D} fill="#FFFFFF" />
