@@ -3,5 +3,9 @@
   "private": true,
   "engines": {
     "node": ">=20.9.0"
+  },
+  "scripts": {
+    "build": "cd presentation && npm ci && npm run build",
+    "start": "cd presentation && npm run start"
   }
 }
