@@ -1,0 +1,151 @@
+/* ===== SLIDE COLLECTIONS ===== */
+.slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg, #F3F1EC);
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  padding: 3.5vh 5vw 2.5vh;
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-brick, #A33A2B);
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-main, #1C1C1C);
+  margin: 0;
+}
+
+/* Body — two halves */
+.body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.half {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.halfUd {
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Photos grid — 3 images side by side */
+.photos {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.photoWrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.halfUd .photoWrap {
+  background: var(--ud, #CEDF83);
+}
+
+.halfDd .photoWrap {
+  background: var(--dd, #A879FF);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+/* Text info block */
+.info {
+  padding: 1.5vh 2.5vw 2vh;
+  border-top: 1px solid rgba(0,0,0,0.07);
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: clamp(0.75rem, 1.1vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.6rem;
+  color: var(--text-main, #1C1C1C);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.5rem;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: var(--text-main, #1C1C1C);
+  opacity: 0.75;
+}
+
+.dash {
+  color: var(--accent-brick, #A33A2B);
+  font-weight: 700;
+}
+
+/* Footer */
+.footer {
+  flex-shrink: 0;
+  padding: 1.4vh 5vw;
+  background: var(--text-main, #1C1C1C);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footerAccent {
+  width: 2px;
+  height: 1.4rem;
+  background: var(--accent-brick, #A33A2B);
+  flex-shrink: 0;
+}
+
+.footerText {
+  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}

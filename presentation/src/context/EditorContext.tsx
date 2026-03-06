@@ -1,15 +1,18 @@
 'use client'
 
-import React, { createContext, useContext, useState, useCallback } from 'react'
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react'
 import * as slidesDefaults from '@/src/data/slides'
 
 type SlidesData = typeof slidesDefaults
+
+const STORAGE_KEY = 'symba-slides-data'
 
 interface EditorContextValue {
   editMode: boolean
   toggleEditMode: () => void
   data: SlidesData
   updateField: (slideKey: keyof SlidesData, path: string[], value: string) => void
+  resetToDefaults: () => void
 }
 
 const EditorContext = createContext<EditorContextValue | null>(null)
@@ -34,9 +37,37 @@ export function getNestedValue(obj: any, path: string[]): string {
   return typeof val === 'string' ? val : ''
 }
 
+function loadSavedData(): SlidesData {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      // Deep merge: saved data overrides defaults, but defaults fill in any missing keys
+      const merged: any = { ...slidesDefaults }
+      for (const key of Object.keys(parsed)) {
+        if (key in slidesDefaults) {
+          merged[key] = { ...(slidesDefaults as any)[key], ...parsed[key] }
+        }
+      }
+      return merged as SlidesData
+    }
+  } catch {}
+  return { ...slidesDefaults }
+}
+
 export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [editMode, setEditMode] = useState(false)
-  const [data, setData] = useState<SlidesData>({ ...slidesDefaults })
+  const [data, setData] = useState<SlidesData>(() => {
+    if (typeof window === 'undefined') return { ...slidesDefaults }
+    return loadSavedData()
+  })
+
+  // Persist to localStorage whenever data changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    } catch {}
+  }, [data])
 
   const toggleEditMode = useCallback(() => setEditMode(m => !m), [])
 
@@ -47,8 +78,13 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     }))
   }, [])
 
+  const resetToDefaults = useCallback(() => {
+    try { localStorage.removeItem(STORAGE_KEY) } catch {}
+    setData({ ...slidesDefaults })
+  }, [])
+
   return (
-    <EditorContext.Provider value={{ editMode, toggleEditMode, data, updateField }}>
+    <EditorContext.Provider value={{ editMode, toggleEditMode, data, updateField, resetToDefaults }}>
       {children}
     </EditorContext.Provider>
   )
