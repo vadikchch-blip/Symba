@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/basePath'
+import { EditorProvider, useEditor } from '@/src/context/EditorContext'
 import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import { Slide03Context } from '@/src/slides/Slide03Context'
@@ -22,7 +23,8 @@ import styles from './Presentation.module.css'
 
 const TOTAL_SLIDES = 16
 
-export function Presentation() {
+function PresentationContent() {
+  const { editMode, toggleEditMode } = useEditor()
   const [current, setCurrent] = useState(0)
   const [presenterMode, setPresenterMode] = useState(false)
   const [elapsed, setElapsed] = useState(0)
@@ -35,19 +37,29 @@ export function Presentation() {
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
+      const isEditingText = (e.target as HTMLElement)?.isContentEditable
+
+      if (e.key === 'Escape') {
+        if (editMode) { toggleEditMode(); return }
+        setPresenterMode(false)
+        return
+      }
+
+      if (isEditingText) return
+
       switch (e.key) {
         case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown': e.preventDefault(); next(); break
         case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prev(); break
         case 'Home': e.preventDefault(); go(0); break
         case 'End': e.preventDefault(); go(TOTAL_SLIDES - 1); break
         case 'p': case 'P': if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); setPresenterMode(p => !p) } break
-        case 'Escape': setPresenterMode(false); break
+        case 'e': case 'E': if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); toggleEditMode() } break
         case 'f': case 'F': if (!e.ctrlKey && !e.metaKey) { e.preventDefault(); document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen() } break
       }
     }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
-  }, [next, prev, go])
+  }, [next, prev, go, editMode, toggleEditMode])
 
   useEffect(() => {
     const start = Date.now()
@@ -56,7 +68,7 @@ export function Presentation() {
   }, [])
 
   const handleClick = (e: React.MouseEvent) => {
-    if (presenterMode) return
+    if (presenterMode || editMode) return
     const r = e.currentTarget.getBoundingClientRect()
     const x = e.clientX - r.left
     x > r.width * 0.6 ? next() : x < r.width * 0.4 ? prev() : null
@@ -148,11 +160,24 @@ export function Presentation() {
         ))}
       </div>
 
+      {editMode && (
+        <div className={styles.editBanner}>
+          ✎ Режим редактирования — нажмите на текст для изменения · Esc для выхода
+        </div>
+      )}
+
       {/* Nav UI */}
       <div className={styles.navUi}>
         <button className={styles.navBtn} onClick={e => { e.stopPropagation(); prev() }} disabled={current === 0}>←</button>
         <span className={styles.counter}>{num(current)} / {num(TOTAL_SLIDES - 1)}</span>
         <button className={styles.navBtn} onClick={e => { e.stopPropagation(); next() }} disabled={current === TOTAL_SLIDES - 1}>→</button>
+        <button
+          className={`${styles.navBtn} ${editMode ? styles.navBtnEdit : ''}`}
+          onClick={e => { e.stopPropagation(); toggleEditMode() }}
+          title="E — режим редактирования"
+        >
+          {editMode ? '✓' : '✎'}
+        </button>
         <button className={styles.navBtn} onClick={e => { e.stopPropagation(); setPresenterMode(p => !p) }} title="P">⬚</button>
       </div>
 
@@ -180,10 +205,19 @@ export function Presentation() {
             <div>← — назад</div>
             <div>F — полный экран</div>
             <div>P — презентатор</div>
+            <div>E — редактор</div>
             <div>Esc — закрыть</div>
           </div>
         </div>
       )}
     </div>
+  )
+}
+
+export function Presentation() {
+  return (
+    <EditorProvider>
+      <PresentationContent />
+    </EditorProvider>
   )
 }

@@ -1,35 +1,39 @@
 'use client'
 
-import { slide09 } from '@/src/data/slides'
+import { useEditor } from '@/src/context/EditorContext'
+import { Editable } from '@/src/components/Editable'
 import { assetPath } from '@/lib/basePath'
 import styles from './Slide09ChangeManagement.module.css'
 
 export function Slide09ChangeManagement() {
+  const { data } = useEditor()
+  const slide = data.slide09
+
   return (
     <div className={styles.slide}>
       {/* Left — all text */}
       <div className={styles.left}>
-        <span className={styles.eyebrow}>{slide09.eyebrow}</span>
-        <h1 className={styles.title}>{slide09.title}</h1>
-        <p className={styles.lead}>{slide09.lead}</p>
+        <Editable slideKey="slide09" path={['eyebrow']} tag="span" className={styles.eyebrow} />
+        <Editable slideKey="slide09" path={['title']} tag="h1" className={styles.title} />
+        <Editable slideKey="slide09" path={['lead']} tag="p" className={styles.lead} />
 
         <div className={styles.problem}>
-          {slide09.problem.map((p, i) => (
-            <p key={i}>{p}</p>
+          {slide.problem.map((_, i) => (
+            <Editable key={i} slideKey="slide09" path={['problem', String(i)]} tag="p" />
           ))}
         </div>
 
         <div className={styles.solution}>
-          <p className={styles.solutionTitle}>{slide09.solutionTitle}</p>
+          <Editable slideKey="slide09" path={['solutionTitle']} tag="p" className={styles.solutionTitle} />
           <div className={styles.items}>
-            {slide09.items.map((item, i) => (
+            {slide.items.map((_, i) => (
               <div key={i} className={styles.item}>
                 <span className={styles.dash}>—</span>
-                <span>{item}</span>
+                <Editable slideKey="slide09" path={['items', String(i)]} tag="span" />
               </div>
             ))}
           </div>
-          <p className={styles.final}>{slide09.final}</p>
+          <Editable slideKey="slide09" path={['final']} tag="p" className={styles.final} />
         </div>
       </div>
 
@@ -43,7 +47,7 @@ export function Slide09ChangeManagement() {
               L0,400 Z
             " fill="#C2D67A" />
           </svg>
-          <img src={assetPath(slide09.drawing)} alt="" className={styles.drawing} />
+          <img src={assetPath(slide.drawing)} alt="" className={styles.drawing} />
         </div>
       </div>
     </div>

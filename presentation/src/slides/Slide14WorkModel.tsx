@@ -1,25 +1,29 @@
 'use client'
 
-import { slide14 } from '@/src/data/slides'
+import { useEditor } from '@/src/context/EditorContext'
+import { Editable } from '@/src/components/Editable'
 import styles from './Slide14WorkModel.module.css'
 
 export function Slide14WorkModel() {
+  const { data } = useEditor()
+  const slide = data.slide14
+
   return (
     <div className={styles.slide}>
-      <div className={styles.watermark}>{slide14.watermark}</div>
+      <Editable slideKey="slide14" path={['watermark']} tag="div" className={styles.watermark} />
       <div className={styles.content}>
-        <span className={styles.eyebrow}>{slide14.eyebrow}</span>
+        <Editable slideKey="slide14" path={['eyebrow']} tag="span" className={styles.eyebrow} />
         <div className={styles.lines}>
-          {slide14.lines.map((line, i) => (
-            <p key={i} className={styles.line}>{line}</p>
+          {slide.lines.map((_, i) => (
+            <Editable key={i} slideKey="slide14" path={['lines', String(i)]} tag="p" className={styles.line} />
           ))}
         </div>
         <div className={styles.divider} />
         <div className={styles.conclusion}>
           <div className={styles.conclusionAccent} />
           <p className={styles.conclusionText}>
-            {slide14.conclusion.map((l, i) => (
-              <span key={i} className={styles.conclusionLine}>{l}</span>
+            {slide.conclusion.map((_, i) => (
+              <Editable key={i} slideKey="slide14" path={['conclusion', String(i)]} tag="span" className={styles.conclusionLine} />
             ))}
           </p>
         </div>

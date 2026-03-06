@@ -148,6 +148,20 @@
 .progressRail { position: fixed; bottom: 0; left: 0; width: 100%; height: 4px; background: var(--line-sys); z-index: 200; }
 .progressFill { height: 100%; background: var(--accent-brick); transition: width 0.4s ease; }
 
+/* ===== EDIT MODE ===== */
+.editBanner {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(163, 58, 43, 0.92); color: white;
+  padding: 0.45rem 1.5rem; font-family: var(--font-mono);
+  font-size: 0.65rem; letter-spacing: 0.12em; text-align: center;
+  z-index: 250; text-transform: uppercase; pointer-events: none;
+}
+.navBtnEdit {
+  background: rgba(163, 58, 43, 0.12) !important;
+  color: var(--accent-brick, #A33A2B) !important;
+  opacity: 1 !important;
+}
+
 /* ===== PRESENTER PANEL ===== */
 .presenter {
   position: fixed; top: 0; right: 0; width: 320px; height: 100vh;
