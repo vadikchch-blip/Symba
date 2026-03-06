@@ -10,6 +10,7 @@ import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
 import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
+import { SlideCollections } from '@/src/slides/SlideCollections'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
 import { Slide10Integration } from '@/src/slides/Slide10Integration'
@@ -21,10 +22,10 @@ import { SlideLogoAnim } from '@/src/slides/SlideLogoAnim'
 import { SlideFinal } from '@/src/slides/SlideFinal'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 16
+const TOTAL_SLIDES = 17
 
 function PresentationContent() {
-  const { editMode, toggleEditMode } = useEditor()
+  const { editMode, toggleEditMode, resetToDefaults } = useEditor()
   const [current, setCurrent] = useState(0)
   const [presenterMode, setPresenterMode] = useState(false)
   const [elapsed, setElapsed] = useState(0)
@@ -125,7 +126,10 @@ function PresentationContent() {
     // [07] ПОДХОД
     <Slide07ProjectStart key="s07" />,
 
-    // [08] ЭРГОНОМИКА — плакатный тезис
+    // [08] КОЛЛЕКЦИИ
+    <SlideCollections key="s08col" />,
+
+    // [09] ЭРГОНОМИКА — плакатный тезис
     <Slide08Ergonomics key="s08" />,
 
     // [09] ГИБКОСТЬ
@@ -162,7 +166,13 @@ function PresentationContent() {
 
       {editMode && (
         <div className={styles.editBanner}>
-          ✎ Режим редактирования — нажмите на текст для изменения · Esc для выхода
+          ✎ Режим редактирования — изменения сохраняются автоматически · Esc для выхода
+          <button
+            className={styles.resetBtn}
+            onClick={() => { if (confirm('Сбросить все изменения к исходным текстам?')) resetToDefaults() }}
+          >
+            Сброс
+          </button>
         </div>
       )}
 

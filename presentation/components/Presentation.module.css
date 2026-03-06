@@ -161,6 +161,14 @@
   color: var(--accent-brick, #A33A2B) !important;
   opacity: 1 !important;
 }
+.resetBtn {
+  margin-left: 1.5rem; padding: 0.15rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.5); background: transparent;
+  color: white; font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; pointer-events: auto;
+}
+.resetBtn:hover { background: rgba(255,255,255,0.15); }
 
 /* ===== PRESENTER PANEL ===== */
 .presenter {

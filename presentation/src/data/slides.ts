@@ -198,3 +198,19 @@ export const slide02 = {
     image: '/images/sl2-dd.jpg',
   },
 }
+
+export const slideCollections = {
+  eyebrow: '08 / Коллекции',
+  title: 'Модульная система решений',
+  ud: {
+    label: 'Городская среда',
+    items: ['модульные скамьи', 'вазоны разных масштабов', 'малые архитектурные формы'],
+    images: ['/images/col-ud-1.jpg', '/images/col-ud-2.jpg', '/images/col-ud-3.jpg'],
+  },
+  dd: {
+    label: 'Интерьерная линейка',
+    items: ['столы', 'раковины', 'светильники'],
+    images: ['/images/col-dd-1.jpg', '/images/col-dd-2.jpg', '/images/col-dd-3.jpg'],
+  },
+  footer: 'Все элементы адаптируются под конкретный проект.',
+}
