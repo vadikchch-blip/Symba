@@ -1,31 +1,34 @@
 'use client'
 
-import { slide07 } from '@/src/data/slides'
+import { useEditor } from '@/src/context/EditorContext'
+import { Editable } from '@/src/components/Editable'
 import styles from './Slide07ProjectStart.module.css'
 
 export function Slide07ProjectStart() {
+  const { data } = useEditor()
+  const slide = data.slide07
+
   return (
     <div className={styles.slide}>
-      {/* Moss geometry block — right side */}
       <div className={styles.mossBlock} />
 
       <div className={styles.left}>
-        <span className={styles.eyebrow}>{slide07.eyebrow}</span>
+        <Editable slideKey="slide07" path={['eyebrow']} tag="span" className={styles.eyebrow} />
         <div className={styles.titleWrap}>
           <div className={styles.titleMarker} />
-          <h1 className={styles.title}>{slide07.title}</h1>
+          <Editable slideKey="slide07" path={['title']} tag="h1" className={styles.title} />
         </div>
-        <p className={styles.lead}>{slide07.lead}</p>
+        <Editable slideKey="slide07" path={['lead']} tag="p" className={styles.lead} />
         <div className={styles.emphasis}>
-          {slide07.emphasis.map((line, i) => (
-            <span key={i} className={styles.emphasisLine}>{line}</span>
+          {slide.emphasis.map((_, i) => (
+            <Editable key={i} slideKey="slide07" path={['emphasis', String(i)]} tag="span" className={styles.emphasisLine} />
           ))}
         </div>
       </div>
       <div className={styles.right}>
-        {slide07.items.map((item, i) => (
+        {slide.items.map((_, i) => (
           <div key={i} className={styles.row}>
-            <span className={styles.label}>{item}</span>
+            <Editable slideKey="slide07" path={['items', String(i)]} tag="span" className={styles.label} />
           </div>
         ))}
       </div>
