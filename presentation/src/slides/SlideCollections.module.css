@@ -10,7 +10,7 @@
 
 /* Header */
 .header {
-  padding: 3.5vh 5vw 2.5vh;
+  padding: 3vh 5vw 2.5vh;
   display: flex;
   align-items: baseline;
   gap: 2rem;
@@ -29,7 +29,7 @@
 }
 
 .title {
-  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
@@ -37,11 +37,12 @@
   margin: 0;
 }
 
-/* Body — two halves */
+/* Body — two halves side by side */
 .body {
   flex: 1;
   display: flex;
   overflow: hidden;
+  min-height: 0;
 }
 
 .half {
@@ -49,55 +50,62 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0;
 }
 
 .halfUd {
   border-right: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Photos grid — 3 images side by side */
+/* Photo grid: 3 cols × 2 rows
+   Edge photo spans both rows (full height)
+   Inner photos each occupy 1 row in their column (top crop / bottom crop) */
 .photos {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 3px;
   overflow: hidden;
   min-height: 0;
+  background: #e8e6e1;
 }
 
-.photoWrap {
+.photoCell {
   overflow: hidden;
   position: relative;
-}
-
-.halfUd .photoWrap {
-  background: var(--ud, #CEDF83);
-}
-
-.halfDd .photoWrap {
-  background: var(--dd, #A879FF);
+  background: #f0ede8;
 }
 
 .photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
-  mix-blend-mode: multiply;
+}
+
+/* Different crop positions for inner photo top/bottom cells */
+.cropTop {
+  object-position: center 20%;
+}
+
+.cropBottom {
+  object-position: center 80%;
 }
 
 /* Text info block */
 .info {
-  padding: 1.5vh 2.5vw 2vh;
+  padding: 1.4vh 2.5vw 1.6vh;
   border-top: 1px solid rgba(0,0,0,0.07);
   flex-shrink: 0;
 }
 
 .label {
-  font-size: clamp(0.75rem, 1.1vw, 1rem);
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
   font-weight: 700;
   letter-spacing: 0.01em;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.5rem;
   color: var(--text-main, #1C1C1C);
 }
 
@@ -108,16 +116,16 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.2rem 1.5rem;
+  gap: 0.15rem 1.5rem;
 }
 
 .listItem {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  font-size: clamp(0.68rem, 0.88vw, 0.82rem);
   color: var(--text-main, #1C1C1C);
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .dash {
@@ -128,7 +136,7 @@
 /* Footer */
 .footer {
   flex-shrink: 0;
-  padding: 1.4vh 5vw;
+  padding: 1.2vh 5vw;
   background: var(--text-main, #1C1C1C);
   display: flex;
   align-items: center;
@@ -137,14 +145,14 @@
 
 .footerAccent {
   width: 2px;
-  height: 1.4rem;
+  height: 1.2rem;
   background: var(--accent-brick, #A33A2B);
   flex-shrink: 0;
 }
 
 .footerText {
-  font-size: clamp(0.75rem, 1vw, 0.95rem);
-  color: rgba(255,255,255,0.85);
+  font-size: clamp(0.72rem, 0.95vw, 0.9rem);
+  color: rgba(255,255,255,0.82);
   margin: 0;
   font-style: italic;
   letter-spacing: 0.01em;
