@@ -25,13 +25,16 @@ export function Editable({ slideKey, path, tag = 'span', className, style }: Edi
   const { editMode, data, updateField } = useEditor()
   const ref = useRef<HTMLElement>(null)
   const value = getNestedValue((data as any)[slideKey], path)
+  // Track whether the user is actively typing so we skip textContent updates
+  const isTypingRef = useRef(false)
 
-  // Set DOM text only when entering edit mode — never pass {value} as children
-  // so React doesn't reconcile (overwrite) the DOM while the user is typing.
+  // Set DOM text when entering edit mode (so we show the latest saved value)
+  // Only runs when editMode changes — avoids React reconciling away user input
   useEffect(() => {
     if (editMode && ref.current) {
       ref.current.textContent = value
     }
+    isTypingRef.current = false
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editMode])
 
@@ -41,8 +44,10 @@ export function Editable({ slideKey, path, tag = 'span', className, style }: Edi
     return <Tag className={className} style={style}>{value}</Tag>
   }
 
-  const save = (el: HTMLElement) =>
+  const save = (el: HTMLElement) => {
+    isTypingRef.current = true
     updateField(slideKey as any, path, el.textContent ?? '')
+  }
 
   return (
     <Tag
@@ -58,4 +63,3 @@ export function Editable({ slideKey, path, tag = 'span', className, style }: Edi
     />
   )
 }
-
