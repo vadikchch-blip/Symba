@@ -37,7 +37,7 @@
   margin: 0;
 }
 
-/* Body — two halves side by side */
+/* Body — two halves */
 .body {
   flex: 1;
   display: flex;
@@ -57,24 +57,41 @@
   border-right: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Photo grid: 3 cols × 2 rows
-   Edge photo spans both rows (full height)
-   Inner photos each occupy 1 row in their column (top crop / bottom crop) */
+/* Photos area: edge col + stack col, side by side */
 .photos {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   gap: 3px;
   overflow: hidden;
   min-height: 0;
   background: #e8e6e1;
 }
 
+/* Edge photo: full height, ~40% width */
+.cellEdge {
+  flex: 0 0 40%;
+}
+
+/* Stack: remaining ~60% width, two photos stacked */
+.cellStack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 0;
+}
+
+.cellStack .photoCell {
+  flex: 1;
+  min-height: 0;
+}
+
 .photoCell {
   overflow: hidden;
   position: relative;
   background: #f0ede8;
+  height: 100%;
 }
 
 .photo {
@@ -83,15 +100,6 @@
   object-fit: cover;
   object-position: center center;
   display: block;
-}
-
-/* Different crop positions for inner photo top/bottom cells */
-.cropTop {
-  object-position: center 20%;
-}
-
-.cropBottom {
-  object-position: center 80%;
 }
 
 /* Text info block */
@@ -114,7 +122,6 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   gap: 0.15rem 1.5rem;
 }
