@@ -26,17 +26,23 @@ export function Editable({ slideKey, path, tag = 'span', className, style }: Edi
   const ref = useRef<HTMLElement>(null)
   const value = getNestedValue((data as any)[slideKey], path)
 
+  // Set DOM text only when entering edit mode — never pass {value} as children
+  // so React doesn't reconcile (overwrite) the DOM while the user is typing.
   useEffect(() => {
-    if (editMode && ref.current && ref.current.textContent !== value) {
+    if (editMode && ref.current) {
       ref.current.textContent = value
     }
-  }, [editMode, value])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editMode])
 
   const Tag = tag as any
 
   if (!editMode) {
     return <Tag className={className} style={style}>{value}</Tag>
   }
+
+  const save = (el: HTMLElement) =>
+    updateField(slideKey as any, path, el.textContent ?? '')
 
   return (
     <Tag
@@ -45,14 +51,11 @@ export function Editable({ slideKey, path, tag = 'span', className, style }: Edi
       style={{ ...style, ...EDIT_STYLE }}
       contentEditable
       suppressContentEditableWarning
-      onBlur={(e: React.FocusEvent<HTMLElement>) => {
-        updateField(slideKey as any, path, e.currentTarget.textContent ?? '')
-      }}
-      onKeyDown={(e: React.KeyboardEvent) => {
-        e.stopPropagation()
-      }}
-    >
-      {value}
-    </Tag>
+      // Save on every keystroke so exiting edit mode never loses changes
+      onInput={(e: React.FormEvent<HTMLElement>) => save(e.currentTarget)}
+      onBlur={(e: React.FocusEvent<HTMLElement>) => save(e.currentTarget)}
+      onKeyDown={(e: React.KeyboardEvent) => { e.stopPropagation() }}
+    />
   )
 }
+

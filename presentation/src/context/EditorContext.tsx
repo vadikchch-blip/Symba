@@ -59,29 +59,24 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [editMode, setEditMode] = useState(false)
   // Start with defaults (SSR-safe). Load from localStorage after mount.
   const [data, setData] = useState<SlidesData>({ ...slidesDefaults })
-  const [hydrated, setHydrated] = useState(false)
 
   // Load saved data after client mount — avoids SSR/hydration mismatch
   useEffect(() => {
     setData(loadSavedData())
-    setHydrated(true)
   }, [])
-
-  // Persist to localStorage only after hydration (prevents overwriting saved data with defaults)
-  useEffect(() => {
-    if (!hydrated) return
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-    } catch {}
-  }, [data, hydrated])
 
   const toggleEditMode = useCallback(() => setEditMode(m => !m), [])
 
   const updateField = useCallback((slideKey: keyof SlidesData, path: string[], value: string) => {
-    setData(prev => ({
-      ...prev,
-      [slideKey]: setNestedValue(prev[slideKey], path, value),
-    }))
+    setData(prev => {
+      const next = {
+        ...prev,
+        [slideKey]: setNestedValue(prev[slideKey], path, value),
+      }
+      // Save synchronously inside the updater so it's never lost
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+      return next
+    })
   }, [])
 
   const resetToDefaults = useCallback(() => {
