@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react'
 import * as slidesDefaults from '@/src/data/slides'
 
 type SlidesData = typeof slidesDefaults
@@ -37,51 +37,64 @@ export function getNestedValue(obj: any, path: string[]): string {
   return typeof val === 'string' ? val : ''
 }
 
+function getDefaults(): SlidesData {
+  // Deep clone via JSON so we never mutate the module namespace object
+  return JSON.parse(JSON.stringify(slidesDefaults))
+}
+
 function loadSavedData(): SlidesData {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved) {
       const parsed = JSON.parse(saved)
-      // Deep merge: saved data overrides defaults, but defaults fill in any missing keys
-      const merged: any = { ...slidesDefaults }
+      const defaults = getDefaults()
+      const merged: any = { ...defaults }
       for (const key of Object.keys(parsed)) {
-        if (key in slidesDefaults) {
-          merged[key] = { ...(slidesDefaults as any)[key], ...parsed[key] }
+        if (key in defaults) {
+          // Use saved value directly — shallow merge loses nested objects
+          merged[key] = parsed[key]
         }
       }
       return merged as SlidesData
     }
   } catch {}
-  return { ...slidesDefaults }
+  return getDefaults()
 }
 
 export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [editMode, setEditMode] = useState(false)
   // Start with defaults (SSR-safe). Load from localStorage after mount.
-  const [data, setData] = useState<SlidesData>({ ...slidesDefaults })
+  const [data, setData] = useState<SlidesData>(getDefaults)
+
+  // dataRef always holds the latest data — used in updateField to avoid
+  // putting localStorage side-effects inside React state updaters
+  const dataRef = useRef<SlidesData>(data)
 
   // Load saved data after client mount — avoids SSR/hydration mismatch
   useEffect(() => {
-    setData(loadSavedData())
+    const loaded = loadSavedData()
+    dataRef.current = loaded
+    setData(loaded)
   }, [])
 
   const toggleEditMode = useCallback(() => setEditMode(m => !m), [])
 
   const updateField = useCallback((slideKey: keyof SlidesData, path: string[], value: string) => {
-    setData(prev => {
-      const next = {
-        ...prev,
-        [slideKey]: setNestedValue(prev[slideKey], path, value),
-      }
-      // Save synchronously inside the updater so it's never lost
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
-      return next
-    })
+    // Compute next state from the ref (always current), save, then schedule re-render
+    const next: SlidesData = {
+      ...dataRef.current,
+      [slideKey]: setNestedValue(dataRef.current[slideKey], path, value),
+    }
+    dataRef.current = next
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
+    setData(next)
   }, [])
 
   const resetToDefaults = useCallback(() => {
     try { localStorage.removeItem(STORAGE_KEY) } catch {}
-    setData({ ...slidesDefaults })
+    const defaults = getDefaults()
+    dataRef.current = defaults
+    setData(defaults)
   }, [])
 
   return (
