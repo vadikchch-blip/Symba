@@ -205,12 +205,12 @@ export const slideCollections = {
   ud: {
     label: 'Городская среда',
     items: ['модульные скамьи', 'вазоны разных масштабов', 'малые архитектурные формы'],
-    images: ['/images/col-ud-1.jpg', '/images/col-ud-2.jpg', '/images/col-ud-3.jpg'],
+    images: ['/images/col-ud-3.jpg', '/images/col-ud-2.jpg', '/images/col-ud-1.jpg'],
   },
   dd: {
     label: 'Интерьерная линейка',
     items: ['столы', 'раковины', 'светильники'],
-    images: ['/images/col-dd-1.jpg', '/images/col-dd-2.jpg', '/images/col-dd-3.jpg'],
+    images: ['/images/col-dd-2.jpg', '/images/col-dd-1.jpg', '/images/col-dd-3.jpg'],
   },
   footer: 'Все элементы адаптируются под конкретный проект.',
 }
