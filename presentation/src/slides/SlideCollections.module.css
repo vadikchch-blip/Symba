@@ -102,10 +102,11 @@
   display: block;
 }
 
-/* 2.jpg (UD stack top) — photo is too zoomed-in, show with contain */
+/* 2.jpg (UD stack top) — zoom out slightly so subject fits */
 .halfUd .cellStack .photoCell:first-child .photo {
-  object-fit: contain;
-  background: #f0ede8;
+  object-fit: cover;
+  transform: scale(0.75);
+  transform-origin: center center;
 }
 
 /* 4.jpg (DD stack bottom) — anchor to top so subject isn't cropped */

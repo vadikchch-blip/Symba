@@ -5,7 +5,7 @@ import * as slidesDefaults from '@/src/data/slides'
 
 type SlidesData = typeof slidesDefaults
 
-const STORAGE_KEY = 'symba-slides-data'
+const STORAGE_KEY = 'symba-slides-data-v2'
 
 interface EditorContextValue {
   editMode: boolean
