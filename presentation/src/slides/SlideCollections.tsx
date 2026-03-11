@@ -6,54 +6,51 @@ import { assetPath } from '@/lib/basePath'
 import styles from './SlideCollections.module.css'
 
 /**
- * Layout per half:
- *   3 cols × 2 rows
- *   Edge photo  → col 1 (UD) or col 3 (DD), spans both rows (full height)
- *   Inner photo A → shown in top & bottom cells of col 2
- *   Inner photo B → shown in top & bottom cells of col 3 (UD) or col 1 (DD)
- * Each inner photo appears twice with different object-position (top / bottom crop).
+ * Layout per half — 3 sections (6 total):
+ *   UD: [P1 full-height, left col] | [P2 top / P3 bottom, right col]
+ *   DD: [P1 top / P2 bottom, left col] | [P3 full-height, right col]
  */
 function CollectionHalf({ side }: { side: 'ud' | 'dd' }) {
   const { data } = useEditor()
   const section = data.slideCollections[side]
-
-  const edgeImg   = side === 'ud' ? section.images[0] : section.images[2]
-  const innerImg1 = side === 'ud' ? section.images[1] : section.images[0]
-  const innerImg2 = side === 'ud' ? section.images[2] : section.images[1]
-
-  const edgeCol   = side === 'ud' ? 1 : 3
-  const inner1Col = side === 'ud' ? 2 : 1
-  const inner2Col = side === 'ud' ? 3 : 2
-
-  const cell = (col: number, row: number, src: string, pos: 'top' | 'bottom') => (
-    <div
-      className={styles.photoCell}
-      style={{ gridColumn: col, gridRow: row }}
-    >
-      <img
-        src={assetPath(src)}
-        alt=""
-        className={`${styles.photo} ${pos === 'top' ? styles.cropTop : styles.cropBottom}`}
-      />
-    </div>
-  )
+  const imgs = section.images
 
   return (
     <div className={`${styles.half} ${side === 'ud' ? styles.halfUd : styles.halfDd}`}>
       <div className={styles.photos}>
-        {/* Edge photo — full height */}
-        <div
-          className={styles.photoCell}
-          style={{ gridColumn: edgeCol, gridRow: '1 / span 2' }}
-        >
-          <img src={assetPath(edgeImg)} alt="" className={styles.photo} />
-        </div>
-
-        {/* Inner photos — each shown twice (top crop / bottom crop) */}
-        {cell(inner1Col, 1, innerImg1, 'top')}
-        {cell(inner2Col, 1, innerImg2, 'top')}
-        {cell(inner1Col, 2, innerImg1, 'bottom')}
-        {cell(inner2Col, 2, innerImg2, 'bottom')}
+        {side === 'ud' ? (
+          <>
+            {/* P1 — full height, left edge */}
+            <div className={`${styles.photoCell} ${styles.cellEdge}`}>
+              <img src={assetPath(imgs[0])} alt="" className={styles.photo} />
+            </div>
+            {/* P2 + P3 — stacked in right column */}
+            <div className={styles.cellStack}>
+              <div className={styles.photoCell}>
+                <img src={assetPath(imgs[1])} alt="" className={styles.photo} />
+              </div>
+              <div className={styles.photoCell}>
+                <img src={assetPath(imgs[2])} alt="" className={styles.photo} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {/* P1 + P2 — stacked in left column */}
+            <div className={styles.cellStack}>
+              <div className={styles.photoCell}>
+                <img src={assetPath(imgs[0])} alt="" className={styles.photo} />
+              </div>
+              <div className={styles.photoCell}>
+                <img src={assetPath(imgs[1])} alt="" className={styles.photo} />
+              </div>
+            </div>
+            {/* P3 — full height, right edge */}
+            <div className={`${styles.photoCell} ${styles.cellEdge}`}>
+              <img src={assetPath(imgs[2])} alt="" className={styles.photo} />
+            </div>
+          </>
+        )}
       </div>
 
       <div className={styles.info}>
