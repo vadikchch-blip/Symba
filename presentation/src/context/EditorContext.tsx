@@ -57,17 +57,23 @@ function loadSavedData(): SlidesData {
 
 export function EditorProvider({ children }: { children: React.ReactNode }) {
   const [editMode, setEditMode] = useState(false)
-  const [data, setData] = useState<SlidesData>(() => {
-    if (typeof window === 'undefined') return { ...slidesDefaults }
-    return loadSavedData()
-  })
+  // Start with defaults (SSR-safe). Load from localStorage after mount.
+  const [data, setData] = useState<SlidesData>({ ...slidesDefaults })
+  const [hydrated, setHydrated] = useState(false)
 
-  // Persist to localStorage whenever data changes
+  // Load saved data after client mount — avoids SSR/hydration mismatch
   useEffect(() => {
+    setData(loadSavedData())
+    setHydrated(true)
+  }, [])
+
+  // Persist to localStorage only after hydration (prevents overwriting saved data with defaults)
+  useEffect(() => {
+    if (!hydrated) return
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
     } catch {}
-  }, [data])
+  }, [data, hydrated])
 
   const toggleEditMode = useCallback(() => setEditMode(m => !m), [])
 
