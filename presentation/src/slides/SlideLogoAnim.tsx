@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import styles from './SlideLogoAnim.module.css'
 
@@ -40,6 +40,40 @@ const animationConfig = {
     description: 'SVG > g.pair > [path.LEFT_D, g.right > path.RIGHT_D]',
     note: 'pair group wraps both paths; right group wraps only RIGHT_D for independent rotation',
   },
+}
+
+function loadGifJs(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if ((window as unknown as Record<string, unknown>).GIF) { resolve(); return }
+    const script = document.createElement('script')
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js'
+    script.onload = () => resolve()
+    script.onerror = reject
+    document.head.appendChild(script)
+  })
+}
+
+function svgToCanvas(svg: SVGSVGElement, size: number): Promise<HTMLCanvasElement> {
+  return new Promise((resolve) => {
+    const clone = svg.cloneNode(true) as SVGSVGElement
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    const data = new XMLSerializer().serializeToString(clone)
+    const blob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = size
+      canvas.height = size
+      const ctx = canvas.getContext('2d')!
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillRect(0, 0, size, size)
+      ctx.drawImage(img, 0, 0, size, size)
+      URL.revokeObjectURL(url)
+      resolve(canvas)
+    }
+    img.src = url
+  })
 }
 
 function handleDownloadJSON() {
@@ -102,6 +136,92 @@ function handleDownloadHTML() {
 export function SlideLogoAnim() {
   const pairRef = useRef<SVGGElement>(null)
   const rightRef = useRef<SVGGElement>(null)
+  const svgRef = useRef<SVGSVGElement>(null)
+  const [gifProgress, setGifProgress] = useState<string | null>(null)
+
+  async function handleDownloadGIF() {
+    const svgEl = svgRef.current
+    if (!svgEl || gifProgress) return
+
+    setGifProgress('Загрузка...')
+
+    try {
+      await loadGifJs()
+
+      const GIFConstructor = (window as unknown as Record<string, unknown>).GIF as new (opts: Record<string, unknown>) => {
+        addFrame(canvas: HTMLCanvasElement, opts: Record<string, unknown>): void
+        on(event: string, cb: (blob: Blob) => void): void
+        render(): void
+      }
+      const size = 520
+
+      // Create offscreen SVG with its own timeline
+      const offSvg = svgEl.cloneNode(true) as SVGSVGElement
+      offSvg.style.position = 'absolute'
+      offSvg.style.left = '-9999px'
+      offSvg.style.width = size + 'px'
+      offSvg.style.height = size + 'px'
+      document.body.appendChild(offSvg)
+
+      const pair = offSvg.querySelector('g')!
+      const rightG = pair.querySelector('g')!
+
+      // Build non-repeating timeline
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power1.inOut' } })
+      tl.to({}, { duration: 1 })
+      tl.to(pair, { rotation: 180, duration: 1.6, svgOrigin: '1000 1000' })
+      tl.to({}, { duration: 1 })
+      tl.to(rightG, { rotation: 90, duration: 1.6, svgOrigin: '1135.5 1000' })
+      tl.to({}, { duration: 1 })
+      tl.to(rightG, { rotation: 0, duration: 1.4, svgOrigin: '1135.5 1000' })
+      tl.to(pair, { rotation: 0, duration: 1.6, svgOrigin: '1000 1000' }, '-=0.4')
+      tl.to({}, { duration: 0.5 })
+
+      const fps = 15
+      const duration = tl.duration()
+      const totalFrames = Math.ceil(duration * fps)
+
+      const gif = new GIFConstructor({
+        workers: 2,
+        quality: 10,
+        width: size,
+        height: size,
+        workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js',
+      })
+
+      // Capture frames
+      for (let i = 0; i <= totalFrames; i++) {
+        tl.seek(i / fps)
+        const canvas = await svgToCanvas(offSvg, size)
+        gif.addFrame(canvas, { delay: Math.round(1000 / fps), copy: true })
+        setGifProgress(`${Math.round((i / totalFrames) * 100)}%`)
+      }
+
+      // Render GIF
+      setGifProgress('Кодирование...')
+
+      const blob: Blob = await new Promise((resolve) => {
+        gif.on('finished', (b: Blob) => resolve(b))
+        gif.render()
+      })
+
+      // Download
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'symba-logo-animation.gif'
+      a.click()
+      URL.revokeObjectURL(url)
+
+      // Cleanup
+      tl.kill()
+      document.body.removeChild(offSvg)
+    } catch (e) {
+      console.error('GIF generation failed:', e)
+    }
+
+    setGifProgress(null)
+  }
 
   useEffect(() => {
     const pair = pairRef.current
@@ -140,8 +260,12 @@ export function SlideLogoAnim() {
       <div className={styles.downloadBar}>
         <button className={styles.downloadBtn} onClick={handleDownloadJSON}>JSON</button>
         <button className={styles.downloadBtn} onClick={handleDownloadHTML}>HTML</button>
+        <button className={styles.downloadBtn} onClick={handleDownloadGIF} disabled={!!gifProgress}>
+          {gifProgress || 'GIF'}
+        </button>
       </div>
       <svg
+        ref={svgRef}
         className={styles.logo}
         viewBox="0 0 2000 2000"
         xmlns="http://www.w3.org/2000/svg"
