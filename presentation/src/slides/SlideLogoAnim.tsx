@@ -257,7 +257,7 @@ export function SlideLogoAnim() {
 
   return (
     <div className={styles.slide}>
-      <div className={styles.downloadBar}>
+      <div className={styles.downloadBar} onClick={e => e.stopPropagation()}>
         <button className={styles.downloadBtn} onClick={handleDownloadJSON}>JSON</button>
         <button className={styles.downloadBtn} onClick={handleDownloadHTML}>HTML</button>
         <button className={styles.downloadBtn} onClick={handleDownloadGIF} disabled={!!gifProgress}>
