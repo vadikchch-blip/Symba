@@ -202,7 +202,7 @@ export function SlideLogoAnim() {
         })
       }
 
-      const fps = 15
+      const fps = 50
       const totalDuration = 9.3
       const totalFrames = Math.ceil(totalDuration * fps)
 
