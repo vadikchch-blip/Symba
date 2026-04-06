@@ -61,28 +61,6 @@ async function loadGifJs(): Promise<void> {
   }
 }
 
-function svgToCanvas(svg: SVGSVGElement, size: number): Promise<HTMLCanvasElement> {
-  return new Promise((resolve) => {
-    const clone = svg.cloneNode(true) as SVGSVGElement
-    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
-    const data = new XMLSerializer().serializeToString(clone)
-    const blob = new Blob([data], { type: 'image/svg+xml;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const img = new Image()
-    img.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = size
-      canvas.height = size
-      const ctx = canvas.getContext('2d')!
-      ctx.fillStyle = '#FFFFFF'
-      ctx.fillRect(0, 0, size, size)
-      ctx.drawImage(img, 0, 0, size, size)
-      URL.revokeObjectURL(url)
-      resolve(canvas)
-    }
-    img.src = url
-  })
-}
 
 function handleDownloadJSON() {
   const blob = new Blob([JSON.stringify(animationConfig, null, 2)], { type: 'application/json' })
@@ -148,8 +126,7 @@ export function SlideLogoAnim() {
   const [gifProgress, setGifProgress] = useState<string | null>(null)
 
   async function handleDownloadGIF() {
-    const svgEl = svgRef.current
-    if (!svgEl || gifProgress) return
+    if (gifProgress) return
 
     setGifProgress('Загрузка...')
 
@@ -163,31 +140,71 @@ export function SlideLogoAnim() {
       }
       const size = 520
 
-      // Create offscreen SVG with its own timeline
-      const offSvg = svgEl.cloneNode(true) as SVGSVGElement
-      offSvg.style.position = 'absolute'
-      offSvg.style.left = '-9999px'
-      offSvg.style.width = size + 'px'
-      offSvg.style.height = size + 'px'
-      document.body.appendChild(offSvg)
+      // power1.inOut easing (quadratic in-out)
+      const ease = (p: number) => p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p
 
-      const pair = offSvg.querySelector('g')!
-      const rightG = pair.querySelector('g')!
+      // Compute pair & right rotation angles at time t
+      function getAngles(t: number) {
+        let pair = 0, right = 0
+        // 0–1: hold | 1–2.6: pair 0→180 | 2.6–3.6: hold
+        // 3.6–5.2: right 0→90 | 5.2–6.2: hold
+        // 6.2–7.6: right 90→0 | 7.2–8.8: pair 180→0 (overlap)
+        // 8.8–9.3: hold
+        if (t >= 1 && t < 2.6) pair = 180 * ease((t - 1) / 1.6)
+        else if (t >= 2.6 && t < 7.2) pair = 180
+        else if (t >= 7.2 && t < 8.8) pair = 180 * (1 - ease((t - 7.2) / 1.6))
 
-      // Build non-repeating timeline
-      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power1.inOut' } })
-      tl.to({}, { duration: 1 })
-      tl.to(pair, { rotation: 180, duration: 1.6, svgOrigin: '1000 1000' })
-      tl.to({}, { duration: 1 })
-      tl.to(rightG, { rotation: 90, duration: 1.6, svgOrigin: '1135.5 1000' })
-      tl.to({}, { duration: 1 })
-      tl.to(rightG, { rotation: 0, duration: 1.4, svgOrigin: '1135.5 1000' })
-      tl.to(pair, { rotation: 0, duration: 1.6, svgOrigin: '1000 1000' }, '-=0.4')
-      tl.to({}, { duration: 0.5 })
+        if (t >= 3.6 && t < 5.2) right = 90 * ease((t - 3.6) / 1.6)
+        else if (t >= 5.2 && t < 6.2) right = 90
+        else if (t >= 6.2 && t < 7.6) right = 90 * (1 - ease((t - 6.2) / 1.4))
+
+        return { pair, right }
+      }
+
+      // Build SVG rotation matrix string around (cx, cy)
+      function rotMatrix(deg: number, cx: number, cy: number): string {
+        if (Math.abs(deg) < 0.01) return ''
+        const r = deg * Math.PI / 180
+        const c = Math.cos(r), s = Math.sin(r)
+        return ` transform="matrix(${c.toFixed(6)},${s.toFixed(6)},${(-s).toFixed(6)},${c.toFixed(6)},${(cx * (1 - c) + cy * s).toFixed(2)},${(cy * (1 - c) - cx * s).toFixed(2)})"`
+      }
+
+      // Build SVG string for a given frame
+      function buildSvg(pairDeg: number, rightDeg: number): string {
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 2000 2000">
+<rect width="2000" height="2000" fill="#FFF"/>
+<g${rotMatrix(pairDeg, 1000, 1000)}>
+  <path d="${LEFT_D}" fill="#000"/>
+  <g${rotMatrix(rightDeg, 1135.5, 1000)}>
+    <path d="${RIGHT_D}" fill="#000"/>
+  </g>
+</g>
+</svg>`
+      }
+
+      // Render SVG string to canvas
+      function renderFrame(svgStr: string): Promise<HTMLCanvasElement> {
+        return new Promise((resolve, reject) => {
+          const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' })
+          const url = URL.createObjectURL(blob)
+          const img = new Image()
+          img.onload = () => {
+            const canvas = document.createElement('canvas')
+            canvas.width = size
+            canvas.height = size
+            const ctx = canvas.getContext('2d')!
+            ctx.drawImage(img, 0, 0, size, size)
+            URL.revokeObjectURL(url)
+            resolve(canvas)
+          }
+          img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('SVG render failed')) }
+          img.src = url
+        })
+      }
 
       const fps = 15
-      const duration = tl.duration()
-      const totalFrames = Math.ceil(duration * fps)
+      const totalDuration = 9.3
+      const totalFrames = Math.ceil(totalDuration * fps)
 
       const gif = new GIFConstructor({
         workers: 2,
@@ -199,8 +216,10 @@ export function SlideLogoAnim() {
 
       // Capture frames
       for (let i = 0; i <= totalFrames; i++) {
-        tl.seek(i / fps)
-        const canvas = await svgToCanvas(offSvg, size)
+        const t = i / fps
+        const { pair, right } = getAngles(t)
+        const svgStr = buildSvg(pair, right)
+        const canvas = await renderFrame(svgStr)
         gif.addFrame(canvas, { delay: Math.round(1000 / fps), copy: true })
         setGifProgress(`${Math.round((i / totalFrames) * 100)}%`)
       }
@@ -223,10 +242,6 @@ export function SlideLogoAnim() {
       a.click()
       document.body.removeChild(a)
       URL.revokeObjectURL(url)
-
-      // Cleanup
-      tl.kill()
-      document.body.removeChild(offSvg)
     } catch (e) {
       console.error('GIF generation failed:', e)
     }
