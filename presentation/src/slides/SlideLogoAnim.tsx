@@ -42,15 +42,23 @@ const animationConfig = {
   },
 }
 
-function loadGifJs(): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if ((window as unknown as Record<string, unknown>).GIF) { resolve(); return }
-    const script = document.createElement('script')
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js'
-    script.onload = () => resolve()
-    script.onerror = reject
-    document.head.appendChild(script)
-  })
+let workerBlobUrl: string | null = null
+
+async function loadGifJs(): Promise<void> {
+  if (!(window as unknown as Record<string, unknown>).GIF) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js'
+      script.onload = () => resolve()
+      script.onerror = reject
+      document.head.appendChild(script)
+    })
+  }
+  if (!workerBlobUrl) {
+    const res = await fetch('https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js')
+    const text = await res.text()
+    workerBlobUrl = URL.createObjectURL(new Blob([text], { type: 'application/javascript' }))
+  }
 }
 
 function svgToCanvas(svg: SVGSVGElement, size: number): Promise<HTMLCanvasElement> {
@@ -150,7 +158,7 @@ export function SlideLogoAnim() {
 
       const GIFConstructor = (window as unknown as Record<string, unknown>).GIF as new (opts: Record<string, unknown>) => {
         addFrame(canvas: HTMLCanvasElement, opts: Record<string, unknown>): void
-        on(event: string, cb: (blob: Blob) => void): void
+        on(event: string, cb: (...args: unknown[]) => void): void
         render(): void
       }
       const size = 520
@@ -186,7 +194,7 @@ export function SlideLogoAnim() {
         quality: 10,
         width: size,
         height: size,
-        workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js',
+        workerScript: workerBlobUrl!,
       })
 
       // Capture frames
@@ -200,8 +208,9 @@ export function SlideLogoAnim() {
       // Render GIF
       setGifProgress('Кодирование...')
 
-      const blob: Blob = await new Promise((resolve) => {
-        gif.on('finished', (b: Blob) => resolve(b))
+      const blob: Blob = await new Promise((resolve, reject) => {
+        gif.on('finished', (b: unknown) => resolve(b as Blob))
+        gif.on('error', (e: unknown) => reject(e))
         gif.render()
       })
 
@@ -210,7 +219,9 @@ export function SlideLogoAnim() {
       const a = document.createElement('a')
       a.href = url
       a.download = 'symba-logo-animation.gif'
+      document.body.appendChild(a)
       a.click()
+      document.body.removeChild(a)
       URL.revokeObjectURL(url)
 
       // Cleanup
