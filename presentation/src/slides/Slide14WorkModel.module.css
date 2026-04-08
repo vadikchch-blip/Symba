@@ -2,37 +2,25 @@
   width: 100%;
   height: 100%;
   background: var(--bg);
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
   display: flex;
-  align-items: center;
   position: relative;
   overflow: hidden;
 }
 
-.watermark {
-  position: absolute;
-  top: 50%;
-  right: -4vw;
-  transform: translateY(-50%);
-  font-family: var(--font-primary);
-  font-size: clamp(140px, 22vw, 380px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: rgba(0, 0, 0, 0.03);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-}
+/* ===== Left column — text ===== */
 
 .content {
-  position: relative;
-  z-index: 1;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  max-width: 720px;
+  justify-content: center;
+  padding: var(--safe-y) var(--safe-x);
+  padding-right: 60px;
+  max-width: 620px;
+  z-index: 1;
 }
+
+/* ===== Eyebrow — ochre, 70% opacity ===== */
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -40,58 +28,66 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #C0993A;
+  opacity: 0.7;
   margin-bottom: clamp(24px, 3vh, 40px);
 }
 
-.lines {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(10px, 1.4vh, 18px);
-}
+/* ===== Title — graphite ===== */
 
-.line {
+.title {
   font-family: var(--font-primary);
   font-size: clamp(26px, 2.6vw, 40px);
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.3;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: #2B2B2B;
   margin: 0;
 }
+
+/* ===== Divider — graphite, low opacity ===== */
 
 .divider {
   width: 100%;
   max-width: 280px;
   height: 1px;
-  background: var(--divider);
-  margin: clamp(28px, 3.5vh, 48px) 0;
+  background: rgba(43, 43, 43, 0.22);
+  margin: clamp(24px, 3vh, 40px) 0;
 }
 
-.conclusion {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(12px, 1.2vw, 20px);
-}
+/* ===== Subtitle ===== */
 
-.conclusionAccent {
-  width: 3px;
-  min-height: 100%;
-  background: var(--accent);
-  flex-shrink: 0;
-  border-radius: 1px;
-}
-
-.conclusionText {
+.subtitle {
   font-family: var(--font-primary);
-  font-size: clamp(32px, 3vw, 48px);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-size: clamp(22px, 2.2vw, 34px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #2B2B2B;
   margin: 0;
 }
 
-.conclusionLine {
-  display: block;
+.accentWord {
+  color: #C0993A;
+}
+
+/* ===== Ochre accent line ===== */
+
+.accentLine {
+  width: 100px;
+  height: 2px;
+  background: #C0993A;
+  margin-top: 20px;
+}
+
+/* ===== Right column — photo, clean ===== */
+
+.photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }

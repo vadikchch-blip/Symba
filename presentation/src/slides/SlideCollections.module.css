@@ -102,16 +102,15 @@
   display: block;
 }
 
-/* 2.jpg (UD stack top) — zoom out slightly so subject fits */
+/* 2.jpg (UD stack top) — fit chair in horizontal slot */
 .halfUd .cellStack .photoCell:first-child .photo {
   object-fit: cover;
-  transform: scale(0.75);
-  transform-origin: center center;
+  object-position: center center;
 }
 
-/* 4.jpg (DD stack bottom) — anchor to top so subject isn't cropped */
+/* 4.jpg (DD stack bottom) — center the subject */
 .halfDd .cellStack .photoCell:last-child .photo {
-  object-position: center top;
+  object-position: center 60%;
 }
 
 /* Text info block */

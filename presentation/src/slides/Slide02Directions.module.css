@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: calc(10vh + 48px) var(--safe-x) 0;
+  padding: calc(10vh + 48px) var(--safe-x) 0 calc(var(--safe-x) - 8px);
 }
 
 /* ===== Text ===== */
@@ -29,6 +29,7 @@
   letter-spacing: -0.5px;
   color: #1F1F1F;
   margin: 0;
+  margin-left: -5px;
 }
 
 .subtitle {

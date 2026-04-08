@@ -22,17 +22,23 @@ import { SlideLogoAnim } from '@/src/slides/SlideLogoAnim'
 import { SlideFinal } from '@/src/slides/SlideFinal'
 import styles from './Presentation.module.css'
 
-const TOTAL_SLIDES = 17
+const TOTAL_SLIDES = 16
 
 function PresentationContent() {
   const { editMode, toggleEditMode, resetToDefaults } = useEditor()
   const [current, setCurrent] = useState(0)
+  const [prevIndex, setPrevIndex] = useState(0)
+  const [direction, setDirection] = useState<'next' | 'prev'>('next')
   const [presenterMode, setPresenterMode] = useState(false)
   const [elapsed, setElapsed] = useState(0)
 
   const go = useCallback((i: number) => {
-    if (i >= 0 && i < TOTAL_SLIDES) setCurrent(i)
-  }, [])
+    if (i >= 0 && i < TOTAL_SLIDES && i !== current) {
+      setDirection(i > current ? 'next' : 'prev')
+      setPrevIndex(current)
+      setCurrent(i)
+    }
+  }, [current])
   const next = useCallback(() => go(current + 1), [current, go])
   const prev = useCallback(() => go(current - 1), [current, go])
 
@@ -149,19 +155,26 @@ function PresentationContent() {
 
     // [14] ФОРМАТ РАБОТЫ
     <Slide14WorkModel key="s14" />,
-
-    // [15] ФИНАЛ
-    <SlideFinal key="s16" />,
   ]
 
   return (
     <div className={styles.presentation}>
       <div className={styles.slideArea} onClick={handleClick}>
-        {slides.map((slide, i) => (
-          <div key={i} className={`${styles.slide} ${i === current ? styles.slideActive : ''}`}>
-            {slide}
-          </div>
-        ))}
+        {slides.map((slide, i) => {
+          const isActive = i === current
+          const isLeaving = i === prevIndex && i !== current
+          let cls = styles.slide
+          if (isActive) {
+            cls += ` ${styles.slideActive} ${direction === 'next' ? styles.slideEnterFromRight : styles.slideEnterFromLeft}`
+          } else if (isLeaving) {
+            cls += ` ${direction === 'next' ? styles.slideExitToLeft : styles.slideExitToRight}`
+          }
+          return (
+            <div key={i} className={cls}>
+              {slide}
+            </div>
+          )
+        })}
       </div>
 
       {editMode && (

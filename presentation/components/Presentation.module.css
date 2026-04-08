@@ -4,11 +4,32 @@
 .slide {
   position: absolute; inset: 0;
   display: flex; opacity: 0; pointer-events: none;
-  transition: opacity 0.8s cubic-bezier(0.2,0,0.2,1), transform 0.8s cubic-bezier(0.2,0,0.2,1);
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
   background-color: var(--bg-chalk);
-  transform: translateY(10px);
+  transform: translateX(0);
 }
-.slideActive { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.slideActive { opacity: 1; pointer-events: auto; }
+.slideEnterFromRight { animation: enterFromRight 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.slideEnterFromLeft { animation: enterFromLeft 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.slideExitToLeft { opacity: 1; animation: exitToLeft 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+.slideExitToRight { opacity: 1; animation: exitToRight 0.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+
+@keyframes enterFromRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes enterFromLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes exitToLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-60px); }
+}
+@keyframes exitToRight {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(60px); }
+}
 
 /* ===== MONO ===== */
 .mono { font-family: var(--font-mono); text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.15em; font-weight: 500; display: block; margin-bottom: 0.5rem; }

@@ -20,6 +20,8 @@ interface MaskedSymbolImageProps {
   imgScale?: number
   /** Photo focus point as [x%, y%] — 50/50 = center */
   imgFocus?: [number, number]
+  /** Override SVG preserveAspectRatio (default: xMidYMid slice) */
+  preserveAspectRatio?: string
   className?: string
 }
 
@@ -28,6 +30,7 @@ export function MaskedSymbolImage({
   imageUrl,
   imgScale = 1.0,
   imgFocus = [50, 50],
+  preserveAspectRatio: par = 'xMidYMid slice',
   className,
 }: MaskedSymbolImageProps) {
   const uid = useId()
@@ -62,7 +65,7 @@ export function MaskedSymbolImage({
         y={iy}
         width={iw}
         height={ih}
-        preserveAspectRatio="xMidYMid slice"
+        preserveAspectRatio={par}
         clipPath={`url(#${clipId})`}
       />
     </svg>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEditor } from '@/src/context/EditorContext'
-import { Editable } from '@/src/components/Editable'
+import { assetPath } from '@/lib/basePath'
 import styles from './Slide14WorkModel.module.css'
 
 export function Slide14WorkModel() {
@@ -10,24 +10,18 @@ export function Slide14WorkModel() {
 
   return (
     <div className={styles.slide}>
-      <Editable slideKey="slide14" path={['watermark']} tag="div" className={styles.watermark} />
       <div className={styles.content}>
-        <Editable slideKey="slide14" path={['eyebrow']} tag="span" className={styles.eyebrow} />
-        <div className={styles.lines}>
-          {slide.lines.map((_, i) => (
-            <Editable key={i} slideKey="slide14" path={['lines', String(i)]} tag="p" className={styles.line} />
-          ))}
-        </div>
+        <span className={styles.eyebrow}>{slide.eyebrow}</span>
+        <h1 className={styles.title}>{slide.title}</h1>
         <div className={styles.divider} />
-        <div className={styles.conclusion}>
-          <div className={styles.conclusionAccent} />
-          <p className={styles.conclusionText}>
-            {slide.conclusion.map((_, i) => (
-              <Editable key={i} slideKey="slide14" path={['conclusion', String(i)]} tag="span" className={styles.conclusionLine} />
-            ))}
-          </p>
-        </div>
+        <p className={styles.subtitle}>
+          {slide.subtitle}{' '}
+          <span className={styles.accentWord}>{slide.subtitleAccent}</span>{' '}
+          {slide.subtitleEnd}
+        </p>
+        <div className={styles.accentLine} />
       </div>
+      {slide.image && <img src={assetPath(slide.image)} alt="" className={styles.photo} />}
     </div>
   )
 }

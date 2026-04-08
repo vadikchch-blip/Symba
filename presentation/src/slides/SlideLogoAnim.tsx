@@ -119,10 +119,21 @@ function handleDownloadHTML() {
   URL.revokeObjectURL(url)
 }
 
+// Brand colors
+const COLOR_CC_BG = '#E2683A'   // оранжевый
+const COLOR_DD_BG = '#A879FF'   // фиолетовый
+const COLOR_UD_BG = '#CEDF83'   // салатовый
+const COLOR_CC_FILL = '#DDD8C4' // кремовый (CC & DD)
+const COLOR_DD_FILL = '#DDD8C4' // кремовый
+const COLOR_UD_FILL = '#333333' // тёмный (UD)
+
 export function SlideLogoAnim() {
   const pairRef = useRef<SVGGElement>(null)
   const rightRef = useRef<SVGGElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
+  const slideRef = useRef<HTMLDivElement>(null)
+  const leftPathRef = useRef<SVGPathElement>(null)
+  const rightPathRef = useRef<SVGPathElement>(null)
   const [gifProgress, setGifProgress] = useState<string | null>(null)
 
   async function handleDownloadGIF() {
@@ -252,29 +263,39 @@ export function SlideLogoAnim() {
   useEffect(() => {
     const pair = pairRef.current
     const rightG = rightRef.current
-    if (!pair || !rightG) return
+    const slide = slideRef.current
+    const leftPath = leftPathRef.current
+    const rightPath = rightPathRef.current
+    if (!pair || !rightG || !slide || !leftPath || !rightPath) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const bothPaths = [leftPath, rightPath]
 
     const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'power1.inOut' } })
 
-    // SS hold
+    // SS hold (CC — оранжевый)
     tl.to({}, { duration: 1 })
 
-    // SS → DD: whole pair rotates 180°
+    // SS → DD: вращение + оранжевый → фиолетовый
     tl.to(pair, { rotation: 180, duration: 1.6, svgOrigin: '1000 1000' })
+    tl.to(slide, { backgroundColor: COLOR_DD_BG, duration: 1.6 }, '<')
 
-    // DD hold
+    // DD hold (фиолетовый)
     tl.to({}, { duration: 1 })
 
-    // DD → UD: RIGHT rotates 90°
+    // DD → UD: вращение + фиолетовый → салатовый, лого кремовый → тёмный
     tl.to(rightG, { rotation: 90, duration: 1.6, svgOrigin: '1135.5 1000' })
+    tl.to(slide, { backgroundColor: COLOR_UD_BG, duration: 1.6 }, '<')
+    tl.to(bothPaths, { fill: COLOR_UD_FILL, duration: 1.6 }, '<')
 
-    // UD hold
+    // UD hold (салатовый)
     tl.to({}, { duration: 1 })
 
-    // UD → SS: right back + pair back
+    // UD → SS: салатовый → оранжевый, лого тёмный → кремовый
     tl.to(rightG, { rotation: 0, duration: 1.4, svgOrigin: '1135.5 1000' })
     tl.to(pair, { rotation: 0, duration: 1.6, svgOrigin: '1000 1000' }, '-=0.4')
+    tl.to(slide, { backgroundColor: COLOR_CC_BG, duration: 1.6 }, '-=1.6')
+    tl.to(bothPaths, { fill: COLOR_CC_FILL, duration: 1.6 }, '-=1.6')
 
     tl.to({}, { duration: 0.5 })
 
@@ -282,7 +303,7 @@ export function SlideLogoAnim() {
   }, [])
 
   return (
-    <div className={styles.slide}>
+    <div ref={slideRef} className={styles.slide} style={{ backgroundColor: COLOR_CC_BG }}>
       <div className={styles.downloadBar} onClick={e => e.stopPropagation()}>
         <button className={styles.downloadBtn} onClick={handleDownloadJSON}>JSON</button>
         <button className={styles.downloadBtn} onClick={handleDownloadHTML}>HTML</button>
@@ -297,9 +318,9 @@ export function SlideLogoAnim() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <g ref={pairRef}>
-          <path d={LEFT_D} fill="#000000" />
+          <path ref={leftPathRef} d={LEFT_D} fill={COLOR_CC_FILL} />
           <g ref={rightRef}>
-            <path d={RIGHT_D} fill="#000000" />
+            <path ref={rightPathRef} d={RIGHT_D} fill={COLOR_CC_FILL} />
           </g>
         </g>
       </svg>

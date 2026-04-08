@@ -5,9 +5,9 @@ import { Editable } from '@/src/components/Editable'
 import { MaskedSymbolImage } from '@/src/components/MaskedSymbolImage'
 import styles from './Slide02Directions.module.css'
 
-const IMG_CONFIG: Record<'ud' | 'dd', { scale: number; focus: [number, number] }> = {
+const IMG_CONFIG: Record<'ud' | 'dd', { scale: number; focus: [number, number]; preserveAspectRatio?: string }> = {
   ud: { scale: 1.15, focus: [62, 42] },
-  dd: { scale: 1.45, focus: [58, 48] },
+  dd: { scale: 1.45, focus: [50, 50], preserveAspectRatio: 'xMidYMax slice' },
 }
 
 function DirectionColumn({ side }: { side: 'left' | 'right' }) {
@@ -28,6 +28,7 @@ function DirectionColumn({ side }: { side: 'left' | 'right' }) {
           imageUrl={colData.image}
           imgScale={cfg.scale}
           imgFocus={cfg.focus}
+          preserveAspectRatio={cfg.preserveAspectRatio}
           className={styles.symbolSvg}
         />
       </div>

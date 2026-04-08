@@ -1,0 +1,1580 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "h97afa",
+      "x": 0,
+      "y": 0,
+      "name": "Slide 00 Logo",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1C1C1C",
+      "layout": "vertical",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "s65xjw",
+          "fill": "#F2EFEA",
+          "content": "Симбиотика",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 72,
+          "fontWeight": "800"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "r6a5s3",
+      "x": 2000,
+      "y": 0,
+      "name": "Slide 01 Hero",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1C1C1C",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "83gryb",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/SL1.png",
+            "mode": "fill"
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "rectangle",
+          "id": "wuxfnj",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 90,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "rgba(28,25,22,0.55)",
+                "position": 0
+              },
+              {
+                "color": "rgba(28,25,22,0.35)",
+                "position": 0.3
+              },
+              {
+                "color": "rgba(28,25,22,0)",
+                "position": 0.65
+              }
+            ]
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "iylgfr",
+          "x": 96,
+          "y": 94,
+          "width": 720,
+          "height": 900,
+          "layout": "vertical",
+          "gap": 26,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "v46yyh",
+              "fill": "#A33A2B",
+              "width": 56,
+              "height": 3
+            },
+            {
+              "type": "text",
+              "id": "0nlrs0",
+              "fill": "#F4F1EC",
+              "content": "Симбиотика",
+              "fontFamily": "Inter",
+              "fontSize": 104,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "eccd3m",
+              "fill": "#f4f1ecbf",
+              "textGrowth": "fixed-width",
+              "width": 660,
+              "content": "Архитектурный бетон для городской среды и интерьера",
+              "lineHeight": 1.15,
+              "fontFamily": "Inter",
+              "fontSize": 40
+            },
+            {
+              "type": "text",
+              "id": "cezq0x",
+              "fill": "#f4f1ec99",
+              "content": "Крым · с 2020 года",
+              "fontFamily": "Inter",
+              "fontSize": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "dhb9y8",
+      "x": 4000,
+      "y": 0,
+      "name": "Slide 02 Directions",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#FFFFFF",
+      "children": [
+        {
+          "type": "frame",
+          "id": "f1fb09",
+          "name": "UD",
+          "width": 960,
+          "height": 1080,
+          "fill": "#CEDF83",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": 80,
+          "children": [
+            {
+              "type": "frame",
+              "id": "rgk2lf",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mq5uqk",
+                  "fill": "#1C1C1C",
+                  "content": "Urban\nDevelopment",
+                  "lineHeight": 0.9,
+                  "fontFamily": "Euclid Circular A",
+                  "fontSize": 128,
+                  "fontWeight": "500",
+                  "letterSpacing": -2
+                },
+                {
+                  "type": "text",
+                  "id": "itlrnk",
+                  "fill": "#1c1c1c8c",
+                  "content": "Городская среда",
+                  "fontFamily": "Euclid Circular A",
+                  "fontSize": 18
+                }
+              ]
+            },
+            {
+              "type": "path",
+              "id": "Bwsvr",
+              "name": "UD Masked",
+              "geometry": "M570 0l-570 0 0 285c0 157.40002 127.59998 285 285 285 157.40002 0 281.40002-128.5 284-283.70001l1 0 0 283.70001c157.40002 0 285-127.59998 285-285 0-157.40002-127.59998-285-285-285",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/sl2-ud.jpg",
+                "mode": "fill"
+              },
+              "width": "fill_container",
+              "height": 533
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "euecix",
+          "name": "DD",
+          "width": 960,
+          "height": 1080,
+          "fill": "#A879FF",
+          "layout": "vertical",
+          "gap": 64,
+          "padding": 80,
+          "children": [
+            {
+              "type": "frame",
+              "id": "nc8tkc",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "9t01we",
+                  "name": "Design\nDevelopment",
+                  "fill": "#1C1C1C",
+                  "content": "Design \nDevelopment",
+                  "lineHeight": 0.9,
+                  "fontFamily": "Euclid Circular A",
+                  "fontSize": 128,
+                  "fontWeight": "500",
+                  "letterSpacing": -2
+                },
+                {
+                  "type": "text",
+                  "id": "qjx5yw",
+                  "fill": "#1c1c1c8c",
+                  "content": "Интерьерные изделия",
+                  "fontFamily": "Euclid Circular A",
+                  "fontSize": 18
+                }
+              ]
+            },
+            {
+              "type": "path",
+              "id": "o0S1q",
+              "name": "DD Masked",
+              "rotation": -0.22749439256865112,
+              "geometry": "M567.79993 570l0-215.5c0-1.09998-1.5-1.30005-1.80005-0.19995-31.19995 123.90002-144.09998 215.69995-278.70001 215.69995l-287.29987 0 0-570 287.29999 0c134.60003 0 247.49994 91.79999 278.70001 215.70001 0.30005 1 1.80005 0.79999 1.80005-0.20001l0-215.5c158.69995 0 287.29993 127.59998 287.29993 285 0 157.40002-128.59998 285-287.30005 285",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/sl2-dd.jpg",
+                "mode": "fill"
+              },
+              "width": "fill_container",
+              "height": 533
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "cnkkpp",
+      "x": 6000,
+      "y": 0,
+      "name": "Slide 03 Context",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ti91n4",
+          "width": 998,
+          "height": 1080,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            54,
+            154
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "9cfbpy",
+              "fill": "rgba(28,28,28,0.55)",
+              "content": "03 / Контекст",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "xf4tcp",
+              "fill": "#1C1C1C",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "Город — это не только архитектура.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "vstnok",
+              "fill": "#6E6E6E",
+              "textGrowth": "fixed-width",
+              "width": 480,
+              "content": "Это результат ежедневного взаимодействия человека и пространства.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18
+            },
+            {
+              "type": "text",
+              "id": "tjdjxv",
+              "fill": "#6E6E6E",
+              "textGrowth": "fixed-width",
+              "width": 480,
+              "content": "Когда благоустройство продумано, среда ощущается естественно.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pxu9q7",
+          "width": 922,
+          "height": 1080,
+          "fill": "#2a2520",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "a2f3le",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/sl2-swings.jpg",
+                "mode": "fill"
+              },
+              "width": 922,
+              "height": 940
+            },
+            {
+              "type": "rectangle",
+              "id": "nnzbu0",
+              "fill": "#FCAC01",
+              "width": 922,
+              "height": 140
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "3gp79r",
+      "x": 8000,
+      "y": 0,
+      "name": "Slide 04 Principles",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#222222",
+      "layout": "vertical",
+      "gap": 40,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "3y4r3d",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "36dgli",
+              "fill": "rgba(242,241,236,0.5)",
+              "content": "04 / Принципы",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "ey2jse",
+              "fill": "#F2F1EC",
+              "content": "Наши принципы",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 96,
+              "fontWeight": "800"
+            },
+            {
+              "type": "rectangle",
+              "id": "vzvrv3",
+              "fill": "#C4432E",
+              "width": 56,
+              "height": 3
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "s83j3z",
+          "layout": "vertical",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "3iobsz",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lou8fn",
+                  "width": 450,
+                  "height": 180,
+                  "layout": "vertical",
+                  "padding": 48,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "l8bfn3",
+                      "fill": "rgba(255,255,255,0.07)",
+                      "content": "01",
+                      "fontFamily": "Euclid Circular A",
+                      "fontSize": 140,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yxyrzu",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "zp8ddj",
+                          "fill": "#CEDF83",
+                          "width": 8,
+                          "height": 48
+                        },
+                        {
+                          "type": "text",
+                          "id": "a0vlra",
+                          "fill": "#F2F1EC",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Функциональность",
+                          "fontFamily": "Euclid Circular A",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "37jpmt",
+                  "width": 450,
+                  "height": 180,
+                  "layout": "vertical",
+                  "padding": 48,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2ffkni",
+                      "fill": "rgba(255,255,255,0.07)",
+                      "content": "02",
+                      "fontFamily": "Euclid Circular A",
+                      "fontSize": 140,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ae2518",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "31mewc",
+                          "fill": "#A879FF",
+                          "width": 8,
+                          "height": 48
+                        },
+                        {
+                          "type": "text",
+                          "id": "g0n84u",
+                          "fill": "#F2F1EC",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Эстетика",
+                          "fontFamily": "Euclid Circular A",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5oekn6",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "59puew",
+                  "width": 450,
+                  "height": 180,
+                  "layout": "vertical",
+                  "padding": 48,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lgk9sl",
+                      "fill": "rgba(255,255,255,0.07)",
+                      "content": "03",
+                      "fontFamily": "Euclid Circular A",
+                      "fontSize": 140,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cn9u9i",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "zisvwr",
+                          "fill": "#FCAC01",
+                          "width": 8,
+                          "height": 48
+                        },
+                        {
+                          "type": "text",
+                          "id": "895kon",
+                          "fill": "#F2F1EC",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Эргономика",
+                          "fontFamily": "Euclid Circular A",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vgbtdj",
+                  "width": 450,
+                  "height": 180,
+                  "layout": "vertical",
+                  "padding": 48,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ku5y85",
+                      "fill": "rgba(255,255,255,0.07)",
+                      "content": "04",
+                      "fontFamily": "Euclid Circular A",
+                      "fontSize": 140,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4dkyt4",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "pl6xdr",
+                          "fill": "#B0ACA5",
+                          "width": 8,
+                          "height": 48
+                        },
+                        {
+                          "type": "text",
+                          "id": "ep8vke",
+                          "fill": "#F2F1EC",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Долговечность",
+                          "fontFamily": "Euclid Circular A",
+                          "fontSize": 32,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "738av4",
+      "x": 10000,
+      "y": 0,
+      "name": "Slide 05 Developer Reality",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "tu9fsh",
+          "x": 96,
+          "y": 86,
+          "fill": "#2F2A26",
+          "content": "05",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 240,
+          "fontWeight": "900"
+        },
+        {
+          "type": "frame",
+          "id": "w4ga7y",
+          "x": 496,
+          "y": 350,
+          "width": 450,
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "h1t72y",
+              "fill": "rgba(28,28,28,0.55)",
+              "content": "05 / Проблема",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "lra5jv",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "ext5ft",
+                  "fill": "#FCAC01",
+                  "width": 7,
+                  "height": 60
+                },
+                {
+                  "type": "text",
+                  "id": "sl7j80",
+                  "fill": "#1C1C1C",
+                  "textGrowth": "fixed-width",
+                  "width": 350,
+                  "content": "Реальность девелопера",
+                  "fontFamily": "Euclid Circular A",
+                  "fontSize": 72,
+                  "fontWeight": "800"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "50vp1b",
+          "x": 1100,
+          "y": 350,
+          "width": 600,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "986ca7",
+              "fill": "#1C1C1C",
+              "textGrowth": "fixed-width",
+              "width": 550,
+              "content": "Любой проект развивается в динамике, меняются:",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "rlhzr8",
+              "fill": "rgba(28,28,28,0.55)",
+              "textGrowth": "fixed-width",
+              "width": 550,
+              "content": "— вводные  — бюджеты  — архитектурные решения  — сроки",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18
+            },
+            {
+              "type": "text",
+              "id": "xs575x",
+              "fill": "#1C1C1C",
+              "textGrowth": "fixed-width",
+              "width": 550,
+              "content": "И благоустройство часто оказывается в уязвимой зоне:",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "o8myvm",
+              "fill": "rgba(28,28,28,0.55)",
+              "textGrowth": "fixed-width",
+              "width": 550,
+              "content": "— ведётся отдельно  — не встроено  — распределено между подрядчиками",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18
+            },
+            {
+              "type": "text",
+              "id": "1jko3o",
+              "fill": "#1C1C1C",
+              "textGrowth": "fixed-width",
+              "width": 550,
+              "content": "В результате — постоянный операционный контроль со стороны застройщика.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18,
+              "fontWeight": "600"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "grk6ng",
+      "x": 12000,
+      "y": 0,
+      "name": "Slide 06 System",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "ummyuu",
+          "fill": "rgba(28,28,28,0.55)",
+          "content": "06 / Система",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "id": "47d4td",
+          "fill": "#1C1C1C",
+          "content": "Система, а не изделия",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 72,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "enuw4b",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Малые архитектурные формы — это часть среды, а не отдельные объекты.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 20
+        },
+        {
+          "type": "text",
+          "id": "9rzky5",
+          "fill": "#6E6E6E",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Если это не заложено заранее — красивый рендер превращается в источник дополнительных работ.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 18
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "14d84t",
+      "x": 14000,
+      "y": 0,
+      "name": "Slide 07 Project Start",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "x867fh",
+          "fill": "rgba(28,28,28,0.55)",
+          "content": "07 / Подход",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "id": "zdihlf",
+          "fill": "#1C1C1C",
+          "content": "Проект начинается не с модели.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 72,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "pp33r1",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Мы начинаем с анализа среды, контекста и будущей нагрузки.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 28
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "adn7t8",
+      "x": 16000,
+      "y": 0,
+      "name": "Slide 08 Ergonomics",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "fb60vs",
+          "x": 460,
+          "y": 0,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/eb64054d_nano_1K.jpg",
+            "mode": "fill"
+          },
+          "width": 1460,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "l3pijp",
+          "x": 0,
+          "y": 410,
+          "width": 806,
+          "height": 200,
+          "fill": "#A33A2B",
+          "layout": "vertical",
+          "padding": 48,
+          "children": [
+            {
+              "type": "text",
+              "id": "rv7ev1",
+              "fill": "#F4F1EC",
+              "content": "Эргономика —",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 72,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dldk69",
+          "x": 154,
+          "y": 960,
+          "width": 806,
+          "height": 120,
+          "fill": "#B0ACA5",
+          "layout": "vertical",
+          "padding": 32,
+          "children": [
+            {
+              "type": "text",
+              "id": "pu3xdo",
+              "fill": "#1C1C1C",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "не дополнение к форме, а её логическое продолжение.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 24,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "0cj7zb",
+      "x": 18000,
+      "y": 0,
+      "name": "Slide 09 Change Management",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "ivm5vk",
+          "fill": "rgba(28,28,28,0.55)",
+          "content": "09 / Гибкость",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "id": "m4cs6u",
+          "fill": "#1C1C1C",
+          "content": "Работа с изменениями",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 72,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "lwbtf7",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Проект в процессе трансформируется.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 28
+        },
+        {
+          "type": "text",
+          "id": "nj5btr",
+          "fill": "#A33A2B",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "В работу закладывается конструктивная гибкость.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 32,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "t9m2hb",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Без остановки процесса и потери качества.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 28
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "31gkvi",
+      "x": 20000,
+      "y": 0,
+      "name": "Slide 10 Integration",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#0a0a09",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "kg4he6",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/sl10.png",
+            "mode": "fill"
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "rectangle",
+          "id": "k7c8c1",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "rgba(0,0,0,0.45)",
+                "position": 0
+              },
+              {
+                "color": "rgba(0,0,0,0.25)",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "r12qqw",
+          "x": 173,
+          "y": 734,
+          "width": 640,
+          "height": 250,
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "eouqgz",
+              "fill": "#CEDF83",
+              "content": "10  Urban Development",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "ml7iao",
+              "fill": "#ffffff",
+              "content": "Интеграция в контекст.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 72,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "gpbxxk",
+              "fill": "rgba(255,255,255,0.85)",
+              "textGrowth": "fixed-width",
+              "width": 600,
+              "content": "Элемент продолжает архитектуру и работает как часть среды.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "88flc8",
+      "x": 22000,
+      "y": 0,
+      "name": "Slide 11 Scale",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "c27rt3",
+          "fill": "#A33A2B",
+          "content": "11  Тиражируемость",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "id": "vvjk5b",
+          "fill": "#1C1C1C",
+          "content": "Масштаб без потерь.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 72,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "3afwnk",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Модульная система позволяет адаптировать решения под разные масштабы без потери архитектурной целостности.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 28
+        },
+        {
+          "type": "text",
+          "id": "23d6re",
+          "fill": "#6E6E6E",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Сохраняется логика · Сохраняется архитектурный язык · Сохраняется качество",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 24
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "jzxoh5",
+      "x": 24000,
+      "y": 0,
+      "name": "Slide 12 Climate",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "wulam5",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/sl12.png",
+            "mode": "fill"
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "rectangle",
+          "id": "l0slpt",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 90,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "rgba(248,248,246,0.75)",
+                "position": 0
+              },
+              {
+                "color": "rgba(248,248,246,0)",
+                "position": 1
+              }
+            ]
+          },
+          "width": 960,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "xit5cb",
+          "x": 96,
+          "y": 0,
+          "width": 960,
+          "height": 1080,
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 54,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "12ft31",
+              "fill": "#A33A2B",
+              "content": "12 / Эксплуатация и климат",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 14
+            },
+            {
+              "type": "text",
+              "id": "bfwsn9",
+              "fill": "#1C1C1C",
+              "content": "Архитектурный бетон M600–M1000",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 64,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "zaus6i",
+              "fill": "rgba(28,28,28,0.55)",
+              "content": "с морозостойкостью до F800.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 28
+            },
+            {
+              "type": "text",
+              "id": "jwb8hf",
+              "fill": "rgba(28,28,28,0.55)",
+              "textGrowth": "fixed-width",
+              "width": 500,
+              "content": "Материал рассчитан на высокую влажность, перепады температур и циклы замерзания.",
+              "fontFamily": "Euclid Circular A",
+              "fontSize": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "3vjfi7",
+      "x": 26000,
+      "y": 0,
+      "name": "Slide 13 System Accent",
+      "width": 1920,
+      "height": 1080,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 180,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "#2F2A26",
+            "position": 0
+          },
+          {
+            "color": "#25211E",
+            "position": 1
+          }
+        ]
+      },
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "t1ge46",
+          "fill": "rgba(242,239,234,0.75)",
+          "content": "13 / Системное благоустройство",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "rectangle",
+          "id": "sn0szb",
+          "fill": "#E05837",
+          "width": 80,
+          "height": 2
+        },
+        {
+          "type": "text",
+          "id": "r4uy9a",
+          "fill": "#F2EFEA",
+          "textGrowth": "fixed-width",
+          "width": 680,
+          "content": "Когда процесс выстроен, результат становится предсказуемым.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 60,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "kjq3e9",
+          "fill": "rgba(242,239,234,0.65)",
+          "textGrowth": "fixed-width",
+          "width": 680,
+          "content": "меньше операционного контроля · меньше срочных вмешательств · меньше рисков · больше управляемости",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 20
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "akraje",
+      "x": 28000,
+      "y": 0,
+      "name": "Slide 14 Work Model",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "9fbg7d",
+          "fill": "rgba(28,28,28,0.55)",
+          "content": "14  Взаимодействие",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 14
+        },
+        {
+          "type": "text",
+          "id": "y2w1lv",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 700,
+          "content": "Мы подключаемся на этапе проектирования.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 40
+        },
+        {
+          "type": "text",
+          "id": "6ppnuc",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 700,
+          "content": "Работаем в едином контуре с архитекторами.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 40
+        },
+        {
+          "type": "text",
+          "id": "wdzo0a",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 700,
+          "content": "Берём на себя техническую координацию блока благоустройства.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 40
+        },
+        {
+          "type": "text",
+          "id": "s46ky3",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 700,
+          "content": "Остаёмся в проекте до завершения.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 40
+        },
+        {
+          "type": "text",
+          "id": "ifpehf",
+          "fill": "#A33A2B",
+          "textGrowth": "fixed-width",
+          "width": 700,
+          "content": "Это снижает операционную нагрузку на команду девелопера.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 28,
+          "fontWeight": "600"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "qxx88a",
+      "x": 30000,
+      "y": 0,
+      "name": "Slide 15 Final",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#F3F1EC",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        54,
+        96
+      ],
+      "justifyContent": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "p4v9v4",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "Именно такой формат работы мы считаем правильным.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 56,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "o28wqm",
+          "fill": "#1C1C1C",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "И именно в таком формате нам комфортно работать с девелоперами.",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 56,
+          "fontWeight": "600"
+        },
+        {
+          "type": "rectangle",
+          "id": "nncgz4",
+          "fill": "#CEDF83",
+          "width": 48,
+          "height": 2
+        },
+        {
+          "type": "text",
+          "id": "trdsfm",
+          "fill": "rgba(28,28,28,0.55)",
+          "content": "Симбиотика",
+          "fontFamily": "Euclid Circular A",
+          "fontSize": 24,
+          "fontWeight": "500"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "4Ea47",
+      "x": 2895,
+      "y": 2100,
+      "name": "Frame 1",
+      "clip": true,
+      "width": 3,
+      "height": 3,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "DlrkS",
+      "x": 4000,
+      "y": 1624,
+      "name": "Симбиотика_Design Development_Черный.svg",
+      "width": 2000,
+      "height": 2000,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "Qdfmd",
+          "x": 0,
+          "y": 0,
+          "geometry": "M0 0l2000 0 0 2000-2000 0 0-2000z",
+          "fill": "#fff",
+          "width": 2000,
+          "height": 2000
+        },
+        {
+          "type": "path",
+          "id": "WqtK1",
+          "x": 602.4000244140625,
+          "y": 715,
+          "geometry": "M567.79993 570l0-215.5c0-1.09998-1.5-1.30005-1.80005-0.19995-31.19995 123.90002-144.09998 215.69995-278.70001 215.69995l-287.29987 0 0-570 287.29999 0c134.60003 0 247.49994 91.79999 278.70001 215.70001 0.30005 1 1.80005 0.79999 1.80005-0.20001l0-215.5c158.69995 0 287.29993 127.59998 287.29993 285 0 157.40002-128.59998 285-287.30005 285",
+          "width": 855.0999755859375,
+          "height": 570
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "alv3o",
+      "x": 3761.5232160436917,
+      "y": -2298.9156408891404,
+      "name": "Симбиотика_Urban Development copy_Черный.svg",
+      "width": 2000,
+      "height": 2000,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "d3aF0",
+          "x": 0,
+          "y": 0,
+          "geometry": "M0 0l2000 0 0 2000-2000 0 0-2000z",
+          "fill": "#fff",
+          "width": 2000,
+          "height": 2000
+        },
+        {
+          "type": "path",
+          "id": "OHIyX",
+          "x": 572.5,
+          "y": 715,
+          "geometry": "M570 0l-570 0 0 285c0 157.40002 127.59998 285 285 285 157.40002 0 281.40002-128.5 284-283.70001l1 0 0 283.70001c157.40002 0 285-127.59998 285-285 0-157.40002-127.59998-285-285-285",
+          "width": 855,
+          "height": 570
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "--bg": {
+      "type": "color",
+      "value": "#F3F1EC"
+    },
+    "--text": {
+      "type": "color",
+      "value": "#1C1C1C"
+    },
+    "--muted": {
+      "type": "color",
+      "value": "rgba(28,28,28,0.55)"
+    },
+    "--accent": {
+      "type": "color",
+      "value": "#A33A2B"
+    },
+    "--ud": {
+      "type": "color",
+      "value": "#CEDF83"
+    },
+    "--dd": {
+      "type": "color",
+      "value": "#A879FF"
+    },
+    "--brick": {
+      "type": "color",
+      "value": "#A33A2B"
+    },
+    "--sand": {
+      "type": "color",
+      "value": "#D8D2C8"
+    },
+    "--ochre": {
+      "type": "color",
+      "value": "#FCAC01"
+    },
+    "--cement": {
+      "type": "color",
+      "value": "#B0ACA5"
+    },
+    "--graphite-1": {
+      "type": "color",
+      "value": "#2F2A26"
+    },
+    "--graphite-2": {
+      "type": "color",
+      "value": "#25211E"
+    },
+    "--text-light": {
+      "type": "color",
+      "value": "#F2EFEA"
+    },
+    "--accent-warm": {
+      "type": "color",
+      "value": "#E05837"
+    }
+  }
+}
