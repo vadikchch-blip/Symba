@@ -66,18 +66,13 @@
 }
 
 .note {
-  display: flex;
-  align-items: flex-start;
-  gap: clamp(10px, 1vw, 16px);
+  position: relative;
   margin-top: clamp(28px, 4vh, 52px);
+  padding-left: 0;
 }
 
 .noteAccent {
-  width: 3px;
-  min-height: 100%;
-  background: var(--cement);
-  flex-shrink: 0;
-  border-radius: 1px;
+  display: none;
 }
 
 .noteText {
