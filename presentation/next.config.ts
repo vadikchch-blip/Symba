@@ -4,6 +4,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 const isStaticExport = process.env.STATIC_EXPORT === 'true'
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   ...(isStaticExport ? { output: 'export' } : {}),
   basePath: basePath || undefined,
   assetPrefix: basePath ? `${basePath}/` : undefined,
