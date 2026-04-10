@@ -1,40 +1,43 @@
+/* ===== SLIDE ===== */
 .slide {
   width: 100%;
   height: 100%;
-  background: var(--bg);
-  padding-inline: var(--safe-x);
-  padding-block: var(--safe-y);
   display: flex;
-  align-items: center;
-  gap: clamp(32px, 4vw, 64px);
   position: relative;
   overflow: hidden;
+  background: var(--bg-chalk, #F5F4F0);
 }
 
-/* Cement block — right 25%, subtle geometry */
-.cementBlock {
-  position: absolute;
-  top: 0;
-  left: calc(55% + 11px);
-  right: 0;
-  bottom: 0;
-  background: var(--cement);
-  opacity: 0.07;
-  pointer-events: none;
-}
-
-/* ===== Left column ===== */
-
+/* ===== LEFT — "before" zone, lighter ===== */
 .left {
-  width: 52%;
-  flex-shrink: 0;
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: var(--safe-x);
+  padding-right: clamp(32px, 3vw, 56px);
+  padding-block: var(--safe-y);
   position: relative;
   z-index: 1;
 }
 
+/* ===== RIGHT — "after" zone, photo ===== */
+/* Clean image, no overlays, no gradients */
+.right {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== TYPOGRAPHY ===== */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: var(--meta);
@@ -55,83 +58,89 @@
   margin: 0;
 }
 
+/* ===== L-FRAME — before → after ===== */
+/* Structural element, not decoration.                       */
+/* L-shaped border: left + bottom, 1px graphite.             */
+/* Anchored below the title, wraps the phase labels.         */
+.lFrame {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.5vw, 40px);
+  margin-top: clamp(24px, 3vh, 40px);
+  padding: clamp(16px, 2vh, 28px) 0 clamp(16px, 2vh, 28px) clamp(16px, 1.5vw, 24px);
+  border-left: 1.5px solid rgba(28, 28, 28, 0.7);
+  border-bottom: 1.5px solid rgba(28, 28, 28, 0.7);
+}
+
+.phase {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.phaseLabel {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 0.9vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.phaseDesc {
+  font-family: var(--font-primary);
+  font-size: clamp(13px, 1.1vw, 17px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.arrow {
+  font-family: var(--font-primary);
+  font-size: clamp(18px, 1.6vw, 28px);
+  color: var(--ochre, #C2A14D);
+  flex-shrink: 0;
+}
+
+/* ===== LEAD ===== */
 .lead {
   font-family: var(--font-primary);
   font-size: var(--h2);
   font-weight: 500;
   line-height: 1.3;
   color: var(--text);
-  margin: clamp(16px, 2vh, 28px) 0 0 0;
-  max-width: 48ch;
+  margin: clamp(20px, 2.5vh, 36px) 0 0 0;
+  max-width: 40ch;
 }
 
-.note {
-  position: relative;
-  margin-top: clamp(28px, 4vh, 52px);
-  padding-left: 0;
-}
-
-.noteAccent {
-  display: none;
-}
-
-.noteText {
-  font-family: var(--font-primary);
-  font-size: var(--p);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--muted);
-  margin: 0;
-  max-width: 44ch;
-}
-
-/* ===== Right column ===== */
-
-.right {
-  flex: 1;
+/* ===== STEPS ===== */
+.steps {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: clamp(20px, 3vh, 40px);
-  position: relative;
-  z-index: 1;
+  gap: clamp(6px, 0.8vh, 12px);
+  margin-top: clamp(24px, 3vh, 40px);
 }
 
-.row {
-  position: relative;
-  padding-left: clamp(48px, 5vw, 80px);
-  min-height: clamp(48px, 5vw, 80px);
+.step {
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--cement);
-  padding-bottom: clamp(16px, 2vh, 28px);
+  align-items: baseline;
+  gap: clamp(10px, 1vw, 18px);
 }
 
-.row:last-child {
-  border-bottom: none;
+.stepNum {
+  font-family: var(--font-mono);
+  font-size: var(--meta);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  flex-shrink: 0;
 }
 
-/* Cement-colored watermark numbers */
-.watermark {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.stepLabel {
   font-family: var(--font-primary);
-  font-size: clamp(48px, 5vw, 88px);
-  font-weight: 900;
-  line-height: 1;
-  color: var(--cement);
-  opacity: 0.09;
-  pointer-events: none;
-  user-select: none;
-}
-
-.label {
-  font-family: var(--font-primary);
-  font-size: clamp(23px, 2.1vw, 38px);
+  font-size: clamp(16px, 1.4vw, 24px);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--text);
 }
