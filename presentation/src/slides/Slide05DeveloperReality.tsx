@@ -26,7 +26,7 @@ function ListBlock({ blockKey }: { blockKey: 'blockA' | 'blockB' }) {
 export function Slide05DeveloperReality() {
   return (
     <div className={styles.slide}>
-      <span className={styles.watermark}>05</span>
+      <span className={styles.watermark}>06</span>
       <div className={styles.left}>
         <Editable slideKey="slide05" path={['eyebrow']} tag="span" className={styles.eyebrow} />
         <div className={styles.titleWrap}>

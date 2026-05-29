@@ -102,6 +102,11 @@
   display: block;
 }
 
+/* SL1.webp (UD edge, full-height) — shift left to better show modular bench composition */
+.halfUd .cellEdge .photo {
+  object-position: 25% center;
+}
+
 /* 2.jpg (UD stack top) — fit chair in horizontal slot */
 .halfUd .cellStack .photoCell:first-child .photo {
   object-fit: cover;

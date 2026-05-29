@@ -6,6 +6,7 @@ import { EditorProvider, useEditor } from '@/src/context/EditorContext'
 import { Slide01Hero } from '@/src/slides/Slide01Hero'
 import { Slide02Directions } from '@/src/slides/Slide02Directions'
 import { Slide03Context } from '@/src/slides/Slide03Context'
+import { Slide03bMaterials } from '@/src/slides/Slide03bMaterials'
 import { Slide04Principles } from '@/src/slides/Slide04Principles'
 import { Slide05DeveloperReality } from '@/src/slides/Slide05DeveloperReality'
 import { Slide06SystemNotProducts } from '@/src/slides/Slide06SystemNotProducts'
@@ -13,7 +14,6 @@ import { Slide07ProjectStart } from '@/src/slides/Slide07ProjectStart'
 import { SlideCollections } from '@/src/slides/SlideCollections'
 import { Slide08Ergonomics } from '@/src/slides/Slide08Ergonomics'
 import { Slide09ChangeManagement } from '@/src/slides/Slide09ChangeManagement'
-import { Slide10Integration } from '@/src/slides/Slide10Integration'
 import { Slide11Scale } from '@/src/slides/Slide11Scale'
 import { Slide12Climate } from '@/src/slides/Slide12Climate'
 import { Slide13SystemAccent } from '@/src/slides/Slide13SystemAccent'
@@ -117,10 +117,13 @@ function PresentationContent() {
     // [02] НАПРАВЛЕНИЯ — UD / DD
     <Slide02Directions key="s02" />,
 
-    // [03] КОНТЕКСТ
+    // [03] МАТЕРИАЛЫ
+    <Slide03bMaterials key="s03b" />,
+
+    // [04] КОНТЕКСТ
     <Slide03Context key="s03" />,
 
-    // [04] ПРИНЦИПЫ
+    // [05] ПРИНЦИПЫ
     <Slide04Principles key="s04" />,
 
     // [05] ПРОБЛЕМА
@@ -140,9 +143,6 @@ function PresentationContent() {
 
     // [09] ГИБКОСТЬ
     <Slide09ChangeManagement key="s09" />,
-
-    // [10] ИНТЕГРАЦИЯ — full-width image
-    <Slide10Integration key="s10" />,
 
     // [11] МАСШТАБ — типографический слайд силы
     <Slide11Scale key="s11" />,
